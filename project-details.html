@@ -189,7 +189,7 @@
         <div class="max-w-3xl mx-auto text-center space-y-4">
           <h2 class="text-2xl font-serif font-semibold">Project not found</h2>
           <p class="text-slate-300">We could not load this project. Please return to the projects page and select a listing.</p>
-          <a href="Index (02-02-2026).html" class="inline-flex items-center gap-2 btn-gold text-white px-6 py-3 rounded-full text-xs font-semibold tracking-wide shadow-lg">
+          <a href="index.html" class="inline-flex items-center gap-2 btn-gold text-white px-6 py-3 rounded-full text-xs font-semibold tracking-wide shadow-lg">
             <span x-text="t('back_to_projects')"></span>
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
           </a>
@@ -2474,11 +2474,11 @@
             if (this.isDocLightboxOpen) { this.isDocLightboxOpen = false; return; }
           },
           backToPrevious() {
-            let target = 'Index (02-02-2026).html';
+            let target = 'index.html';
             try {
               const stored = localStorage.getItem(this.lastPageKey);
               if (stored) {
-                target = `Index (02-02-2026).html?page=${encodeURIComponent(stored)}`;
+                target = `index.html?page=${encodeURIComponent(stored)}`;
               }
             } catch (_) {}
             window.location.href = target;
