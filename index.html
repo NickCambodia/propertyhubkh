@@ -974,13 +974,19 @@
         if (!el || !window.L) return;
         this.mapInstance = window.L.map(el, {
             scrollWheelZoom: false,
-            zoomControl: true,
+            zoomControl: false,
             preferCanvas: true,
             zoomAnimation: false,
             markerZoomAnimation: false,
             fadeAnimation: false,
             updateWhenIdle: true,
-            updateWhenZooming: false
+            updateWhenZooming: false,
+            dragging: false,
+            doubleClickZoom: false,
+            boxZoom: false,
+            keyboard: false,
+            tap: false,
+            touchZoom: false
         }).setView([this.mapCenter.lat, this.mapCenter.lng], this.mapCenter.zoom);
 
         el.classList.add('map-dark');
@@ -3028,8 +3034,9 @@ projects: [
           <div
             class="relative w-full h-[500px] bg-slate-100 rounded-3xl overflow-hidden border border-slate-200 group shadow-inner"
           >
-            <div id="project-map" class="absolute inset-0 w-full h-full"></div>
+            <div id="project-map" class="absolute inset-0 w-full h-full pointer-events-none"></div>
             <div class="absolute inset-0 z-10 pointer-events-none">
+              <div class="absolute top-5 left-5 bg-black/60 text-white text-[10px] uppercase tracking-[0.2em] px-3 py-1 rounded-full border border-white/10">Preview only</div>
               <div
                 class="absolute bottom-6 left-6 max-w-xs mx-auto pointer-events-auto"
               >

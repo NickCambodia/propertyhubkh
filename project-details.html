@@ -706,6 +706,10 @@
         x-show="isImageLightboxOpen"
         x-transition.opacity
         class="fixed inset-0 z-[70] bg-black/80 flex items-center justify-center p-6"
+        style="touch-action: none;"
+        @touchstart.passive="onLightboxTouchStart($event)"
+        @touchend.passive="onLightboxTouchEnd($event, 'image')"
+        @touchmove.prevent
         @keydown.escape.window="closeOverlayState()"
         @keydown.window="
           if (!isImageLightboxOpen) return;
@@ -760,7 +764,11 @@
         x-show="isDocLightboxOpen"
         x-transition.opacity
         class="fixed inset-0 z-[70] bg-black/80 flex items-center justify-center p-6"
+        style="touch-action: none;"
         @keydown.escape.window="closeOverlayState()"
+        @touchstart.passive="onLightboxTouchStart($event)"
+        @touchend.passive="onLightboxTouchEnd($event, 'doc')"
+        @touchmove.prevent
         x-cloak
       >
         <button
@@ -801,6 +809,9 @@
           lightboxImageUrl: '',
           lightboxItems: [],
           lightboxIndex: 0,
+          lightboxTouchStartX: 0,
+          lightboxTouchStartY: 0,
+          lightboxTouchStartTime: 0,
           thumbLimit: 6,
           inquirySuccess: false,
           inquiryMessage: '',
@@ -915,7 +926,7 @@
             footer_subscribe_btn: 'Subscribe',
             footer_email_placeholder: 'Enter your email',
             footer_follow: 'Follow Us',
-            back_to_projects: 'Back to Projects',
+            back_to_projects: 'Back',
             project_details: 'Project Details',
             or_contact_direct: 'Or contact directly',
             nav_chat: 'Chat',
@@ -2472,6 +2483,29 @@
           closeOverlayState() {
             if (this.isImageLightboxOpen) { this.isImageLightboxOpen = false; return; }
             if (this.isDocLightboxOpen) { this.isDocLightboxOpen = false; return; }
+          },
+          onLightboxTouchStart(event) {
+            const touch = event.touches && event.touches[0];
+            if (!touch) return;
+            this.lightboxTouchStartX = touch.clientX;
+            this.lightboxTouchStartY = touch.clientY;
+            this.lightboxTouchStartTime = Date.now();
+          },
+          onLightboxTouchEnd(event, mode) {
+            const touch = event.changedTouches && event.changedTouches[0];
+            if (!touch) return;
+            const dx = touch.clientX - this.lightboxTouchStartX;
+            const dy = touch.clientY - this.lightboxTouchStartY;
+            const absX = Math.abs(dx);
+            const absY = Math.abs(dy);
+            if (absX < 10 && absY < 10) return;
+            if (absY > 80 && absY > absX * 1.2) {
+              this.closeOverlayState();
+              return;
+            }
+            if (mode === 'image' && this.lightboxItems.length > 1 && absX > 50 && absX > absY * 1.2) {
+              if (dx < 0) { this.nextLightboxItem(); } else { this.prevLightboxItem(); }
+            }
           },
           backToPrevious() {
             let target = 'index.html';
