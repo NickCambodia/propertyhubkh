@@ -1,0 +1,2723 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: wss: data:;"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta
+      name="description"
+      content="Project details for Property Hub Cambodia."
+    />
+
+    <title>Project Details | Property Hub Cambodia</title>
+    <link rel="icon" type="image/png" href="./PHC%20Logo%20(1).png" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer="" src="https://unpkg.com/lucide@0.563.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <script defer="" src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+      /* Typography & Base */
+      :root {
+        --font-sans: "Inter", sans-serif;
+        --font-serif: "Playfair Display", serif;
+        --color-navy: #0a3258;
+        --color-gold: #d4a760;
+      }
+
+      body {
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #fafafa;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      .font-serif {
+        font-family: var(--font-serif);
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+
+      /* Custom UI Elements */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05),
+          0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+
+      .btn-gold {
+        background: linear-gradient(135deg, #d4a760 0%, #c59d4b 100%);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .btn-gold:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.1);
+        box-shadow: 0 10px 15px -3px rgba(212, 167, 96, 0.3);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      /* Form Elements */
+      .custom-select {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+        background-position: right 0.75rem center;
+        background-repeat: no-repeat;
+        background-size: 1.25rem 1.25rem;
+      }
+
+      /* Map Placeholder Pattern */
+      .bg-grid-pattern {
+        background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+
+      /* Smooth transitions */
+      [x-cloak] {
+        display: none !important;
+      }
+
+      /* Keep Tawk widget visible above UI layers */
+      #tawkchat-container,
+      .tawk-bubble-container,
+      .tawk-min-container {
+        z-index: 999999 !important;
+      }
+    
+    </style>
+  </head>
+
+  <body
+    x-data="projectDetails()"
+    x-init="initPage()"
+    x-effect="document.documentElement.lang = lang"
+    class="text-slate-100 selection:bg-[#D4A760] selection:text-white bg-[#0A3258]"
+  >
+    <main class="min-h-screen">
+      <div class="flex items-center justify-between px-6 py-5 border-b border-white/10 bg-[#0A3258]/95 backdrop-blur-md sticky top-0 z-40">
+        <div>
+          <p class="text-[10px] uppercase tracking-[0.3em] text-white/70">
+            <span x-text="t('project_details')"></span>
+          </p>
+          <h1 class="text-lg font-serif font-semibold text-white" x-text="activeProject?.name || 'Project Details'"></h1>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="relative">
+            <button
+              class="flex text-slate-300 hover:text-white transition-colors gap-2 items-center group px-3 py-2 rounded-full border border-white/10 hover:border-white/30"
+              @click="isLangOpen = !isLangOpen"
+              aria-label="Language"
+              :aria-expanded="isLangOpen"
+            >
+              <i data-lucide="globe" class="w-4 h-4 group-hover:text-[#D4A760] transition-colors"></i>
+              <span class="text-xs font-semibold" x-text="lang.toUpperCase()"></span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+            </button>
+            <div
+              x-cloak
+              x-show="isLangOpen"
+              x-transition.opacity.duration.150ms
+              @click.outside="isLangOpen = false"
+              class="absolute right-0 top-full mt-3 w-44 rounded-2xl border border-white/10 bg-[#0A3258] shadow-2xl overflow-hidden"
+            >
+              <button type="button" class="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-white hover:bg-white/10" @click="setLanguage('en')">
+                <span class="text-lg">🇬🇧</span>
+                <span x-text="t('language_en')"></span>
+              </button>
+              <button type="button" class="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-white hover:bg-white/10" @click="setLanguage('ja')">
+                <span class="text-lg">🇯🇵</span>
+                <span x-text="t('language_ja')"></span>
+              </button>
+              <button type="button" class="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-white hover:bg-white/10" @click="setLanguage('de')">
+                <span class="text-lg">🇩🇪</span>
+                <span x-text="t('language_de')"></span>
+              </button>
+            </div>
+          </div>
+          <button
+            type="button"
+            @click="backToPrevious()"
+            class="inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white border border-white/10 px-4 py-2 rounded-full transition-colors"
+          >
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span x-text="t('back_to_projects')"></span>
+          </button>
+        </div>
+      </div>
+
+      <section x-show="!activeProject" x-cloak class="px-6 py-16">
+        <div class="max-w-3xl mx-auto text-center space-y-4">
+          <h2 class="text-2xl font-serif font-semibold">Project not found</h2>
+          <p class="text-slate-300">We could not load this project. Please return to the projects page and select a listing.</p>
+          <a href="Index (02-02-2026).html" class="inline-flex items-center gap-2 btn-gold text-white px-6 py-3 rounded-full text-xs font-semibold tracking-wide shadow-lg">
+            <span x-text="t('back_to_projects')"></span>
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </section>
+
+      <section x-show="activeProject" x-cloak>
+<div
+        class="bg-[#0A3258] w-full h-full rounded-none shadow-2xl relative z-10 overflow-hidden ring-1 ring-white/10 flex flex-col text-white"
+      >
+        
+        <div class="p-6 overflow-y-auto flex-1">
+          <div class="max-w-5xl mx-auto w-full space-y-8">
+            <div class="space-y-4">
+              <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
+                <div class="space-y-3">
+                  <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                    <span
+                      class="px-3 py-1 rounded-full bg-[#D4A760]/20 text-[#D4A760] border border-[#D4A760]/40"
+                      x-text="activeProject?.status"
+                    ></span>
+                    <span
+                      class="px-3 py-1 rounded-full bg-white/10 text-white/80 border border-white/10"
+                      x-text="typeLabel(activeProject?.type)"
+                    ></span>
+                    <span
+                      class="px-3 py-1 rounded-full bg-white/10 text-white/80 border border-white/10"
+                      x-show="activeProject?.availability"
+                      x-text="activeProject?.availability"
+                    ></span>
+                  </div>
+                  <h2 class="text-2xl lg:text-3xl font-serif font-semibold text-white" x-text="activeProject?.name"></h2>
+                  <div class="flex items-center gap-2 text-sm text-slate-300">
+                    <i data-lucide="map-pin" class="w-4 h-4 text-[#D4A760]"></i>
+                    <span x-text="activeProject?.location"></span>
+                  </div>
+                </div>
+                <div class="lg:text-right">
+                  <p
+                    class="text-[#D4A760] text-2xl font-semibold"
+                    x-text="activeProject?.price ? ((activeProject.price.toLowerCase().includes('from') || activeProject.price.toLowerCase().includes('start')) ? activeProject.price : `${t('price_from')} ${activeProject.price}`) : ''"
+                  ></p>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <div
+                  class="relative rounded-2xl overflow-hidden border border-white/10 aspect-video shadow-2xl cursor-pointer"
+                  @click="openLightboxForList(getProjectImages(), activeProjectImageIndex)"
+                >
+                  <img
+                    :src="activeProjectImage || activeProject?.image"
+                    :alt="activeProject?.name"
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <button
+                    type="button"
+                    class="absolute top-3 right-3 w-10 h-10 rounded-full bg-black/55 text-white flex items-center justify-center hover:bg-black/70 transition-colors border border-white/10"
+                    @click="openLightboxForList(getProjectImages(), activeProjectImageIndex)"
+                    aria-label="Expand image"
+                  >
+                    <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/55 text-white flex items-center justify-center hover:bg-black/70 transition-colors border border-white/10"
+                    @click.stop="prevProjectImage()"
+                    :disabled="getProjectImages().length < 2"
+                    aria-label="Previous image"
+                  >
+                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/55 text-white flex items-center justify-center hover:bg-black/70 transition-colors border border-white/10"
+                    @click.stop="nextProjectImage()"
+                    :disabled="getProjectImages().length < 2"
+                    aria-label="Next image"
+                  >
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                  </button>
+                  <div class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-black/60 text-white text-[11px] px-3 py-1 rounded-full">
+                    <span x-text="getProjectImages().length ? `${activeProjectImageIndex + 1} / ${getProjectImages().length}` : '0 / 0'"></span>
+                  </div>
+                </div>
+                <div
+                  class="grid grid-cols-4 sm:grid-cols-5 lg:grid-cols-6 gap-3"
+                  x-show="getProjectImages().length"
+                >
+                  <template x-for="(img, idx) in getThumbImages()" :key="img">
+                    <button
+                      type="button"
+                      class="rounded-lg overflow-hidden border border-white/10 focus:outline-none focus:ring-2 focus:ring-[#D4A760] bg-white/5 p-1 aspect-[4/3]"
+                      @click="setActiveProjectImage(idx)"
+                    >
+                      <img
+                        :src="img"
+                        :alt="activeProject?.name"
+                        class="w-full h-full object-contain rounded-md bg-black/20"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </button>
+                  </template>
+                  <button
+                    type="button"
+                    class="rounded-lg border border-white/10 bg-white/5 text-white/80 text-sm font-semibold flex items-center justify-center hover:bg-white/10 aspect-[4/3]"
+                    x-show="getThumbOverflowCount() > 0"
+                    @click="isImageLightboxOpen = true"
+                  >
+                    <span x-text="`+${getThumbOverflowCount()}`"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="grid lg:grid-cols-[1.35fr_0.65fr] gap-8">
+              <div class="space-y-6">
+                <div class="bg-[#123A60] border border-white/10 rounded-3xl p-6 sm:p-7 text-white shadow-[0_18px_40px_-28px_rgba(0,0,0,0.6)]">
+                  <h4 class="text-lg font-serif font-semibold text-white mb-3" x-text="t('project_about')"></h4>
+                  <p class="text-sm text-slate-300 leading-relaxed mb-5" x-text="activeProject?.description"></p>
+                  <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-slate-300">
+                    <div class="flex items-start gap-3" x-show="activeProject?.developer">
+                      <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center mt-0.5">
+                        <i data-lucide="briefcase" class="w-5 h-5 text-[#D4A760]"></i>
+                      </span>
+                      <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-300" x-text="t('project_developer')"></p>
+                        <p x-text="activeProject?.developer"></p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3">
+                      <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center mt-0.5">
+                        <i data-lucide="building-2" class="w-5 h-5 text-[#D4A760]"></i>
+                      </span>
+                      <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-300" x-text="t('project_type')"></p>
+                        <p x-text="typeLabel(activeProject?.type)"></p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3" x-show="activeProject?.completion">
+                      <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center mt-0.5">
+                        <i data-lucide="calendar-check" class="w-5 h-5 text-[#D4A760]"></i>
+                      </span>
+                      <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-300" x-text="t('project_completion')"></p>
+                        <p x-text="activeProject?.completion"></p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3" x-show="activeProject?.floorArea || activeProject?.size || activeProject?.specs">
+                      <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center mt-0.5">
+                        <i data-lucide="maximize" class="w-5 h-5 text-[#D4A760]"></i>
+                      </span>
+                      <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-300" x-text="t('project_size')"></p>
+                        <p x-text="activeProject?.floorArea || activeProject?.size || activeProject?.specs"></p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3" x-show="activeProject?.totalFloor">
+                      <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center mt-0.5">
+                        <i data-lucide="layers" class="w-5 h-5 text-[#D4A760]"></i>
+                      </span>
+                      <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-300" x-text="t('project_total_floors')"></p>
+                        <p x-text="activeProject?.totalFloor"></p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3" x-show="activeProject?.buildingHeight">
+                      <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center mt-0.5">
+                        <i data-lucide="ruler" class="w-5 h-5 text-[#D4A760]"></i>
+                      </span>
+                      <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-300" x-text="t('project_building_height')"></p>
+                        <p x-text="activeProject?.buildingHeight"></p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3" x-show="activeProject?.totalUnit">
+                      <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center mt-0.5">
+                        <i data-lucide="home" class="w-5 h-5 text-[#D4A760]"></i>
+                      </span>
+                      <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-300" x-text="t('project_total_units')"></p>
+                        <p x-text="activeProject?.totalUnit"></p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3" x-show="activeProject?.availability">
+                      <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center mt-0.5">
+                        <i data-lucide="percent" class="w-5 h-5 text-[#D4A760]"></i>
+                      </span>
+                      <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-300" x-text="t('project_sold')"></p>
+                        <p x-text="activeProject?.availability"></p>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3" x-show="getTitleType(activeProject)">
+                      <span class="w-9 h-9 rounded-full bg-white/10 border border-white/10 flex items-center justify-center mt-0.5">
+                        <i data-lucide="file-badge" class="w-5 h-5 text-[#D4A760]"></i>
+                      </span>
+                      <div>
+                        <p class="text-[11px] uppercase tracking-wider text-slate-300" x-text="t('project_title')"></p>
+                        <p x-text="getTitleType(activeProject)"></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-[#123A60] border border-white/10 rounded-3xl p-6 sm:p-7 text-white shadow-[0_18px_40px_-28px_rgba(0,0,0,0.6)]">
+                  <h4 class="text-lg font-serif font-semibold text-white mb-6" x-text="t('project_features')"></h4>
+                  <ul
+                    class="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12 text-sm text-slate-200"
+                    x-effect="if (window.lucide) { $nextTick(() => window.lucide.createIcons()); }"
+                  >
+                    <template x-for="item in activeProject?.highlights || []">
+                      <li class="flex items-center gap-4">
+                        <i data-lucide="star" class="w-5 h-5 text-[#D4A760] flex-shrink-0"></i>
+                        <span class="leading-relaxed" x-text="item"></span>
+                      </li>
+                    </template>
+                  </ul>
+                </div>
+
+                <div class="bg-[#123A60] border border-white/10 rounded-2xl p-5 space-y-4 text-white shadow-[0_18px_40px_-28px_rgba(0,0,0,0.6)]">
+                  <div class="flex flex-wrap gap-2">
+                    <button
+                      type="button"
+                      class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide border transition-colors"
+                      :class="projectDetailTab === 'map' ? 'bg-[#D4A760] text-[#0A3258] border-[#D4A760]' : 'bg-white/5 text-white/80 border-white/10 hover:border-[#D4A760]'"
+                      @click="projectDetailTab = 'map'"
+                    >
+                      <i data-lucide="map" class="w-3.5 h-3.5"></i>
+                      <span x-text="t('tab_map')"></span>
+                    </button>
+                    <button
+                      type="button"
+                      class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide border transition-colors"
+                      :class="projectDetailTab === 'floor' ? 'bg-[#D4A760] text-[#0A3258] border-[#D4A760]' : 'bg-white/5 text-white/80 border-white/10 hover:border-[#D4A760]'"
+                      @click="projectDetailTab = 'floor'"
+                      x-show="getProjectFloorPlans(activeProject).length"
+                    >
+                      <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+                      <span x-text="t('tab_floor')"></span>
+                    </button>
+                    <button
+                      type="button"
+                      class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide border transition-colors"
+                      :class="projectDetailTab === 'facility' ? 'bg-[#D4A760] text-[#0A3258] border-[#D4A760]' : 'bg-white/5 text-white/80 border-white/10 hover:border-[#D4A760]'"
+                      @click="projectDetailTab = 'facility'"
+                      x-show="getProjectFacilities(activeProject).length"
+                    >
+                      <i data-lucide="building" class="w-3.5 h-3.5"></i>
+                      <span x-text="t('tab_facilities')"></span>
+                    </button>
+                    <button
+                      type="button"
+                      class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide border transition-colors"
+                      :class="projectDetailTab === 'unit' ? 'bg-[#D4A760] text-[#0A3258] border-[#D4A760]' : 'bg-white/5 text-white/80 border-white/10 hover:border-[#D4A760]'"
+                      @click="projectDetailTab = 'unit'"
+                      x-show="getProjectUnitLayouts(activeProject).length"
+                    >
+                      <i data-lucide="layers" class="w-3.5 h-3.5"></i>
+                      <span x-text="t('tab_units')"></span>
+                    </button>
+                    <button
+                      type="button"
+                      class="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide border transition-colors"
+                      :class="projectDetailTab === 'video' ? 'bg-[#D4A760] text-[#0A3258] border-[#D4A760]' : 'bg-white/5 text-white/80 border-white/10 hover:border-[#D4A760]'"
+                      @click="projectDetailTab = 'video'"
+                    >
+                      <i data-lucide="play-circle" class="w-3.5 h-3.5"></i>
+                      <span x-text="t('tab_video')"></span>
+                    </button>
+                  </div>
+                  <div x-show="projectDetailTab === 'map'" x-transition.opacity>
+                    <div class="rounded-2xl overflow-hidden border border-white/10 aspect-video">
+                      <iframe
+                        class="w-full h-full"
+                        :src="getMapEmbedUrl(activeProject)"
+                        :title="t('project_location_map')"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  </div>
+              <div x-show="projectDetailTab === 'floor'" x-transition.opacity>
+                <div class="rounded-2xl overflow-hidden border border-white/10 aspect-video bg-white/5 relative">
+                  <template x-if="getCurrentFloorItem()">
+                    <div class="w-full h-full">
+                      <template x-if="isPdf(getCurrentFloorItem())">
+                        <div class="w-full h-full relative">
+                          <iframe :src="getCurrentFloorItem()" class="w-full h-full" title="Floor plan preview"></iframe>
+                          <button
+                            type="button"
+                            class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-sm font-semibold opacity-0 hover:opacity-100 transition-opacity"
+                            @click="openDocLightbox(getCurrentFloorItem())"
+                          >
+                            Expand PDF
+                          </button>
+                        </div>
+                      </template>
+                      <template x-if="!isPdf(getCurrentFloorItem())">
+                        <button type="button" class="w-full h-full" @click="openLightboxForList(getProjectFloorPlans(activeProject), floorIndex)">
+                          <img
+                            :src="getCurrentFloorItem()"
+                            :alt="`${activeProject?.name} floor plan`"
+                            class="w-full h-full object-contain bg-black/20"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </template>
+                    </div>
+                  </template>
+                  <div class="absolute bottom-3 left-3 right-3 pointer-events-none">
+                    <span
+                      class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 text-white text-xs font-semibold tracking-wide shadow-sm"
+                      x-text="formatAssetTitle(getCurrentFloorItem(), 'Floor Plan')"
+                    ></span>
+                  </div>
+                  <button
+                    type="button"
+                    class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/75 border border-white/10"
+                    x-show="getProjectFloorPlans(activeProject).length > 1"
+                    @click="prevFloorItem()"
+                    aria-label="Previous floor plan"
+                  >
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/75 border border-white/10"
+                    x-show="getProjectFloorPlans(activeProject).length > 1"
+                    @click="nextFloorItem()"
+                    aria-label="Next floor plan"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+              <div x-show="projectDetailTab === 'facility'" x-transition.opacity>
+                <div class="rounded-2xl overflow-hidden border border-white/10 aspect-video bg-white/5 relative">
+                  <template x-if="getCurrentFacilityItem()">
+                    <div class="w-full h-full">
+                      <template x-if="isPdf(getCurrentFacilityItem())">
+                        <div class="w-full h-full relative">
+                          <iframe :src="getCurrentFacilityItem()" class="w-full h-full" title="Facility preview"></iframe>
+                          <button
+                            type="button"
+                            class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-sm font-semibold opacity-0 hover:opacity-100 transition-opacity"
+                            @click="openDocLightbox(getCurrentFacilityItem())"
+                          >
+                            Expand PDF
+                          </button>
+                        </div>
+                      </template>
+                      <template x-if="!isPdf(getCurrentFacilityItem())">
+                        <button type="button" class="w-full h-full" @click="openLightboxForList(getProjectFacilities(activeProject), facilityIndex)">
+                          <img
+                            :src="getCurrentFacilityItem()"
+                            :alt="`${activeProject?.name} facility`"
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </template>
+                    </div>
+                  </template>
+                  <button
+                    type="button"
+                    class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/75 border border-white/10"
+                    x-show="getProjectFacilities(activeProject).length > 1"
+                    @click="prevFacilityItem()"
+                    aria-label="Previous facility image"
+                  >
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/75 border border-white/10"
+                    x-show="getProjectFacilities(activeProject).length > 1"
+                    @click="nextFacilityItem()"
+                    aria-label="Next facility image"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+              <div x-show="projectDetailTab === 'unit'" x-transition.opacity>
+                <div class="rounded-2xl overflow-hidden border border-white/10 aspect-video bg-white/5 relative">
+                  <template x-if="getCurrentUnitItem()">
+                    <div class="w-full h-full">
+                      <template x-if="isPdf(getCurrentUnitItem())">
+                        <div class="w-full h-full relative">
+                          <iframe :src="getCurrentUnitItem()" class="w-full h-full" title="Unit layout preview"></iframe>
+                          <button
+                            type="button"
+                            class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-sm font-semibold opacity-0 hover:opacity-100 transition-opacity"
+                            @click="openDocLightbox(getCurrentUnitItem())"
+                          >
+                            Expand PDF
+                          </button>
+                        </div>
+                      </template>
+                      <template x-if="!isPdf(getCurrentUnitItem())">
+                        <button type="button" class="w-full h-full" @click="openLightboxForList(getProjectUnitLayouts(activeProject), unitIndex)">
+                          <img
+                            :src="getCurrentUnitItem()"
+                            :alt="`${activeProject?.name} unit layout`"
+                            class="w-full h-full object-contain bg-black/20"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      </template>
+                    </div>
+                  </template>
+                  <div class="absolute bottom-3 left-3 right-3 pointer-events-none">
+                    <span
+                      class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 text-white text-xs font-semibold tracking-wide shadow-sm"
+                      x-text="formatAssetTitle(getCurrentUnitItem(), 'Unit Layout')"
+                    ></span>
+                  </div>
+                  <button
+                    type="button"
+                    class="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/75 border border-white/10"
+                    x-show="getProjectUnitLayouts(activeProject).length > 1"
+                    @click="prevUnitItem()"
+                    aria-label="Previous unit layout"
+                  >
+                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/75 border border-white/10"
+                    x-show="getProjectUnitLayouts(activeProject).length > 1"
+                    @click="nextUnitItem()"
+                    aria-label="Next unit layout"
+                  >
+                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+                  <div x-show="projectDetailTab === 'video'" x-transition.opacity>
+                    <div class="rounded-2xl overflow-hidden border border-white/10 aspect-video">
+                      <iframe
+                        class="w-full h-full"
+                        :src="activeProject?.videoUrl || defaultProjectVideoUrl"
+                        title="Project video"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen
+                      ></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-6">
+                <div class="bg-[#123A60] border border-white/10 rounded-2xl p-5 lg:sticky lg:top-6 shadow-[0_18px_40px_-28px_rgba(0,0,0,0.6)]">
+                  <div class="flex items-center gap-3 mb-4">
+                    <span class="w-9 h-9 rounded-full bg-white/10 text-[#D4A760] flex items-center justify-center">
+                      <i data-lucide="calendar-check" class="w-4 h-4"></i>
+                    </span>
+                    <div>
+                      <h4 class="text-sm font-serif font-semibold text-white" x-text="t('schedule_viewing')"></h4>
+                      <p class="text-[11px] text-slate-300" x-text="t('advisor_label')"></p>
+                    </div>
+                  </div>
+                  <form class="grid grid-cols-1 gap-3 font-sans" @submit.prevent="sendInquiry($event, 'Project Viewing')">
+                    <input type="text" name="name" :placeholder="t('form_your_name')" required class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans" />
+                    <input type="email" name="email" :placeholder="t('form_your_email')" required class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans" />
+                    <input type="text" name="phone" :placeholder="t('form_your_phone')" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans" />
+                    <input type="text" name="timeline" :placeholder="t('form_preferred_date')" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans" />
+                    <textarea name="summary" rows="3" :placeholder="t('form_your_message')" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans"></textarea>
+                  <button type="submit" class="btn-gold text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide shadow-lg">
+                      <span x-text="t('contact_submit_btn')"></span>
+                    </button>
+                    <p class="text-[11px] text-emerald-200" x-show="inquirySuccess" x-text="inquiryMessage"></p>
+                  </form>
+                  <div class="mt-4 pt-4 border-t border-white/10">
+                    <p class="text-[11px] text-slate-400 text-center mb-3" x-text="t('or_contact_direct')"></p>
+                    <div class="grid grid-cols-2 gap-3">
+                      <a href="tel:+855969661555" class="text-center border border-white/15 text-white py-2.5 rounded-xl text-xs font-semibold tracking-wide hover:border-[#D4A760] hover:text-[#D4A760] transition-colors">
+                        <span x-text="t('call_agent')"></span>
+                      </a>
+                      <a href="mailto:invest@propertyhub.com.kh" class="text-center border border-white/15 text-white py-2.5 rounded-xl text-xs font-semibold tracking-wide hover:border-[#D4A760] hover:text-[#D4A760] transition-colors">
+                        <span x-text="t('email_agent')"></span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <a
+                href="https://t.me/PropertyHubCambodia"
+                target="_blank"
+                rel="noreferrer"
+                class="text-center btn-gold text-white py-3 px-8 rounded-xl text-xs font-semibold tracking-wide shadow-lg hover:shadow-[#D4A760]/40 transition-shadow"
+              >
+                <span x-text="t('view_latest_listings')"></span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+
+<!-- Image Lightbox -->
+      <div
+        x-show="isImageLightboxOpen"
+        x-transition.opacity
+        class="fixed inset-0 z-[70] bg-black/80 flex items-center justify-center p-6"
+        @keydown.escape.window="closeOverlayState()"
+        @keydown.window="
+          if (!isImageLightboxOpen) return;
+          if ($event.key === 'ArrowLeft') prevLightboxItem();
+          if ($event.key === 'ArrowRight') nextLightboxItem();
+        "
+        x-cloak
+      >
+        <button
+          class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors"
+          @click="closeOverlayState()"
+          aria-label="Close image viewer"
+        >
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        <button
+          type="button"
+          class="absolute left-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+          @click="prevLightboxItem()"
+          :disabled="lightboxItems.length < 2"
+          aria-label="Previous image"
+        >
+          <i data-lucide="chevron-left" class="w-5 h-5"></i>
+        </button>
+        <div class="max-w-[90vw] max-h-[85vh] flex flex-col items-center justify-center">
+          <div class="rounded-3xl border border-white/10 bg-black/50 backdrop-blur-sm p-3 sm:p-4 shadow-2xl">
+            <img
+              :src="lightboxImageUrl || activeProjectImage || activeProject?.image"
+              :alt="activeProject?.name"
+              class="max-w-[86vw] max-h-[78vh] object-contain rounded-2xl bg-[#0B1F36]/30"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="mt-4 flex items-center justify-center gap-2 text-white/70 text-sm">
+            <span x-text="lightboxItems.length ? `${lightboxIndex + 1} / ${lightboxItems.length}` : '0 / 0'"></span>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="absolute right-6 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition-colors"
+          @click="nextLightboxItem()"
+          :disabled="lightboxItems.length < 2"
+          aria-label="Next image"
+        >
+          <i data-lucide="chevron-right" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- PDF Lightbox -->
+      <div
+        x-show="isDocLightboxOpen"
+        x-transition.opacity
+        class="fixed inset-0 z-[70] bg-black/80 flex items-center justify-center p-6"
+        @keydown.escape.window="closeOverlayState()"
+        x-cloak
+      >
+        <button
+          class="absolute top-6 right-6 text-white/80 hover:text-white transition-colors"
+          @click="closeOverlayState()"
+          aria-label="Close document viewer"
+        >
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        <div class="max-w-5xl w-full h-[80vh] bg-black/40 border border-white/10 rounded-2xl overflow-hidden">
+          <iframe :src="activeDocUrl" class="w-full h-full" title="Document preview"></iframe>
+        </div>
+      </div>
+    </div>
+
+    
+    </main>
+
+    <script>
+      function projectDetails() {
+        return {
+          lang: 'en',
+          isLangOpen: false,
+          projectDetailsKey: 'phc_active_project',
+          projectLangKey: 'phc_lang',
+          lastPageKey: 'phc_last_page',
+          lastScrollKey: 'phc_last_scroll',
+          activeProject: null,
+          activeProjectImage: null,
+          activeProjectImageIndex: 0,
+          projectDetailTab: 'map',
+          isImageLightboxOpen: false,
+          isDocLightboxOpen: false,
+          activeDocUrl: '',
+          floorIndex: 0,
+          unitIndex: 0,
+          facilityIndex: 0,
+          lightboxImageUrl: '',
+          lightboxItems: [],
+          lightboxIndex: 0,
+          thumbLimit: 6,
+          inquirySuccess: false,
+          inquiryMessage: '',
+          defaultProjectVideoUrl: 'https://www.youtube.com/embed/KpH6laTY_0o?si=tXzAcafrbu7PWQp_',
+          translations: {
+        en: {
+            nav_home: 'Home',
+            nav_projects: 'Projects',
+            nav_services: 'Services',
+            nav_insights: 'Insights',
+            nav_about: 'About',
+            cta_consultation: 'CONSULTATION',
+            projects_title: 'Projects',
+            projects_subtitle: 'Handpicked opportunities designed for strong yield and long-term growth.',
+            details: 'Details',
+            hero_tag: '#1 Investment Advisory in Cambodia',
+            hero_title_line1: 'Prestige',
+            hero_title_line2: 'Performance',
+            hero_title_line3: 'Property',
+            hero_description: 'Secure your legacy with Cambodia\'s most exclusive real estate portfolio. Data-driven insights for the discerning global investor.',
+            hero_buy: 'Buy',
+            hero_rent: 'Rent',
+            hero_location_label: 'Location',
+            hero_location_all: 'All Locations',
+            hero_location_pp: 'Phnom Penh',
+            hero_location_siem: 'Siem Reap',
+            hero_location_sihanouk: 'Sihanoukville',
+            hero_type_label: 'Property Type',
+            hero_type_any: 'Any Type',
+            hero_type_condo: 'Condominium',
+            hero_type_serviced: 'Serviced Apartment',
+            hero_type_office: 'Office Space',
+            hero_type_villa: 'Landed Villa',
+            hero_budget_label: 'Budget',
+            hero_budget_none: 'No Limit',
+            hero_budget_1: '&lt; $100,000',
+            hero_budget_2: '$100k - $300k',
+            hero_budget_3: '$300k - $500k',
+            hero_budget_4: '&gt; $500,000',
+            hero_status_label: 'Status',
+            hero_search_btn: 'Find Projects',
+            hero_stat_assets: 'Assets Managed',
+            hero_stat_investors: 'Happy Investors',
+            hero_stat_yield: 'Avg Annual Yield',
+            hero_stat_awards: 'Award Winning',
+            hero_map_tag: 'Market Intelligence',
+            hero_map_title: 'Prime Districts',
+            hero_map_link: 'Explore Full Map',
+            hero_map_card_title: 'Interactive Market Map',
+            hero_map_card_subtitle: 'Phnom Penh listings & hotspots.',
+            hero_map_card_note: 'Browse featured listings and open each location in Google Maps.',
+            hero_map_open: 'Explore Full Map',
+            language_en: 'English',
+            language_ja: 'Japanese',
+            language_de: 'German',
+            featured_projects: 'Featured Projects',
+            view_latest_listings: 'View latest listings',
+            projects_count: '{count} projects',
+            services_tag: 'Services',
+            services_title: 'Advisory & Residency Support',
+            services_desc: 'A complete suite of services for international buyers and investors.',
+            service_legal_title: 'Legal Due Diligence',
+            service_legal_desc: 'Hard title verification, SPA review, and inheritance planning.',
+            service_asset_title: 'Asset Management',
+            service_asset_desc: 'Tenant sourcing, rent collection, and maintenance for absentee owners.',
+            service_banking_title: 'Banking Solutions',
+            service_banking_desc: 'Opening high-interest USD bank accounts for foreign nationals.',
+            service_interior_title: 'Interior Design',
+            service_interior_desc: 'Turnkey furnishing packages designed to maximize rental yields.',
+            service_company_title: 'Company Incorporation',
+            service_company_desc: 'Full assistance with Ministry of Commerce registration and tax compliance.',
+            service_residency_title: 'Residency by Investment',
+            service_residency_desc: 'Guidance on CM2H visas and long-term stay requirements.',
+            insights_tag: 'Research & Analysis',
+            insights_title: 'Market Insights',
+            insights_desc: 'Quarterly reports and legal updates from our research desk.',
+            insights_read: 'Read Full Report',
+            insights_grid: 'Grid view',
+            insights_list: 'List view',
+            about_tag: 'About Us',
+            about_title: 'Meet <span class=&quot;text-[#D4A760]&quot;>PROPERTY HUB CAMBODIA</span>',
+            about_desc_1: 'With deep local market intelligence and a client-first advisory process, we help international buyers and investors secure property in Cambodia with clarity, confidence, and protection.',
+            about_desc_2: 'From opportunity discovery to legal coordination and handover, our team provides a tailored experience that respects your goals, timeline, and risk profile.',
+            about_years_label: 'Years Experience',
+            about_properties_label: 'Properties Guided',
+            about_clients_label: 'Happy Clients',
+            about_success_label: 'Success Rate',
+            contact_tag: 'Get in Touch',
+            contact_title: 'Send us your inquiry',
+            contact_desc: 'We respond within 24 hours with tailored recommendations.',
+            contact_name_label: 'Name',
+            contact_method_label: 'Contact Method',
+            contact_contact_label: 'Contact',
+            contact_language_label: 'Preferred Language',
+            contact_message_label: 'Leave us a message',
+            contact_message_placeholder: 'Share your goals, preferred project type, or any questions.',
+            contact_optional_title: 'Add Investment Details (optional)',
+            contact_optional_desc: 'Recommended for tailored advisory and portfolio guidance.',
+            contact_looking_label: 'I\'m looking to',
+            contact_buy: 'Buy',
+            contact_sell: 'Sell',
+            contact_rent: 'Rent',
+            contact_others: 'Others',
+            contact_location_label: 'Location',
+            contact_budget_label: 'Budget',
+            contact_purpose_label: 'Purpose',
+            contact_nationality_label: 'Nationality',
+            contact_timeline_label: 'Purchase timeline',
+            contact_submit_btn: 'Submit Inquiry',
+            legal_title: 'Legal',
+            stay_informed: 'Stay Informed',
+            footer_subscribe_btn: 'Subscribe',
+            footer_email_placeholder: 'Enter your email',
+            footer_follow: 'Follow Us',
+            back_to_projects: 'Back to Projects',
+            project_details: 'Project Details',
+            or_contact_direct: 'Or contact directly',
+            nav_chat: 'Chat',
+            latest_highlights: 'Latest Highlights',
+            view_all: 'View All',
+            video_feature_tag: 'Video Feature',
+            video_feature_title: 'Pre-sale Preview',
+            video_jtower3: 'J Tower 3 Showcase',
+            video_ts10: 'Time Square 10 Showcase',
+            video_why: 'Why invest in Cambodia?',
+            video_ts7: 'Time Square 7 Showcase',
+            video_view_more: 'View more videos',
+            footer_navigate: 'Navigate',
+            footer_tagline: 'Your trusted partner for premium real estate investment in the Kingdom of Cambodia. Excellence since 2009.',
+            footer_precision: 'Designed with precision',
+            footer_rights: '© 2025 Property Hub Cambodia. All rights reserved.',
+            privacy_policy: 'Privacy Policy',
+            terms_service: 'Terms of Service',
+            disclaimer: 'Disclaimer',
+            price_from: 'From',
+            projects_curated_title: 'Curated Portfolio',
+            projects_grid: 'Grid view',
+            projects_list: 'List view',
+            contact_detail_placeholder: 'WhatsApp / Telegram / Email',
+            contact_budget_placeholder: 'Target capital allocation (e.g., $200k–$500k)',
+            contact_location_placeholder: 'Phnom Penh · Siem Reap · Sihanoukville',
+            contact_purpose_placeholder: 'Capital growth · Income yield · Portfolio diversification',
+            chat_detailed_inquiry: 'Send a detailed inquiry',
+            form_full_name: 'Full name',
+            contact_invest: 'Invest',
+            filter_search: 'Search',
+            filter_search_placeholder: 'Search by project, location, developer',
+            filter_city: 'City',
+            filter_status: 'Status',
+            filter_budget: 'Budget',
+            filter_all: 'All',
+            filter_sort: 'Sort by',
+            sort_default: 'Recommended',
+            sort_price_low: 'Price: Low to High',
+            sort_price_high: 'Price: High to Low',
+            sort_completion_soon: 'Completion Soon',
+            sort_sold_high: 'Sold Rate',
+            filter_reset: 'Reset filters',
+            status_all: 'All',
+            status_move_ready: 'Move In Ready',
+            status_pre_sale: 'Pre Sale',
+            status_under_construction: 'Under Construction',
+            schedule_viewing: 'Schedule a Viewing',
+            advisor_label: 'Property Hub Cambodia Advisor',
+            form_your_name: 'Your Name',
+            form_your_email: 'Your Email',
+            form_your_phone: 'Your Phone',
+            form_preferred_date: 'Preferred Date',
+            form_your_message: 'Your message',
+            call_agent: 'Call Agent',
+            email_agent: 'Email Agent',
+            project_about: 'About This Property',
+            project_developer: 'Developer',
+            project_type: 'Property Type',
+            project_completion: 'Completion',
+            project_size: 'Size',
+            project_total_floors: 'Total Floors',
+            project_building_height: 'Building Height',
+            project_total_units: 'Total Units',
+            project_sold: 'Sold',
+            project_title: 'Title',
+            project_features: 'Features & Amenities',
+            tab_map: 'Map',
+            tab_floor: 'Floor Plan',
+            tab_facilities: 'Facilities',
+            tab_units: 'Unit Layout',
+            tab_video: 'Video',
+            project_location_map: 'Project location map'
+        },
+        ja: {
+            nav_home: 'ホーム',
+            nav_projects: 'プロジェクト',
+            nav_services: 'サービス',
+            nav_insights: 'インサイト',
+            nav_about: '会社概要',
+            cta_consultation: '相談予約',
+            projects_title: 'プロジェクト',
+            projects_subtitle: '高利回りと長期成長が期待できる投資機会を厳選。',
+            details: '詳細',
+            hero_tag: 'カンボジア投資アドバイザリーNo.1',
+            hero_title_line1: '品格。',
+            hero_title_line2: '成果。',
+            hero_title_line3: '不動産。',
+            hero_description: 'カンボジア最高峰の不動産ポートフォリオで資産を守り育てます。グローバル投資家のためのデータ主導の洞察。',
+            hero_buy: '購入',
+            hero_rent: '賃貸',
+            hero_location_label: 'エリア',
+            hero_location_all: 'すべてのエリア',
+            hero_location_pp: 'プノンペン',
+            hero_location_siem: 'シェムリアップ',
+            hero_location_sihanouk: 'シアヌークビル',
+            hero_type_label: '物件タイプ',
+            hero_type_any: 'すべて',
+            hero_type_condo: 'コンドミニアム',
+            hero_type_serviced: 'サービスアパート',
+            hero_type_office: 'オフィス',
+            hero_type_villa: '戸建てヴィラ',
+            hero_budget_label: 'ご予算',
+            hero_budget_none: '上限なし',
+            hero_budget_1: '〜$100,000',
+            hero_budget_2: '$100k - $300k',
+            hero_budget_3: '$300k - $500k',
+            hero_budget_4: '$500,000以上',
+            hero_status_label: 'ステータス',
+            hero_search_btn: 'プロジェクトを探す',
+            hero_stat_assets: '運用資産',
+            hero_stat_investors: '投資家満足数',
+            hero_stat_yield: '平均年利',
+            hero_stat_awards: '受賞実績',
+            hero_map_tag: 'マーケット情報',
+            hero_map_title: '主要エリア',
+            hero_map_link: '全体マップを見る',
+            hero_map_card_title: '市場マップ',
+            hero_map_card_subtitle: 'プノンペンの注目エリア',
+            hero_map_card_note: '注目物件を確認し、Googleマップで開く。',
+            hero_map_open: '全体マップを開く',
+            language_en: 'English',
+            language_ja: '日本語',
+            language_de: 'Deutsch',
+            featured_projects: '注目プロジェクト',
+            view_latest_listings: '最新物件を見る',
+            projects_count: '{count} 件のプロジェクト',
+            services_tag: 'サービス',
+            services_title: 'アドバイザリー＆レジデンシー支援',
+            services_desc: '海外投資家向けの包括的なサービス。',
+            service_legal_title: '法務デューデリジェンス',
+            service_legal_desc: '権利証確認、SPAレビュー、相続設計。',
+            service_asset_title: '資産管理',
+            service_asset_desc: '入居者募集、賃料回収、保守管理。',
+            service_banking_title: '銀行口座支援',
+            service_banking_desc: '外国人向けUSD高金利口座の開設支援。',
+            service_interior_title: 'インテリアデザイン',
+            service_interior_desc: '賃料収益を高める家具付きパッケージ。',
+            service_company_title: '法人設立',
+            service_company_desc: '商務省登録と税務コンプライアンス支援。',
+            service_residency_title: '投資による滞在資格',
+            service_residency_desc: 'CM2Hビザと長期滞在要件の案内。',
+            insights_tag: '調査・分析',
+            insights_title: '市場インサイト',
+            insights_desc: '四半期レポートと法規制アップデート。',
+            insights_read: '全文を読む',
+            insights_grid: 'グリッド表示',
+            insights_list: 'リスト表示',
+            about_tag: '私たちについて',
+            about_title: '<span class=&quot;text-[#D4A760]&quot;>PROPERTY HUB CAMBODIA</span> を知る',
+            about_desc_1: '深い市場知見と顧客中心のアドバイザリーで、明確さと安心を提供します。',
+            about_desc_2: '案件選定から法務調整、引き渡しまで、目標とタイムラインに合わせて支援します。',
+            about_years_label: '実績年数',
+            about_properties_label: 'サポート物件数',
+            about_clients_label: '顧客満足',
+            about_success_label: '成功率',
+            contact_tag: 'お問い合わせ',
+            contact_title: 'ご相談内容をお送りください',
+            contact_desc: '24時間以内に最適なご提案をご返信します。',
+            contact_name_label: 'お名前',
+            contact_method_label: '連絡方法',
+            contact_contact_label: '連絡先',
+            contact_language_label: '希望言語',
+            contact_message_label: 'メッセージ',
+            contact_message_placeholder: '目的、希望物件、質問などをご記入ください。',
+            contact_optional_title: '投資詳細を追加（任意）',
+            contact_optional_desc: 'より的確な提案のために推奨します。',
+            contact_looking_label: '希望内容',
+            contact_buy: '購入',
+            contact_sell: '売却',
+            contact_rent: '賃貸',
+            contact_others: 'その他',
+            contact_location_label: '希望エリア',
+            contact_budget_label: '予算',
+            contact_purpose_label: '目的',
+            contact_nationality_label: '国籍',
+            contact_timeline_label: '購入時期',
+            contact_submit_btn: '送信',
+            legal_title: '法的情報',
+            stay_informed: '最新情報',
+            footer_subscribe_btn: '購読する',
+            footer_email_placeholder: 'メールアドレス',
+            footer_follow: 'フォロー',
+            back_to_projects: 'プロジェクトに戻る',
+            project_details: 'プロジェクト詳細',
+            or_contact_direct: 'または直接連絡',
+            nav_chat: 'チャット',
+            latest_highlights: '最新ハイライト',
+            view_all: 'すべて表示',
+            video_feature_tag: '動画特集',
+            video_feature_title: 'プレセールプレビュー',
+            video_jtower3: 'J Tower 3 紹介',
+            video_ts10: 'Time Square 10 紹介',
+            video_why: 'なぜカンボジアに投資するのか？',
+            video_ts7: 'Time Square 7 紹介',
+            video_view_more: '動画をもっと見る',
+            footer_navigate: 'ナビゲーション',
+            footer_tagline: 'カンボジアのプレミアム不動産投資を支える信頼のパートナー。2009年より。',
+            footer_precision: '精密に設計',
+            footer_rights: '© 2025 Property Hub Cambodia. All rights reserved.',
+            privacy_policy: 'プライバシーポリシー',
+            terms_service: '利用規約',
+            disclaimer: '免責事項',
+            price_from: 'FROM',
+            projects_curated_title: '厳選ポートフォリオ',
+            projects_grid: 'グリッド表示',
+            projects_list: 'リスト表示',
+            contact_detail_placeholder: 'WhatsApp / Telegram / Email',
+            contact_budget_placeholder: '予算目安（例：$200k–$500k）',
+            contact_location_placeholder: 'プノンペン・シェムリアップ・シアヌークビル',
+            contact_purpose_placeholder: '資本成長・収益・分散投資',
+            chat_detailed_inquiry: '詳細相談を送信',
+            form_full_name: '氏名',
+            contact_invest: '投資',
+            filter_search: '検索',
+            filter_search_placeholder: 'プロジェクト／場所／デベロッパーで検索',
+            filter_city: '都市',
+            filter_status: 'ステータス',
+            filter_budget: '予算',
+            filter_all: 'すべて',
+            filter_sort: '並び替え',
+            sort_default: 'おすすめ',
+            sort_price_low: '価格：安い順',
+            sort_price_high: '価格：高い順',
+            sort_completion_soon: '完成が近い',
+            sort_sold_high: '販売率',
+            filter_reset: 'フィルターをリセット',
+            status_all: 'すべて',
+            status_move_ready: '即入居可',
+            status_pre_sale: 'プレセール',
+            status_under_construction: '建設中',
+            schedule_viewing: '内覧予約',
+            advisor_label: 'Property Hub Cambodia アドバイザー',
+            form_your_name: 'お名前',
+            form_your_email: 'メールアドレス',
+            form_your_phone: '電話番号',
+            form_preferred_date: '希望日',
+            form_your_message: 'メッセージ',
+            call_agent: '担当者に電話',
+            email_agent: '担当者にメール',
+            project_about: '物件概要',
+            project_developer: 'デベロッパー',
+            project_type: '物件タイプ',
+            project_completion: '完成時期',
+            project_size: '面積',
+            project_total_floors: '総階数',
+            project_building_height: '建物高さ',
+            project_total_units: '総戸数',
+            project_sold: '販売率',
+            project_title: '権利形態',
+            project_features: '特徴・設備',
+            tab_map: '地図',
+            tab_floor: 'フロアプラン',
+            tab_facilities: '設備',
+            tab_units: 'ユニット',
+            tab_video: '動画',
+            project_location_map: '物件所在地マップ'
+        },
+        de: {
+            nav_home: 'Startseite',
+            nav_projects: 'Projekte',
+            nav_services: 'Services',
+            nav_insights: 'Einblicke',
+            nav_about: 'Über uns',
+            cta_consultation: 'BERATUNG',
+            projects_title: 'Projekte',
+            projects_subtitle: 'Handverlesene Chancen für starke Renditen und langfristiges Wachstum.',
+            details: 'Details',
+            hero_tag: '#1 Investmentberatung in Kambodscha',
+            hero_title_line1: 'Prestige',
+            hero_title_line2: 'Performance',
+            hero_title_line3: 'Immobilien',
+            hero_description: 'Sichern Sie Ihr Vermächtnis mit Kambodschas exklusivstem Immobilienportfolio. Datenbasierte Einblicke für anspruchsvolle globale Investoren.',
+            hero_buy: 'Kaufen',
+            hero_rent: 'Mieten',
+            hero_location_label: 'Standort',
+            hero_location_all: 'Alle Standorte',
+            hero_location_pp: 'Phnom Penh',
+            hero_location_siem: 'Siem Reap',
+            hero_location_sihanouk: 'Sihanoukville',
+            hero_type_label: 'Objekttyp',
+            hero_type_any: 'Beliebig',
+            hero_type_condo: 'Eigentumswohnung',
+            hero_type_serviced: 'Serviced Apartment',
+            hero_type_office: 'Bürofläche',
+            hero_type_villa: 'Villa',
+            hero_budget_label: 'Budget',
+            hero_budget_none: 'Kein Limit',
+            hero_budget_1: '< $100.000',
+            hero_budget_2: '$100k - $300k',
+            hero_budget_3: '$300k - $500k',
+            hero_budget_4: '> $500.000',
+            hero_status_label: 'Status',
+            hero_search_btn: 'Projekte finden',
+            hero_stat_assets: 'Verwaltete Assets',
+            hero_stat_investors: 'Zufriedene Investoren',
+            hero_stat_yield: 'Ø Jahresrendite',
+            hero_stat_awards: 'Ausgezeichnet',
+            hero_map_tag: 'Markt-Intelligenz',
+            hero_map_title: 'Top-Bezirke',
+            hero_map_link: 'Gesamte Karte',
+            hero_map_card_title: 'Interaktive Marktkarte',
+            hero_map_card_subtitle: 'Listings & Hotspots in Phnom Penh.',
+            hero_map_card_note: 'Ausgewählte Listings ansehen und jeden Standort in Google Maps öffnen.',
+            hero_map_open: 'Gesamte Karte öffnen',
+            language_en: 'English',
+            language_ja: 'Japanisch',
+            language_de: 'Deutsch',
+            featured_projects: 'Ausgewählte Projekte',
+            view_latest_listings: 'Neueste Listings ansehen',
+            projects_count: '{count} Projekte',
+            services_tag: 'Services',
+            services_title: 'Beratung & Residency-Support',
+            services_desc: 'Ein vollständiges Servicepaket für internationale Käufer und Investoren.',
+            service_legal_title: 'Rechtliche Due Diligence',
+            service_legal_desc: 'Titelprüfung, SPA-Review und Nachfolgeplanung.',
+            service_asset_title: 'Asset Management',
+            service_asset_desc: 'Mietersuche, Mieteinzug und Instandhaltung.',
+            service_banking_title: 'Banklösungen',
+            service_banking_desc: 'Eröffnung von USD-Konten mit hohen Zinsen für Ausländer.',
+            service_interior_title: 'Innenarchitektur',
+            service_interior_desc: 'Schlüsselfertige Möbelpakete zur Renditeoptimierung.',
+            service_company_title: 'Firmengründung',
+            service_company_desc: 'Unterstützung bei Handelsregister und Steuer-Compliance.',
+            service_residency_title: 'Residency durch Investment',
+            service_residency_desc: 'Beratung zu CM2H-Visa und Langzeitaufenthalt.',
+            insights_tag: 'Forschung & Analyse',
+            insights_title: 'Markteinblicke',
+            insights_desc: 'Quartalsberichte und rechtliche Updates aus unserem Research.',
+            insights_read: 'Vollständigen Bericht lesen',
+            insights_grid: 'Rasteransicht',
+            insights_list: 'Listenansicht',
+            about_tag: 'Über uns',
+            about_title: 'Lernen Sie <span class=&quot;text-[#D4A760]&quot;>PROPERTY HUB CAMBODIA</span> kennen',
+            about_desc_1: 'Mit tiefem Marktverständnis und kundenorientierter Beratung sichern wir Klarheit, Vertrauen und Schutz.',
+            about_desc_2: 'Von der Chance bis zur Übergabe begleiten wir Sie mit maßgeschneiderter Unterstützung.',
+            about_years_label: 'Jahre Erfahrung',
+            about_properties_label: 'Begleitete Objekte',
+            about_clients_label: 'Zufriedene Kunden',
+            about_success_label: 'Erfolgsquote',
+            contact_tag: 'Kontakt',
+            contact_title: 'Senden Sie uns Ihre Anfrage',
+            contact_desc: 'Wir antworten innerhalb von 24 Stunden mit passenden Empfehlungen.',
+            contact_name_label: 'Name',
+            contact_method_label: 'Kontaktmethode',
+            contact_contact_label: 'Kontakt',
+            contact_language_label: 'Bevorzugte Sprache',
+            contact_message_label: 'Nachricht',
+            contact_message_placeholder: 'Teilen Sie Ziele, bevorzugte Objektart oder Fragen.',
+            contact_optional_title: 'Anlagedetails hinzufügen (optional)',
+            contact_optional_desc: 'Empfohlen für maßgeschneiderte Beratung.',
+            contact_looking_label: 'Ich möchte',
+            contact_buy: 'Kaufen',
+            contact_sell: 'Verkaufen',
+            contact_rent: 'Mieten',
+            contact_others: 'Sonstiges',
+            contact_location_label: 'Standort',
+            contact_budget_label: 'Budget',
+            contact_purpose_label: 'Zweck',
+            contact_nationality_label: 'Nationalität',
+            contact_timeline_label: 'Zeitrahmen',
+            contact_submit_btn: 'Senden',
+            legal_title: 'Rechtliches',
+            stay_informed: 'Newsletter',
+            footer_subscribe_btn: 'Abonnieren',
+            footer_email_placeholder: 'E-Mail-Adresse',
+            footer_follow: 'Folgen Sie uns',
+            back_to_projects: 'Zurück zu Projekten',
+            project_details: 'Projektdetails',
+            or_contact_direct: 'Oder direkt kontaktieren',
+            nav_chat: 'Chat',
+            latest_highlights: 'Aktuelle Highlights',
+            view_all: 'Alle anzeigen',
+            video_feature_tag: 'Video-Feature',
+            video_feature_title: 'Pre-Sale Vorschau',
+            video_jtower3: 'J Tower 3 Präsentation',
+            video_ts10: 'Time Square 10 Präsentation',
+            video_why: 'Warum in Kambodscha investieren?',
+            video_ts7: 'Time Square 7 Präsentation',
+            video_view_more: 'Mehr Videos ansehen',
+            footer_navigate: 'Navigation',
+            footer_tagline: 'Ihr vertrauenswürdiger Partner für Premium-Immobilieninvestments im Königreich Kambodscha. Exzellenz seit 2009.',
+            footer_precision: 'Mit Präzision gestaltet',
+            footer_rights: '© 2025 Property Hub Cambodia. Alle Rechte vorbehalten.',
+            privacy_policy: 'Datenschutzerklärung',
+            terms_service: 'Nutzungsbedingungen',
+            disclaimer: 'Haftungsausschluss',
+            price_from: 'Ab',
+            projects_curated_title: 'Kuratiertes Portfolio',
+            projects_grid: 'Rasteransicht',
+            projects_list: 'Listenansicht',
+            contact_detail_placeholder: 'WhatsApp / Telegram / E-Mail',
+            contact_budget_placeholder: 'Zielbudget (z. B. $200k–$500k)',
+            contact_location_placeholder: 'Phnom Penh · Siem Reap · Sihanoukville',
+            contact_purpose_placeholder: 'Kapitalwachstum · Rendite · Diversifikation',
+            chat_detailed_inquiry: 'Detaillierte Anfrage senden',
+            form_full_name: 'Vollständiger Name',
+            contact_invest: 'Investieren',
+            filter_search: 'Suche',
+            filter_search_placeholder: 'Nach Projekt, Standort, Entwickler suchen',
+            filter_city: 'Stadt',
+            filter_status: 'Status',
+            filter_budget: 'Budget',
+            filter_all: 'Alle',
+            filter_sort: 'Sortieren nach',
+            sort_default: 'Empfohlen',
+            sort_price_low: 'Preis: aufsteigend',
+            sort_price_high: 'Preis: absteigend',
+            sort_completion_soon: 'Fertigstellung bald',
+            sort_sold_high: 'Verkaufsquote',
+            filter_reset: 'Filter zurücksetzen',
+            status_all: 'Alle',
+            status_move_ready: 'Einzugsbereit',
+            status_pre_sale: 'Vorverkauf',
+            status_under_construction: 'Im Bau',
+            schedule_viewing: 'Besichtigung vereinbaren',
+            advisor_label: 'Property Hub Cambodia Berater',
+            form_your_name: 'Ihr Name',
+            form_your_email: 'Ihre E-Mail',
+            form_your_phone: 'Ihre Telefonnummer',
+            form_preferred_date: 'Wunschtermin',
+            form_your_message: 'Ihre Nachricht',
+            call_agent: 'Berater anrufen',
+            email_agent: 'Berater per E-Mail',
+            project_about: 'Über diese Immobilie',
+            project_developer: 'Entwickler',
+            project_type: 'Objekttyp',
+            project_completion: 'Fertigstellung',
+            project_size: 'Größe',
+            project_total_floors: 'Gesamtgeschosse',
+            project_building_height: 'Gebäudehöhe',
+            project_total_units: 'Gesamteinheiten',
+            project_sold: 'Verkauft',
+            project_title: 'Titel',
+            project_features: 'Ausstattung & Annehmlichkeiten',
+            tab_map: 'Karte',
+            tab_floor: 'Grundriss',
+            tab_facilities: 'Ausstattung',
+            tab_units: 'Einheiten',
+            tab_video: 'Video',
+            project_location_map: 'Projektstandortkarte'
+        }
+    },
+          typeLabels: {
+        en: {
+            'Any Type': 'Any Type',
+            Condo: 'Condo',
+            Condominium: 'Condominium',
+            Commercial: 'Commercial',
+            'Mixed-use': 'Mixed-use',
+            'Serviced residence': 'Serviced residence',
+            'Serviced Apartment': 'Serviced Apartment',
+            'Office Space': 'Office Space',
+            'Landed Villa': 'Landed Villa'
+        },
+        ja: {
+            'Any Type': 'すべて',
+            Condo: 'コンドミニアム',
+            Condominium: 'コンドミニアム',
+            Commercial: '商業',
+            'Mixed-use': '複合用途',
+            'Serviced residence': 'サービスレジデンス',
+            'Serviced Apartment': 'サービスアパート',
+            'Office Space': 'オフィス',
+            'Landed Villa': '戸建てヴィラ'
+        },
+        de: {
+            'Any Type': 'Beliebig',
+            Condo: 'Eigentumswohnung',
+            Condominium: 'Eigentumswohnung',
+            Commercial: 'Gewerbe',
+            'Mixed-use': 'Mischnutzung',
+            'Serviced residence': 'Serviced Residence',
+            'Serviced Apartment': 'Serviced Apartment',
+            'Office Space': 'Bürofläche',
+            'Landed Villa': 'Villa'
+        }
+    },
+          projects: [
+        {
+            name: 'Time Square 7',
+            city: 'Phnom Penh',
+            location: 'Toul Kork',
+            status: 'Under Construction',
+            price: '$82,575',
+            pricePerSqm: '$2,064',
+            beds: '1 to 4',
+            baths: null,
+            floorArea: '30 to 120 sqm',
+            size: '30 to 120 sqm',
+            specs: '30 to 120 sqm',
+            type: 'Condo',
+            developer: 'MegaKim World Corp Ltd',
+            totalFloor: '49F',
+            totalUnit: '700',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 85%~',
+            completion: 'Q3 2028',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/wWsWw1Ea2EwaSdXm6',
+            latitude: '11.583333',
+            longitude: '104.894424',
+            badge: 'Under Construction',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/TS7%20Main.jpg',
+            cardDescription: '',
+            description: 'A soaring 49-floor architectural icon in the premier Boeung Kak 1 enclave, delivered by the prestigious MegaKim World Corp following a legacy of sold-out successes,. This project is masterfully engineered for capital appreciation, tapping into the intense rental demand from the city’s growing executive class. With a proven track record of high-yield delivery, it offers a sophisticated entry into one of Phnom Penh’s most established and coveted residential districts.',
+            highlights: [
+                '49-Storey Landmark',
+                'Full Lifestyle Amenity Floors',
+                'Prime Toul Kork (Boeung Kak 1) Location',
+                'Unit Mix: 1–4 Bedroom Duplexes & Penthouses'
+            ],
+            images: [
+              'Property Listing/Time Square 7/TS7_10_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_11_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_12_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_13_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_14_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_15_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_1_wm.webp',
+              'Property Listing/Time Square 7/TS7_2_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_3_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_4_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_5_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_6_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_8_wm_wm.webp',
+              'Property Listing/Time Square 7/TS7_9_wm_wm.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/time-square-7/',
+            floorPlans: [
+              'Property Listing/Time Square 7/Floor Plan/TS7 Duplex Layout (1st Level)_wm.webp',
+              'Property Listing/Time Square 7/Floor Plan/TS7 Duplex Layout (2nd Level)_wm_wm.webp',
+            ],
+            facilityImages: [
+              'Property Listing/Time Square 7/Facility/01_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/03_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/1 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/1 done (2)_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/1.S14_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/2 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/2 done1_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/2 done_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/2.S02_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/3 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/3 done_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/3.S06_wm.webp',
+              'Property Listing/Time Square 7/Facility/4 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/4 done (2)_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/4.S07_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/4.S10_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/5 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/5 done (2)_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/5 done1_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/5.S08_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/5.S12_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/6 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/ES10 done_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/ES11 done_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/ES12 done_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/ES14 done_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/ES4 done_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/ES6 done_wm_wm.webp',
+              'Property Listing/Time Square 7/Facility/ES9 done_wm_wm.webp',
+            ],
+        },
+        {
+            name: 'Time Square 8',
+            city: 'Phnom Penh',
+            location: 'TTP (Russian Market area)',
+            status: 'Under Construction',
+            price: '$86,175',
+            pricePerSqm: '$1,834',
+            beds: '1 to 4',
+            baths: null,
+            floorArea: '35 to 173 sqm',
+            size: '35 to 173 sqm',
+            specs: '35 to 173 sqm',
+            type: 'Condo',
+            developer: 'MegaKim World Corp Ltd',
+            totalFloor: '50F',
+            totalUnit: '700',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 85%~',
+            completion: 'Q4 2028',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/tHNh3fzZ8n8nkRFx8',
+            latitude: '11.543562',
+            longitude: '104.918545',
+            badge: 'Under Construction',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/TS8%20Main.jpg',
+            cardDescription: '',
+            description: 'Time Square 8 stands as a 50-storey luxury masterpiece in the vibrant Toul Tom Poung corridor, serving as the area\'s premier vertical residence. Developed by the multi-award-winning MegaKim World Corp, it targets high-turnover rental demand from young professionals and expatriates seeking an urban sanctuary. Its strategic proximity to the city\'s diplomatic and business centres ensures enduring value and competitive yields for discerning investors.',
+            highlights: [
+                '50-Storey Tower',
+                'Rooftop Infinity Pool & Designer Gym',
+                'Walkable Lifestyle Hub',
+                'Unit Mix: 1–4 Bedroom Duplexes & Penthouses'
+            ],
+            images: [
+              'Property Listing/Time Square 8/TS8_10_wm_wm.webp',
+              'Property Listing/Time Square 8/TS8_1_wm_wm.webp',
+              'Property Listing/Time Square 8/TS8_2_wm_wm.webp',
+              'Property Listing/Time Square 8/TS8_3_wm_wm.webp',
+              'Property Listing/Time Square 8/TS8_4_wm_wm.webp',
+              'Property Listing/Time Square 8/TS8_5_wm_wm.webp',
+              'Property Listing/Time Square 8/TS8_6_wm_wm.webp',
+              'Property Listing/Time Square 8/TS8_7_wm_wm.webp',
+              'Property Listing/Time Square 8/TS8_8_wm_wm.webp',
+              'Property Listing/Time Square 8/TS8_9_wm_wm.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/time-square-8/',
+            floorPlans: [
+              'Property Listing/Time Square 8/Floor Plan/231024-Time Square 8 brochure_8F-38F-01 (8)_wm.webp',
+            ],
+            facilityImages: [
+              'Property Listing/Time Square 8/Facility/01_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/02_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/03_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/04_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/05_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/06_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/1 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/1 done (2)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/1 done (3)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/1 done (4)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/1 done_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/1.S14_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/1.S28_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/10 done_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/15. POOL RENDERING VIEW 2_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/16_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/17_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/18_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/19_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/1_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/2 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/2 done (2)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/2 done (3)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/2 done (4)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/2 done1_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/2 done_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/2.S02_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/2.S11_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/20_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/23_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/3 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/3 done (2)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/3 done (3)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/3 done (4)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/3 done_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/3.S06_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/3.S13_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/4 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/4 done (2)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/4 done (3)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/4 done_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/4.S07_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/4.S10_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/5 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/5 done (2)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/5 done (3)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/5 done1_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/5 done_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/5.S08_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/5.S12_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/6 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/6 done (2)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/6 done_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/7 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/7 done_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/8 done_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/9 done (1)_wm_wm.webp',
+              'Property Listing/Time Square 8/Facility/9 done_wm_wm.webp',
+            ],
+            unitLayouts: [
+              'Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (2).jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (3).jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (4).jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (5).jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (6).jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (7).jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-3.jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-4.jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-5.jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-6.jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-7.jpg',
+              'Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-8.jpg',
+            ],
+        },
+        {
+            name: 'Time Square 9',
+            city: 'Phnom Penh',
+            location: 'BKK1 (Street 278)',
+            status: 'Pre Sale',
+            price: '$87,984',
+            pricePerSqm: '$2,933',
+            beds: '1 to 4',
+            baths: null,
+            floorArea: '40 to 130 sqm',
+            size: '40 to 130 sqm',
+            specs: '40 to 130 sqm',
+            type: 'Condo',
+            developer: 'MegaKim World Corp Ltd',
+            totalFloor: '40F',
+            totalUnit: '600',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 55%~',
+            completion: 'Q4 2029',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/YkDnM7HGtS94dRNc9',
+            latitude: '11.555343',
+            longitude: '104.925696',
+            badge: 'Pre Sale',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/TS9%20Main.png',
+            cardDescription: '',
+            description: 'An Art Deco-inspired masterpiece set within the city’s most exclusive residential enclave, BKK1, the tightest core rental market in Phnom Penh,. Positioned on Street 278, this 40-storey tower is meticulously engineered for premium executive rentals and substantial capital growth. Offering rare strata-title eligibility in a gold-standard district, it represents the pinnacle of luxury investment for those seeking a prestigious and secure asset.',
+            highlights: [
+                '40-Storey Art Deco Design',
+                'Competitive BKK1 Entry Point',
+                'Strata Title Eligibility',
+                'Prime Street 278 Address'
+            ],
+            images: [
+              'Property Listing/Time Square 9/10_wm_wm.webp',
+              'Property Listing/Time Square 9/11_wm_wm.webp',
+              'Property Listing/Time Square 9/13_wm_wm.webp',
+              'Property Listing/Time Square 9/14_wm_wm.webp',
+              'Property Listing/Time Square 9/15_wm_wm.webp',
+              'Property Listing/Time Square 9/16_wm_wm.webp',
+              'Property Listing/Time Square 9/18_wm_wm.webp',
+              'Property Listing/Time Square 9/1_wm_wm.webp',
+              'Property Listing/Time Square 9/20_wm_wm.webp',
+              'Property Listing/Time Square 9/3_wm_wm.webp',
+              'Property Listing/Time Square 9/5_wm_wm.webp',
+              'Property Listing/Time Square 9/7_wm_wm.webp',
+              'Property Listing/Time Square 9/8_wm_wm.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/time-square-9-bkk1/',
+            floorPlans: [
+              'Property Listing/Time Square 9/Floor Plan/TS9 Floor Plan_wm_wm.webp',
+            ],
+            facilityImages: [
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/1%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/10%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/11%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CINEMA/1_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CIGA%20LOUNGE/1_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/MEETING%20ROOM/1_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/RESTROOM/1_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/2%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CINEMA/2_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CIGA%20LOUNGE/2_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/MEETING%20ROOM/2_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/RESTROOM/2_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/3%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CINEMA/3_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CIGA%20LOUNGE/3_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/MEETING%20ROOM/3_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/RESTROOM/3_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/4%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CIGA%20LOUNGE/4_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/RESTROOM/4_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/5%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CIGA%20LOUNGE/5_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/6%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CIGA%20LOUNGE/6_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/7%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/8%20done_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/CIGA%20LOUNGE/8_wm_wm.webp',
+              'Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/9%20done_wm_wm.webp',
+            ],
+            unitLayouts: [
+              'Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type A.webp',
+              'Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type B.webp',
+              'Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type C.webp',
+              'Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type DEFGHIJ.webp',
+              'Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type L.webp',
+              'Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type MK.webp',
+              'Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type NOPQRST.webp',
+            ],
+        },
+        {
+            name: 'Time Square 10',
+            city: 'Sihanoukville',
+            location: 'Otres Beach',
+            status: 'Under Construction',
+            price: '$50,000',
+            pricePerSqm: '$1,667',
+            beds: '1 to 4',
+            baths: null,
+            floorArea: '36 to 300 sqm',
+            size: '36 to 300 sqm',
+            specs: '36 to 300 sqm',
+            type: 'Condo',
+            developer: 'MegaKim World Corp Ltd',
+            totalFloor: '39F',
+            totalUnit: '1300',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 70%~',
+            completion: 'Q1 2030',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/heuanY6zms5uwACz5',
+            latitude: '10.583908',
+            longitude: '103.543798',
+            badge: 'Under Construction',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/TS10%20Main.png',
+            cardDescription: '',
+            description: 'Capitalise on the rapid transformation of Sihanoukville with this 39-storey beachfront masterpiece by the esteemed MegaKim World Corp. Specifically engineered to capture premium holiday rental demand, it is situated near the pristine Otres Beach 1 in a high-growth coastal corridor. As regional infrastructure matures, this development offers investors a significant early-mover advantage and long-term capital appreciation in Cambodia’s premier seaside destination.',
+            highlights: [
+                '39-Storey Oceanfront Landmark',
+                'Otres Beach Front',
+                'Large Unit Mix: 1 to 4 Bedrooms & Penthouses',
+                'High-Growth Coastal Opportunity'
+            ],
+            images: [
+              'Property Listing/Time Square 10/TS10_10.webp',
+              'Property Listing/Time Square 10/TS10_1_wm_wm.webp',
+              'Property Listing/Time Square 10/TS10_2_wm_wm.webp',
+              'Property Listing/Time Square 10/TS10_3_wm_wm.webp',
+              'Property Listing/Time Square 10/TS10_4_wm_wm.webp',
+              'Property Listing/Time Square 10/TS10_5_wm_wm.webp',
+              'Property Listing/Time Square 10/TS10_6_wm_wm.webp',
+              'Property Listing/Time Square 10/TS10_7_wm_wm.webp',
+              'Property Listing/Time Square 10/TS10_8_wm_wm.webp',
+              'Property Listing/Time Square 10/TS10_9_wm_wm.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/time-square-10-sihanouk-ville-oceanfront/',
+            floorPlans: [
+              'Property Listing/Time Square 10/Floor Plan/Crystal_ Floorplan.pdf',
+              'Property Listing/Time Square 10/Floor Plan/Diamond_ Floorplan.pdf',
+              'Property Listing/Time Square 10/Floor Plan/Duplex 32-35F Floorplan.pdf',
+              'Property Listing/Time Square 10/Floor Plan/Duplex 36-37F Floorplan.pdf',
+              'Property Listing/Time Square 10/Floor Plan/Gold_    Floorplan.pdf',
+              'Property Listing/Time Square 10/Floor Plan/Ocean View Floorplan.pdf',
+            ],
+        },
+        {
+            name: 'Kingston Royale',
+            city: 'Phnom Penh',
+            location: 'Boeung Tompun',
+            status: 'Under Construction',
+            price: '$48,960',
+            pricePerSqm: '$1,632',
+            beds: '1 to 2',
+            baths: null,
+            floorArea: '43 to 67 sqm',
+            size: '43 to 67 sqm',
+            specs: '43 to 67 sqm',
+            type: 'Condo',
+            developer: 'KR Kingston Royale Co., Ltd',
+            totalFloor: '36F',
+            totalUnit: '310',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 35%~',
+            completion: 'Q4 2027',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/v2fPknPbaW4T7jF68',
+            latitude: '11.525536',
+            longitude: '104.918723',
+            badge: 'Under Construction',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/Kingstone%20Royale%20Main.jpeg',
+            cardDescription: '',
+            description: 'Kingston Royale represents a strategic investment in the rapidly developing Boeung Tompun zone, perfectly positioned near the high-demand Russian Market corridor. This 36-storey development offers rare freehold ownership and is meticulously designed to serve the city’s growing middle-class and stable local rental market. With an accessible entry point and a robust amenity stack, it provides an exceptional opportunity for investors seeking early upside and consistent long-term yields.',
+            highlights: [
+                'Strong amenity stack 36-Storey',
+                'Affordable entry',
+                'Modern Development',
+                'Easy access to the airport',
+                'Unit Mix: 1 to 2 Bedrooms'
+            ],
+            images: [
+                './Property%20Listing/Kingstone%20Royale%20Main.webp',
+                'https://img.ips-cambodia.com/2025/10/6/1/1-38-48-0.52-wtr-Kingston-Royale-Phnom-Penh-Cambodia.jpg',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/kingston-royale/',
+        },
+        {
+            name: 'Le Conde',
+            city: 'Phnom Penh',
+            location: 'BKK1',
+            status: 'Move In Ready',
+            price: '$94,538',
+            pricePerSqm: '$3,151',
+            beds: 'Studio to 3',
+            baths: null,
+            floorArea: '37 to 1,068 sqm',
+            size: '37 to 1,068 sqm',
+            specs: '37 to 1,068 sqm',
+            type: 'Condo',
+            developer: 'WANG FU GUO JI PROPERTY DEVELOPMENT CO., LTD',
+            totalFloor: '43F',
+            totalUnit: '1080',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 84%~',
+            completion: 'Q4 2025',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/JVPtuc4pJaM3662b6',
+            latitude: '11.549363',
+            longitude: '104.925039',
+            badge: 'Move In Ready, Guaranteed Rental Return (8% x 3Y)',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/Le%20Conde%20Main.jpg',
+            cardDescription: '',
+            description: 'Redefining urban elegance in the heart of BKK1, Le Conde is a move-in ready smart luxury tower designed for diplomats and global executives,. Investors are secured by a prestigious 8% Guaranteed Rental Return for 3 years, providing an immediate and hands-off income stream. This flagship residence integrates advanced home automation with world-class facilities to ensure enduring value in the city’s most elite district.',
+            highlights: [
+                '43-Storey Smart Tower',
+                '8% GRR for 3 Years',
+                'Integrated Smart Home Systems',
+                'BKK1 Core Location',
+                'Ready to move in'
+            ],
+            images: [
+                './Property%20Listing/Le%20Conde%20Main.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/le-conde-bkk1/',
+        },
+        {
+            name: 'J Tower 3',
+            city: 'Phnom Penh',
+            location: 'Tonle Bassac',
+            status: 'Under Construction',
+            price: '$330,000',
+            pricePerSqm: '$11,000',
+            beds: '3',
+            baths: null,
+            floorArea: '166 to 178 sqm',
+            size: '166 to 178 sqm',
+            specs: '166 to 178 sqm',
+            type: 'Condo',
+            developer: 'Tanichu Assetment Co., Ltd',
+            totalFloor: '77F',
+            totalUnit: '360',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 70%~',
+            completion: 'Q4 2028',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/irkPF5oymjUCYWRM6',
+            latitude: '11.543466',
+            longitude: '104.923514',
+            badge: 'Under Construction',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/J%20Tower%203%20Main.jpg',
+            cardDescription: '',
+            description: 'An iconic 77-storey skyline landmark that sets a new global benchmark for ultra-luxury, built to the rigorous standards of Japanese engineering,. To maintain the highest level of exclusivity and rental yields, the project features only expansive 3-bedroom layouts and palatial penthouses. Positioned as one of the tallest towers in the region, it is the ultimate trophy asset for investors seeking Japanese quality and unmatched prestige.',
+            highlights: [
+                '77-Storey Skyline Landmark',
+                'Japanese Construction Standards',
+                'Exclusively Large 3-Bedroom Layouts',
+                'Premium Tonle Bassac Location'
+            ],
+            images: [
+              'Property Listing/J-Tower 3/IMG_0662_wm_wm.webp',
+              'Property Listing/J-Tower 3/IMG_0663_wm_wm.webp',
+              'Property Listing/J-Tower 3/IMG_0664_wm_wm.webp',
+              'Property Listing/J-Tower 3/IMG_0665_wm_wm.webp',
+              'Property Listing/J-Tower 3/IMG_0666_wm_wm.webp',
+              'Property Listing/J-Tower 3/IMG_0667_wm_wm.webp',
+              'Property Listing/J-Tower 3/IMG_0668_wm_wm.webp',
+              'Property Listing/J-Tower 3/IMG_0669_wm_wm.webp',
+              'Property Listing/J-Tower 3/IMG_0670_wm_wm.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/j-tower-3-condominium/',
+            floorPlans: [
+              'Property Listing/J-Tower 3/Floorplans/01.pdf_1.jpg',
+              'Property Listing/J-Tower 3/Floorplans/41F-50F.pdf',
+            ],
+            facilityImages: [
+              'Property Listing/J-Tower 3/Facility/1. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/10. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/11. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/12. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/13. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/2. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/3. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/4. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/5. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/6. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/7. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/8. J-Tower3 Facility.webp',
+              'Property Listing/J-Tower 3/Facility/9. J-Tower3 Facility.webp',
+            ],
+        },
+        {
+            name: 'Odom Tower',
+            city: 'Phnom Penh',
+            location: 'Tonle Bassac (Norodom Blvd)',
+            status: 'Under Construction',
+            price: '$224,335',
+            pricePerSqm: '$7,478',
+            beds: null,
+            baths: null,
+            floorArea: '50 to 360 sqm',
+            size: '50 to 360 sqm',
+            specs: '50 to 360 sqm',
+            type: 'Commercial',
+            developer: 'Urban Living Solutions (ULS)',
+            totalFloor: '45F',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 50%~',
+            completion: 'Q1 2027',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/1nrV8269rAyyAYhS8',
+            latitude: '11.549050',
+            longitude: '104.929047',
+            badge: 'Under Construction, Guaranteed Rental Return (8% x 5Y)',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/ODOM%20Main.jpg',
+            cardDescription: '',
+            description: 'A high-visibility mixed-use icon on the legendary Norodom Boulevard, designed by Urban Living Solutions to meet the demand for Grade-A space,. The commercial tower offers an attractive 8% Guaranteed Rental Return for 5 years, while the residential component provides exclusive freehold living in a corridor with limited supply. This architectural landmark is the definitive choice for those seeking prime visibility and institutional-grade yields.',
+            highlights: [
+                'Norodom Blvd Prime Visibility',
+                'Grade-A Office & Retail Spaces',
+                '8% Commercial GRR for 5 Years',
+                'Mixed-Use Lifestyle Podium'
+            ],
+            images: [
+                './Property%20Listing/ODOM%20Main.webp',
+                'https://img.ips-cambodia.com/2025/10/8/7/7-36-41-0.70-wtr-1O8A3125.jpg',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/odom-tower/',
+        },
+        {
+            name: 'Odom Living',
+            city: 'Phnom Penh',
+            location: 'Tonle Bassac (Norodom Blvd)',
+            status: 'Under Construction',
+            price: '$275,000',
+            pricePerSqm: '$9,167',
+            beds: '1 to 4',
+            baths: null,
+            floorArea: '78 to 265 sqm',
+            size: '78 to 265 sqm',
+            specs: '78 to 265 sqm',
+            type: 'Condo',
+            developer: 'Urban Living Solutions (ULS)',
+            totalFloor: '30F',
+            totalUnit: '138',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 50%~',
+            completion: 'Q1 2027',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/1nrV8269rAyyAYhS8',
+            latitude: '11.549050',
+            longitude: '104.929047',
+            badge: 'Under Construction',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/Odom%20Living%20Main.jpg',
+            cardDescription: '',
+            description: 'Exclusive freehold residences situated on Norodom Boulevard, offering investors long-term capital protection in a corridor with extremely limited residential supply. Part of a high-visibility mixed-use ecosystem, the project appeals strongly to high-net-worth individuals and premium tenants seeking central prestige. With a focus on high-end lifestyle podiums and urban connectivity, it is positioned for significant value appreciation as the city core continues to densify.',
+            highlights: [
+                'Prime corridor location',
+                'Freehold ownership',
+                'Mixed-use lifestyle podium',
+                'Location advantage: Tonle Bassac (Norodom Blvd)',
+                'Unit mix: 1 to 4 Bedrooms'
+            ],
+            images: [
+                './Property%20Listing/Odom%20Living%20Main.webp',
+                'https://img.ips-cambodia.com/2025/10/8/7/7-36-41-0.06-wtr-office-V22.jpg',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/odom-living/',
+        },
+        {
+            name: 'UC88 Wyndham Garden',
+            city: 'Phnom Penh',
+            location: 'BKK1',
+            status: 'Under Construction',
+            price: '$75,000',
+            pricePerSqm: '$2,500',
+            beds: 'Studio to 4',
+            baths: null,
+            floorArea: '45 to 630 sqm',
+            size: '45 to 630 sqm',
+            specs: '45 to 630 sqm',
+            type: 'Condo',
+            developer: 'Chhun Sambath Development Co., Ltd',
+            totalFloor: '46F',
+            totalUnit: '438',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 55%~',
+            completion: 'Q3 2026',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/7m875HQtKHPmreem7',
+            latitude: '11.550519',
+            longitude: '104.922347',
+            badge: 'Under Construction, Guaranteed Rental Return (6% x 10Y)',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/UC88%20Main.jpeg',
+            cardDescription: '',
+            description: 'A prestigious Wyndham-branded residence offering a high-performance investment model managed by a global hospitality leader,. Located in the diplomatic heart of BKK1, it provides a stable 6% Guaranteed Rental Return for 10 years, tapping into consistent international business demand. This development offers a rare fusion of global brand heritage and professional hotel management for the passive, high-net-worth investor.',
+            highlights: [
+                '46-Storey Branded Residence',
+                '6% GRR for 10 Years',
+                'Professional Hotel Management',
+                'Strategic BKK1 Location'
+            ],
+            images: [
+              'Property Listing/UC88 (Wyndham Garden)/PIN04671.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04672.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04673.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04675.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04676.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04679.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04682.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04683.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04685.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04687.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04689.jpg',
+              'Property Listing/UC88 (Wyndham Garden)/PIN04690.jpg',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/uc88-wyndham-garden-bkk1/',
+        },
+        {
+            name: 'Diamond Bay Garden',
+            city: 'Phnom Penh',
+            location: 'Tonle Bassac (Koh Pich)',
+            status: 'Under Construction',
+            price: '$105,654',
+            pricePerSqm: '$3,522',
+            beds: 'Studio to 3',
+            baths: null,
+            floorArea: '60 to 170 sqm',
+            size: '60 to 170 sqm',
+            specs: '60 to 170 sqm',
+            type: 'Mixed-use',
+            developer: 'OCIC',
+            totalFloor: '39F',
+            totalUnit: '591',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 55%~',
+            completion: 'Q2 2026',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/PojYkgc2xDhv2ebJ9',
+            latitude: '11.553223',
+            longitude: '104.944707',
+            badge: 'Under Construction, Guaranteed Rental Return (5%~10%)',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/DBG%20Main.jpeg',
+            cardDescription: '',
+            description: 'A waterfront architectural icon on Koh Pich, backed by the prestigious OCIC and managed by the globally renowned Somerset brand,. This project offers a sophisticated investment structure with a tiered Guaranteed Rental Return (5%–10%). Positioned as the island matures into a premier CBD, it caters to high-end residential and commercial demand, ensuring exceptional capital protection and long-term asset growth.',
+            highlights: [
+                '39-Storey Waterfront Landmark',
+                'Managed by Somerset',
+                'OCIC Developer Backing',
+                'Mixed-use (Residential & Shophouse)'
+            ],
+            images: [
+                './Property%20Listing/DBG%20Main.webp',
+                'https://img.ips-cambodia.com/2026/1/9/8/8-56-34-0.39-wtr-2.jpg',
+                'https://img.ips-cambodia.com/2026/1/9/8/8-56-34-0.23-wtr-3.jpg',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/diamond-bay-garden/',
+        },
+        {
+            name: 'Angkor Grace',
+            city: 'Siem Reap',
+            location: 'Svay Dangkum',
+            status: 'Move In Ready',
+            price: '$150,000',
+            pricePerSqm: '$5,000',
+            beds: '1 to 3',
+            baths: null,
+            floorArea: '105 to 360 sqm',
+            size: '105 to 360 sqm',
+            specs: '105 to 360 sqm',
+            type: 'Serviced residence',
+            developer: 'Angkor Hearta Development Co., Ltd',
+            totalFloor: '3F',
+            totalUnit: '60',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 85%~',
+            completion: 'Completed',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/QAHhAXkdgdPhysbv8',
+            latitude: '13.373419',
+            longitude: '103.856621',
+            badge: 'Move In Ready, Guaranteed Rental Return (7% 10Y)',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/Angkor%20Grace%20Main.webp',
+            cardDescription: '',
+            description: 'A move-in ready wellness resort residence meticulously designed to capture yields from the world-class tourism sector near Angkor Wat,. Offering a highly secure leaseback model with a 7% Guaranteed Rental Return for 10 years, it provides investors with a high-performance income stream. This development offers a unique fusion of luxury hospitality, personal stay flexibility, and a prestigious cultural location.',
+            highlights: [
+                'Wellness Resort Positioning',
+                '7% GRR for 10 Years',
+                'Fully Managed Serviced Residences',
+                'Near Angkor Wat'
+            ],
+            images: [
+                './Property%20Listing/Angkor%20Grace%20Main.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/angkor-grace-residence-wellness-resort/',
+        },
+        {
+            name: 'Rose Apple Square',
+            city: 'Siem Reap',
+            location: 'Svay Dangkum',
+            status: 'Move In Ready',
+            price: '$87,000',
+            pricePerSqm: '$2,900',
+            beds: 'Studio to 2',
+            baths: null,
+            floorArea: '32 to 136 sqm',
+            size: '32 to 136 sqm',
+            specs: '32 to 136 sqm',
+            type: 'Mixed-use',
+            developer: 'Urban Living Solutions (ULS)',
+            totalFloor: '6F',
+            totalUnit: '207',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold 95%~',
+            completion: 'Completed',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/6jfGFxv5FxhdLwvg9',
+            latitude: '13.356582',
+            longitude: '103.848284',
+            badge: 'Move In Ready, Guaranteed Rental Return (7% x 5Y)',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/RAS%20Main.webp',
+            cardDescription: '',
+            description: 'A completed, high-visibility mixed-use asset in the heart of Siem Reap, offering investors immediate yields and diversified income streams. This project features a secure 7% Guaranteed Rental Return for 5 years, positioned to capture the growing demand for residential, office, and co-living spaces. Located in the city’s vibrant core, it is a stable, income-generating masterpiece for those seeking to diversify their portfolio with premium cultural real estate.',
+            highlights: [
+                'Income diversification',
+                'Central Siem Reap',
+                'Ready for occupancy',
+                'Guaranteed Rental Return (7% x 5Y)',
+                'Location advantage: Svay Dangkum (Sok San Road)',
+                'Completed & Ready'
+            ],
+            images: [
+                './Property%20Listing/RAS%20Main.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/rose-apple-square/',
+        },
+        {
+            name: 'LZ Sea View Premium',
+            city: 'Sihanoukville',
+            location: 'Sangkat Buon',
+            status: 'Pre Sale',
+            price: '$54,715',
+            pricePerSqm: '$1,824',
+            beds: 'Studio to 3',
+            baths: null,
+            floorArea: '44 to 137 sqm',
+            size: '44 to 137 sqm',
+            specs: '44 to 137 sqm',
+            type: 'Condo',
+            developer: 'LZ Sea View Residences team',
+            totalFloor: '24F',
+            totalUnit: '308',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold TBC',
+            completion: 'Q4 2028',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/gsNdrqvaCJx9KenU8',
+            latitude: '10.615254',
+            longitude: '103.542759',
+            badge: 'Pre Sale, Guaranteed Rental Return (8% x 3Y)',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/LZ%20Main.jpeg',
+            cardDescription: '',
+            description: 'A coastal investment masterpiece designed for individuals seeking predictable luxury yields through an 8% Guaranteed Rental Return,. This 24-floor residence is strategically engineered for premium vacation demand, offering limited residences to maintain exclusivity and high occupancy. Supported by a proven rental track record, it represents a sophisticated entry into Cambodia’s premier seaside market.',
+            highlights: [
+                '24-Storey Coastal Residence',
+                '8% GRR for 3 Years',
+                'High-Yield Vacation Rental Track Record',
+                'Limited Edition Penthouses'
+            ],
+            images: [
+                './Property%20Listing/LZ%20Main.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/lz-sea-view-premium/',
+        },
+        {
+            name: 'Picasso Sky Gemme',
+            city: 'Phnom Penh',
+            location: 'BKK1',
+            status: 'Pre Sale',
+            price: '$174,735',
+            pricePerSqm: '$5,825',
+            beds: '1 to 4',
+            baths: null,
+            floorArea: '61 to 203 sqm',
+            size: '61 to 203 sqm',
+            specs: '61 to 203 sqm',
+            type: 'Condo',
+            developer: 'Global Titan Stone Real Estate Development',
+            totalFloor: '52F',
+            totalUnit: '276',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold TBC',
+            completion: 'Q3 2029',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/6Sbb5YuLkyW8akFK9',
+            latitude: '11.554970',
+            longitude: '104.924559',
+            badge: 'Pre Sale, Guaranteed Rental Return (7% x 3Y)',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/Picasso%202%20Main.jpg',
+            cardDescription: '',
+            description: 'An elite 52-storey luxury residence in BKK1 that integrates wellness-centric living with high-specification architectural design,. Investors are secured by a 7% Guaranteed Rental Return for 3 years, targeting top-tier tenants who prioritise exclusive lifestyle amenities. With its expansive floor plans and prestigious location, it is a dominant asset for those seeking premium rental pricing and capital growth.',
+            highlights: [
+                '52-Storey Wellness Tower',
+                '7% GRR for 3 Years',
+                'Luxury Lifestyle Amenity Floors',
+                'BKK1 Core Location'
+            ],
+            images: [
+                './Property%20Listing/Picasso%202%20Main.webp',
+            ],
+            url: 'https://www.realestate.com.kh/new-developments/picasso-sky-gemme-picasso-2/',
+        },
+        {
+            name: 'GATO Tower',
+            city: 'Phnom Penh',
+            location: 'BKK1',
+            status: 'Pre Sale',
+            price: '$90,000',
+            pricePerSqm: null,
+            beds: 'Studio to 5',
+            baths: null,
+            floorArea: '31 to 444 sqm',
+            size: '31 to 444 sqm',
+            specs: '31 to 444 sqm',
+            type: 'Mixed-use',
+            developer: 'Miraku Capital Development',
+            totalFloor: '67F',
+            totalUnit: '472',
+            agentName: 'Nick',
+            agentPhone: '+855 12 345 678',
+            agentEmail: 'nick@property.com',
+            availability: 'Sold TBC',
+            completion: 'Q4 2030',
+            investorFit: '',
+            targetTenant: '',
+            rentalStyle: '',
+            mapLink: 'https://maps.app.goo.gl/KemToJmiGcfWAKNk7',
+            latitude: '11.550835',
+            longitude: '104.927724',
+            badge: 'Pre Sale',
+            badgeClass: 'bg-[#0A3258]/95 text-white',
+            image: './Property%20Listing/G.A.T.O%20Tower%20Main.jpg',
+            cardDescription: '',
+            description: 'Experience the pinnacle of BKK1 prestige with GATO Tower, a soaring 67-storey landmark delivered by the acclaimed Japanese developer Miraku Capital. This architectural marvel is built around elite wellness lifestyle floors, specifically targeting the high-end executive rental market and luxury owner-occupiers. Positioned in Phnom Penh’s most exclusive residential core, it sets a new standard for vertical living, ensuring unmatched capital protection and premium rental performance.',
+            highlights: [
+                '67-Storey Skyline Landmark',
+                'Japanese Developer Standards',
+                'Luxury Wellness Amenity Floors',
+                'BKK1 Core Prestige',
+                'Large Layouts & Penthouses'
+            ],
+            images: [
+              'Property Listing/GATO Tower/1.webp',
+              'Property Listing/GATO Tower/2.webp',
+              'Property Listing/GATO Tower/3.webp',
+              'Property Listing/GATO Tower/4.webp',
+              'Property Listing/GATO Tower/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_02.jpg',
+            ],
+            unitLayouts: [
+              'Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_03.webp',
+              'Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_04.webp',
+              'Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_05.webp',
+              'Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_06.webp',
+              'Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_07.webp',
+              'Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_08.webp',
+              'Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_09.webp',
+              'Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_10.webp',
+              'Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_11.webp',
+            ],
+            url: 'https://www.miraku-capital.com/g-a-t-o-tower/',
+        },
+    ],
+          t(key, vars = null) {
+            const table = this.translations[this.lang] || this.translations.en;
+            let value = table[key] || this.translations.en[key] || key;
+            if (vars && typeof value === 'string') {
+              for (const [varKey, varValue] of Object.entries(vars)) {
+                value = value.replace(new RegExp(`\{${varKey}\}`, 'g'), varValue);
+              }
+            }
+            return value;
+          },
+          typeLabel(type) {
+            const labels = this.typeLabels[this.lang] || this.typeLabels.en;
+            return labels[type] || type;
+          },
+          setLanguage(code) {
+            this.lang = code;
+            this.isLangOpen = false;
+            try { localStorage.setItem(this.projectLangKey, code); } catch (_) {}
+          },
+          updateThumbLimit() {
+            const width = window.innerWidth;
+            if (width < 640) {
+              this.thumbLimit = 4;
+            } else if (width < 1024) {
+              this.thumbLimit = 5;
+            } else {
+              this.thumbLimit = 6;
+            }
+          },
+          projectSlug(project) {
+            if (!project || !project.name) return '';
+            return project.name
+              .toLowerCase()
+              .replace(/&/g, 'and')
+              .replace(/[^a-z0-9]+/g, '-')
+              .replace(/(^-|-$)+/g, '');
+          },
+          loadProjectFromStorage() {
+            try {
+              const raw = localStorage.getItem(this.projectDetailsKey);
+              if (!raw) return null;
+              const parsed = JSON.parse(raw);
+              if (parsed && parsed.name) return parsed;
+            } catch (_) {}
+            return null;
+          },
+          loadProjectFromUrl() {
+            const params = new URL(window.location.href).searchParams;
+            const slug = params.get('project');
+            if (!slug) return null;
+            return this.projects.find((project) => this.projectSlug(project) === slug) || null;
+          },
+          setActiveProject(project) {
+            if (!project) return;
+            this.activeProject = project;
+            this.activeProjectImageIndex = 0;
+            this.activeProjectImage = project.images && project.images.length ? project.images[0] : project.image;
+            this.floorIndex = 0;
+            this.unitIndex = 0;
+            this.facilityIndex = 0;
+            this.projectDetailTab = 'map';
+            this.isImageLightboxOpen = false;
+            this.isDocLightboxOpen = false;
+            this.activeDocUrl = '';
+            this.lightboxImageUrl = '';
+            this.lightboxItems = [];
+            this.lightboxIndex = 0;
+          },
+          getProjectImages() {
+            if (!this.activeProject) return [];
+            const images = Array.isArray(this.activeProject.images) ? this.activeProject.images.slice() : [];
+            if (this.activeProject.image) images.unshift(this.activeProject.image);
+            return this.dedupeAssets(images);
+          },
+          getThumbImages() {
+            const images = this.getProjectImages();
+            const limit = this.thumbLimit;
+            if (images.length > limit) return images.slice(0, limit - 1);
+            return images.slice(0, limit);
+          },
+          getThumbOverflowCount() {
+            const images = this.getProjectImages();
+            const limit = this.thumbLimit;
+            return images.length > limit ? images.length - (limit - 1) : 0;
+          },
+          setActiveProjectImage(index) {
+            const images = this.getProjectImages();
+            if (!images.length) return;
+            const safeIndex = Math.max(0, Math.min(index, images.length - 1));
+            this.activeProjectImageIndex = safeIndex;
+            this.activeProjectImage = images[safeIndex];
+          },
+          openLightboxForList(list, index = 0) {
+            if (!Array.isArray(list) || list.length === 0) return;
+            if (this.isImageLightboxOpen) return;
+            const safeIndex = Math.max(0, Math.min(index, list.length - 1));
+            this.lightboxItems = list;
+            this.lightboxIndex = safeIndex;
+            this.lightboxImageUrl = list[safeIndex];
+            this.isImageLightboxOpen = true;
+          },
+          nextLightboxItem() {
+            if (!this.lightboxItems.length) return;
+            this.lightboxIndex = (this.lightboxIndex + 1) % this.lightboxItems.length;
+            this.lightboxImageUrl = this.lightboxItems[this.lightboxIndex];
+          },
+          prevLightboxItem() {
+            if (!this.lightboxItems.length) return;
+            this.lightboxIndex = (this.lightboxIndex - 1 + this.lightboxItems.length) % this.lightboxItems.length;
+            this.lightboxImageUrl = this.lightboxItems[this.lightboxIndex];
+          },
+          openDocLightbox(url) {
+            if (!url) return;
+            if (this.isDocLightboxOpen) return;
+            this.activeDocUrl = url;
+            this.isDocLightboxOpen = true;
+          },
+          closeOverlayState() {
+            if (this.isImageLightboxOpen) { this.isImageLightboxOpen = false; return; }
+            if (this.isDocLightboxOpen) { this.isDocLightboxOpen = false; return; }
+          },
+          backToPrevious() {
+            let target = 'Index (02-02-2026).html';
+            try {
+              const stored = localStorage.getItem(this.lastPageKey);
+              if (stored) {
+                target = `Index (02-02-2026).html?page=${encodeURIComponent(stored)}`;
+              }
+            } catch (_) {}
+            window.location.href = target;
+          },
+          nextProjectImage() {
+            const images = this.getProjectImages();
+            if (images.length < 2) return;
+            const nextIndex = (this.activeProjectImageIndex + 1) % images.length;
+            this.setActiveProjectImage(nextIndex);
+          },
+          prevProjectImage() {
+            const images = this.getProjectImages();
+            if (images.length < 2) return;
+            const prevIndex = (this.activeProjectImageIndex - 1 + images.length) % images.length;
+            this.setActiveProjectImage(prevIndex);
+          },
+          getProjectFloorPlans(project) {
+            if (!project || !Array.isArray(project.floorPlans)) return [];
+            return this.filterProjectAssets(project.floorPlans, project);
+          },
+          getCurrentFloorItem() {
+            const items = this.getProjectFloorPlans(this.activeProject);
+            if (!items.length) return '';
+            if (this.floorIndex >= items.length) this.floorIndex = 0;
+            return items[this.floorIndex];
+          },
+          nextFloorItem() {
+            const items = this.getProjectFloorPlans(this.activeProject);
+            if (items.length < 2) return;
+            this.floorIndex = (this.floorIndex + 1) % items.length;
+          },
+          prevFloorItem() {
+            const items = this.getProjectFloorPlans(this.activeProject);
+            if (items.length < 2) return;
+            this.floorIndex = (this.floorIndex - 1 + items.length) % items.length;
+          },
+          getProjectFacilities(project) {
+            if (!project || !Array.isArray(project.facilityImages)) return [];
+            return this.filterProjectAssets(project.facilityImages, project);
+          },
+          getCurrentFacilityItem() {
+            const items = this.getProjectFacilities(this.activeProject);
+            if (!items.length) return '';
+            if (this.facilityIndex >= items.length) this.facilityIndex = 0;
+            return items[this.facilityIndex];
+          },
+          nextFacilityItem() {
+            const items = this.getProjectFacilities(this.activeProject);
+            if (items.length < 2) return;
+            this.facilityIndex = (this.facilityIndex + 1) % items.length;
+          },
+          prevFacilityItem() {
+            const items = this.getProjectFacilities(this.activeProject);
+            if (items.length < 2) return;
+            this.facilityIndex = (this.facilityIndex - 1 + items.length) % items.length;
+          },
+          getProjectUnitLayouts(project) {
+            if (!project || !Array.isArray(project.unitLayouts)) return [];
+            return this.filterProjectAssets(project.unitLayouts, project);
+          },
+          normalizeAssetUrl(url) {
+            if (!url) return '';
+            const cleaned = String(url).split('?')[0].split('#')[0];
+            try { return decodeURIComponent(cleaned).toLowerCase(); } catch (_) { return cleaned.toLowerCase(); }
+          },
+          dedupeAssets(list) {
+            if (!Array.isArray(list)) return [];
+            const seen = new Set();
+            const out = [];
+            for (const item of list) {
+              if (!item) continue;
+              const key = this.normalizeAssetUrl(item);
+              if (!key || seen.has(key)) continue;
+              seen.add(key);
+              out.push(item);
+            }
+            return out;
+          },
+          isPlaceholderAsset(url, project) {
+            if (!url) return true;
+            const norm = this.normalizeAssetUrl(url);
+            const main = this.normalizeAssetUrl(project?.image || '');
+            if (main && norm === main) return true;
+            if (norm.includes(' main.')) return true;
+            return false;
+          },
+          filterProjectAssets(list, project) {
+            const deduped = this.dedupeAssets(list);
+            if (!project) return deduped;
+            const filtered = deduped.filter((item) => !this.isPlaceholderAsset(item, project));
+            if (filtered.length === 0) return [];
+            return filtered;
+          },
+          getCurrentUnitItem() {
+            const items = this.getProjectUnitLayouts(this.activeProject);
+            if (!items.length) return '';
+            if (this.unitIndex >= items.length) this.unitIndex = 0;
+            return items[this.unitIndex];
+          },
+          nextUnitItem() {
+            const items = this.getProjectUnitLayouts(this.activeProject);
+            if (items.length < 2) return;
+            this.unitIndex = (this.unitIndex + 1) % items.length;
+          },
+          prevUnitItem() {
+            const items = this.getProjectUnitLayouts(this.activeProject);
+            if (items.length < 2) return;
+            this.unitIndex = (this.unitIndex - 1 + items.length) % items.length;
+          },
+          isPdf(url) {
+            return typeof url === 'string' && url.toLowerCase().endsWith('.pdf');
+          },
+          formatAssetTitle(url, label) {
+            if (!url) return label || '';
+            const cleaned = url.split('?')[0].split('#')[0];
+            const rawName = cleaned.split('/').pop() || '';
+            let title = decodeURIComponent(rawName)
+              .replace(/\.[^.]+$/, '')
+              .replace(/_wm_wm|_wm/gi, '')
+              .replace(/[_-]+/g, ' ')
+              .replace(/\s+/g, ' ')
+              .trim();
+            if (!title) return label || '';
+            return label ? `${label}: ${title}` : title;
+          },
+          getMapEmbedUrl(project) {
+            if (!project) return '';
+            const link = project.mapLink || '';
+            if (link.includes('google.com/maps')) {
+              return link.includes('output=embed')
+                ? link
+                : `${link}${link.includes('?') ? '&' : '?'}output=embed`;
+            }
+            const query = `${project.name} ${project.location || ''}`.trim();
+            return `https://www.google.com/maps?q=${encodeURIComponent(query)}&output=embed`;
+          },
+          async sendInquiry(event, source) {
+            const form = event.target;
+            const data = new FormData(form);
+            this.inquirySuccess = false;
+            this.inquiryMessage = '';
+            const parseBudgetRange = (value) => {
+              if (!value) return { min: '', max: '' };
+              const cleaned = value.toString().replace(/\s+/g, ' ').trim();
+              if (cleaned.includes('-') || cleaned.includes('–')) {
+                const parts = cleaned.split(/-|–/).map((part) => part.trim());
+                return { min: parts[0] || '', max: parts[1] || '' };
+              }
+              if (/[>+]/.test(cleaned)) {
+                return { min: cleaned.replace(/[>+]/g, '').trim(), max: '' };
+              }
+              if (cleaned.includes('<')) {
+                return { min: '', max: cleaned.replace(/[<]/g, '').trim() };
+              }
+              return { min: cleaned, max: '' };
+            };
+            const fields = [
+              'name',
+              'language',
+              'lead_type',
+              'location',
+              'budget',
+              'purpose',
+              'nationality',
+              'timeline',
+              'contact_method',
+              'contact_detail',
+              'contact',
+              'summary'
+            ];
+            const payload = {};
+            for (const key of fields) {
+              const value = data.get(key);
+              if (value) payload[key] = value.toString().trim();
+            }
+            payload.source = source || '';
+            payload.conversationUrl = window.location.href;
+            payload.token = 'PHC_2026_9a8f3c1e';
+            const project = this.activeProject || {};
+            payload.project = project.name || '';
+            payload.agentName = project.agentName || '';
+            payload.agentPhone = project.agentPhone || '';
+            payload.agentEmail = project.agentEmail || '';
+            const budgetRange = parseBudgetRange(payload.budget);
+            payload.budgetMin = budgetRange.min;
+            payload.budgetMax = budgetRange.max;
+            const emailFields = [
+              ['name', 'Name'],
+              ['language', 'Language'],
+              ['lead_type', 'Lead Type'],
+              ['location', 'Location'],
+              ['budget', 'Budget'],
+              ['purpose', 'Purpose'],
+              ['nationality', 'Nationality'],
+              ['timeline', 'Purchase timeline'],
+              ['contact_method', 'Contact Method'],
+              ['contact_detail', 'Contact'],
+              ['contact', 'Contact'],
+              ['summary', 'Summary']
+            ];
+            const lines = [];
+            lines.push('New Lead Received');
+            if (source) lines.push('Source: ' + source);
+            if (project && project.name) lines.push('Project: ' + project.name);
+            if (project && project.agentName) lines.push('Agent Name: ' + project.agentName);
+            if (project && project.agentPhone) lines.push('Agent Phone: ' + project.agentPhone);
+            if (project && project.agentEmail) lines.push('Agent Email: ' + project.agentEmail);
+            for (const [key, label] of emailFields) {
+              const value = data.get(key);
+              if (value) lines.push(label + ': ' + value.toString().trim());
+            }
+            try {
+              await fetch('https://script.google.com/macros/s/AKfycbzeFbgzg3M3ulxsndIxcJFFry6a-AMoU9f_mX6Hen3G0RefVz7KibAb43X1RnUjqSUvsA/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+              });
+              this.inquirySuccess = true;
+              this.inquiryMessage = 'Inquiry sent successfully. We will contact you shortly.';
+              setTimeout(() => { this.inquirySuccess = false; }, 5000);
+            } catch (err) {
+              console.warn('Inquiry submission failed:', err);
+            }
+            form.reset();
+          },
+          initPage() {
+            try {
+              const storedLang = localStorage.getItem(this.projectLangKey);
+              if (storedLang) this.lang = storedLang;
+            } catch (_) {}
+            this.updateThumbLimit();
+            window.addEventListener('resize', () => this.updateThumbLimit());
+            const project = this.loadProjectFromUrl() || this.loadProjectFromStorage();
+            if (project) this.setActiveProject(project);
+            this.$nextTick(() => { if (window.lucide) window.lucide.createIcons(); });
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
