@@ -16,6 +16,17 @@
     />
 
     <title>Project Details | Property Hub Cambodia</title>
+    <link rel="canonical" href="https://cambodiapropertyhub.com/project-details.html" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Project Details | Property Hub Cambodia" />
+    <meta property="og:description" content="Explore complete project details for premium real estate opportunities across Cambodia." />
+    <meta property="og:url" content="https://cambodiapropertyhub.com/project-details.html" />
+    <meta property="og:image" content="https://cambodiapropertyhub.com/PHC%20Logo%20(1).png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Project Details | Property Hub Cambodia" />
+    <meta name="twitter:description" content="Explore complete project details for premium real estate opportunities across Cambodia." />
+    <meta name="twitter:image" content="https://cambodiapropertyhub.com/PHC%20Logo%20(1).png" />
     <link rel="icon" type="image/png" href="./PHC%20Logo%20(1).png" />
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -481,7 +492,7 @@
                     <div class="w-full h-full">
                       <template x-if="isPdf(getCurrentFloorItem())">
                         <div class="w-full h-full relative">
-                          <iframe :src="getCurrentFloorItem()" class="w-full h-full" title="Floor plan preview"></iframe>
+                          <iframe :src="getCurrentFloorItem()" class="w-full h-full" title="Floor plan preview" loading="lazy"></iframe>
                           <button
                             type="button"
                             class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-sm font-semibold opacity-0 hover:opacity-100 transition-opacity"
@@ -536,7 +547,7 @@
                     <div class="w-full h-full">
                       <template x-if="isPdf(getCurrentFacilityItem())">
                         <div class="w-full h-full relative">
-                          <iframe :src="getCurrentFacilityItem()" class="w-full h-full" title="Facility preview"></iframe>
+                          <iframe :src="getCurrentFacilityItem()" class="w-full h-full" title="Facility preview" loading="lazy"></iframe>
                           <button
                             type="button"
                             class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-sm font-semibold opacity-0 hover:opacity-100 transition-opacity"
@@ -585,7 +596,7 @@
                     <div class="w-full h-full">
                       <template x-if="isPdf(getCurrentUnitItem())">
                         <div class="w-full h-full relative">
-                          <iframe :src="getCurrentUnitItem()" class="w-full h-full" title="Unit layout preview"></iframe>
+                          <iframe :src="getCurrentUnitItem()" class="w-full h-full" title="Unit layout preview" loading="lazy"></iframe>
                           <button
                             type="button"
                             class="absolute inset-0 flex items-center justify-center bg-black/40 text-white text-sm font-semibold opacity-0 hover:opacity-100 transition-opacity"
@@ -706,10 +717,6 @@
         x-show="isImageLightboxOpen"
         x-transition.opacity
         class="fixed inset-0 z-[70] bg-black/80 flex items-center justify-center p-6"
-        style="touch-action: none;"
-        @touchstart.passive="onLightboxTouchStart($event)"
-        @touchend.passive="onLightboxTouchEnd($event, 'image')"
-        @touchmove.prevent
         @keydown.escape.window="closeOverlayState()"
         @keydown.window="
           if (!isImageLightboxOpen) return;
@@ -764,11 +771,7 @@
         x-show="isDocLightboxOpen"
         x-transition.opacity
         class="fixed inset-0 z-[70] bg-black/80 flex items-center justify-center p-6"
-        style="touch-action: none;"
         @keydown.escape.window="closeOverlayState()"
-        @touchstart.passive="onLightboxTouchStart($event)"
-        @touchend.passive="onLightboxTouchEnd($event, 'doc')"
-        @touchmove.prevent
         x-cloak
       >
         <button
@@ -779,7 +782,7 @@
           <i data-lucide="x" class="w-6 h-6"></i>
         </button>
         <div class="max-w-5xl w-full h-[80vh] bg-black/40 border border-white/10 rounded-2xl overflow-hidden">
-          <iframe :src="activeDocUrl" class="w-full h-full" title="Document preview"></iframe>
+          <iframe :src="activeDocUrl" class="w-full h-full" title="Document preview" loading="lazy"></iframe>
         </div>
       </div>
     </div>
@@ -809,9 +812,6 @@
           lightboxImageUrl: '',
           lightboxItems: [],
           lightboxIndex: 0,
-          lightboxTouchStartX: 0,
-          lightboxTouchStartY: 0,
-          lightboxTouchStartTime: 0,
           thumbLimit: 6,
           inquirySuccess: false,
           inquiryMessage: '',
@@ -2381,6 +2381,34 @@
             this.lang = code;
             this.isLangOpen = false;
             try { localStorage.setItem(this.projectLangKey, code); } catch (_) {}
+            try {
+              const url = new URL(window.location.href);
+              url.searchParams.set('lang', code);
+              window.history.replaceState(window.history.state, '', url);
+            } catch (_) {}
+          },
+          initLanguage() {
+            const supported = ['en', 'ja', 'de'];
+            let resolved = this.lang;
+            try {
+              const params = new URLSearchParams(window.location.search);
+              const urlLang = params.get('lang');
+              if (urlLang && supported.includes(urlLang)) {
+                resolved = urlLang;
+              } else {
+                const stored = localStorage.getItem(this.projectLangKey);
+                if (stored && supported.includes(stored)) resolved = stored;
+              }
+            } catch (_) {}
+            this.lang = resolved;
+            try { localStorage.setItem(this.projectLangKey, resolved); } catch (_) {}
+            try {
+              const url = new URL(window.location.href);
+              if (url.searchParams.get('lang') !== resolved) {
+                url.searchParams.set('lang', resolved);
+                window.history.replaceState(window.history.state, '', url);
+              }
+            } catch (_) {}
           },
           updateThumbLimit() {
             const width = window.innerWidth;
@@ -2484,35 +2512,14 @@
             if (this.isImageLightboxOpen) { this.isImageLightboxOpen = false; return; }
             if (this.isDocLightboxOpen) { this.isDocLightboxOpen = false; return; }
           },
-          onLightboxTouchStart(event) {
-            const touch = event.touches && event.touches[0];
-            if (!touch) return;
-            this.lightboxTouchStartX = touch.clientX;
-            this.lightboxTouchStartY = touch.clientY;
-            this.lightboxTouchStartTime = Date.now();
-          },
-          onLightboxTouchEnd(event, mode) {
-            const touch = event.changedTouches && event.changedTouches[0];
-            if (!touch) return;
-            const dx = touch.clientX - this.lightboxTouchStartX;
-            const dy = touch.clientY - this.lightboxTouchStartY;
-            const absX = Math.abs(dx);
-            const absY = Math.abs(dy);
-            if (absX < 10 && absY < 10) return;
-            if (absY > 80 && absY > absX * 1.2) {
-              this.closeOverlayState();
-              return;
-            }
-            if (mode === 'image' && this.lightboxItems.length > 1 && absX > 50 && absX > absY * 1.2) {
-              if (dx < 0) { this.nextLightboxItem(); } else { this.prevLightboxItem(); }
-            }
-          },
           backToPrevious() {
             let target = 'index.html';
             try {
               const stored = localStorage.getItem(this.lastPageKey);
               if (stored) {
-                target = `index.html?page=${encodeURIComponent(stored)}`;
+                target = `index.html?page=${encodeURIComponent(stored)}&lang=${encodeURIComponent(this.lang || 'en')}`;
+              } else {
+                target = `index.html?lang=${encodeURIComponent(this.lang || 'en')}`;
               }
             } catch (_) {}
             window.location.href = target;
@@ -2740,10 +2747,7 @@
             form.reset();
           },
           initPage() {
-            try {
-              const storedLang = localStorage.getItem(this.projectLangKey);
-              if (storedLang) this.lang = storedLang;
-            } catch (_) {}
+            this.initLanguage();
             this.updateThumbLimit();
             window.addEventListener('resize', () => this.updateThumbLimit());
             const project = this.loadProjectFromUrl() || this.loadProjectFromStorage();
