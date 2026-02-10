@@ -1472,10 +1472,40 @@ projects: [],
         }
     },
     scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); },
+    initLanguage() {
+        const supported = ['en', 'ja', 'de'];
+        let resolved = this.lang;
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const urlLang = params.get('lang');
+            if (urlLang && supported.includes(urlLang)) {
+                resolved = urlLang;
+            } else {
+                const stored = localStorage.getItem(this.projectLangKey);
+                if (stored && supported.includes(stored)) resolved = stored;
+            }
+        } catch (_) {}
+        this.lang = resolved;
+        try { localStorage.setItem(this.projectLangKey, resolved); } catch (_) {}
+        try {
+            const url = new URL(window.location.href);
+            if (url.searchParams.get('lang') !== resolved) {
+                url.searchParams.set('lang', resolved);
+                window.history.replaceState(window.history.state, '', url);
+            }
+        } catch (_) {}
+    },
     setLanguage(code) {
+        const supported = ['en', 'ja', 'de'];
+        if (!supported.includes(code)) return;
         this.lang = code;
         this.isLangOpen = false;
         try { localStorage.setItem(this.projectLangKey, code); } catch (_) {}
+        try {
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', code);
+            window.history.replaceState(window.history.state, '', url);
+        } catch (_) {}
     },
     projectSlug(project) {
         if (!project || !project.name) return '';
@@ -1487,7 +1517,10 @@ projects: [],
     },
     getProjectDetailsUrl(project) {
         const slug = this.projectSlug(project);
-        return slug ? `project-details.html?project=${encodeURIComponent(slug)}` : 'project-details.html';
+        const langQuery = `lang=${encodeURIComponent(this.lang || 'en')}`;
+        return slug
+            ? `project-details.html?project=${encodeURIComponent(slug)}&${langQuery}`
+            : `project-details.html?${langQuery}`;
     },
     storeProject(project) {
         if (!project) return;
@@ -1755,7 +1788,7 @@ projects: [],
         form.reset();
     },
 }"
-    x-init="loadCatalogData(); if (window.innerWidth &lt; 768) { viewMode = 'grid'; insightViewMode = 'grid'; } updateThumbLimit(); window.addEventListener('resize', () =&gt; updateThumbLimit()); window.addEventListener('popstate', () =&gt; { if (overlayDepth &gt; 0) { isHandlingPop = true; closeTopOverlay(); overlayDepth = Math.max(0, overlayDepth - 1); isHandlingPop = false; return; } }); window.addEventListener('touchstart', (event) =&gt; { if (overlayDepth &lt;= 0) return; const touch = event.touches &amp;&amp; event.touches[0]; if (!touch) return; touchStartX = touch.clientX; touchStartY = touch.clientY; }, { passive: true }); window.addEventListener('touchend', (event) =&gt; { if (overlayDepth &lt;= 0) return; const touch = event.changedTouches &amp;&amp; event.changedTouches[0]; if (!touch) return; const dx = touch.clientX - touchStartX; const dy = touch.clientY - touchStartY; const absX = Math.abs(dx); const absY = Math.abs(dy); if (dx &gt; 60 &amp;&amp; absY &lt; 40) { closeOverlayState(); return; } if (dy &gt; 80 &amp;&amp; absX &lt; 40) { closeOverlayState(); return; } }, { passive: true }); const params = new URLSearchParams(window.location.search); const pageParam = params.get('page'); if (pageParam) { currentPage = pageParam; skipScrollOnce = true; } initFavorites(); $watch('currentPage', (page) =&gt; { isLangOpen = false; if (skipScrollOnce) { skipScrollOnce = false; $nextTick(() =&gt; { lucide.createIcons(); }); return; } scrollToTop(); $nextTick(() =&gt; { lucide.createIcons(); }); }); $nextTick(() =&gt; { lucide.createIcons(); if (pageParam) { try { const stored = localStorage.getItem(lastScrollKey); const y = stored ? Number(stored) : 0; if (!Number.isNaN(y)) { window.scrollTo({ top: y, behavior: 'auto' }); } } catch (_) {} } });"
+    x-init="loadCatalogData(); initLanguage(); if (window.innerWidth &lt; 768) { viewMode = 'grid'; insightViewMode = 'grid'; } updateThumbLimit(); window.addEventListener('resize', () =&gt; updateThumbLimit()); window.addEventListener('popstate', () =&gt; { if (overlayDepth &gt; 0) { isHandlingPop = true; closeTopOverlay(); overlayDepth = Math.max(0, overlayDepth - 1); isHandlingPop = false; return; } }); window.addEventListener('touchstart', (event) =&gt; { if (overlayDepth &lt;= 0) return; const touch = event.touches &amp;&amp; event.touches[0]; if (!touch) return; touchStartX = touch.clientX; touchStartY = touch.clientY; }, { passive: true }); window.addEventListener('touchend', (event) =&gt; { if (overlayDepth &lt;= 0) return; const touch = event.changedTouches &amp;&amp; event.changedTouches[0]; if (!touch) return; const dx = touch.clientX - touchStartX; const dy = touch.clientY - touchStartY; const absX = Math.abs(dx); const absY = Math.abs(dy); if (dx &gt; 60 &amp;&amp; absY &lt; 40) { closeOverlayState(); return; } if (dy &gt; 80 &amp;&amp; absX &lt; 40) { closeOverlayState(); return; } }, { passive: true }); const params = new URLSearchParams(window.location.search); const pageParam = params.get('page'); if (pageParam) { currentPage = pageParam; skipScrollOnce = true; } initFavorites(); $watch('currentPage', (page) =&gt; { isLangOpen = false; if (skipScrollOnce) { skipScrollOnce = false; $nextTick(() =&gt; { lucide.createIcons(); }); return; } scrollToTop(); $nextTick(() =&gt; { lucide.createIcons(); }); }); $nextTick(() =&gt; { lucide.createIcons(); if (pageParam) { try { const stored = localStorage.getItem(lastScrollKey); const y = stored ? Number(stored) : 0; if (!Number.isNaN(y)) { window.scrollTo({ top: y, behavior: 'auto' }); } } catch (_) {} } });"
     x-effect="document.documentElement.lang = lang"
     class="text-slate-800 selection:bg-[#D4A760] selection:text-white pb-20 lg:pb-0"
   >
