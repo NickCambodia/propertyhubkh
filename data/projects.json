@@ -30,6 +30,7 @@
     "badgeClass": "bg-[#0A3258]/95 text-white",
     "image": "./Property%20Listing/TS7%20Main.jpg",
     "cardDescription": "",
+    "videoUrl": "https://www.youtube.com/embed/3l6OmykNZ6g?rel=0",
     "description": "A soaring 49-floor architectural icon in the premier Boeung Kak 1 enclave, delivered by the prestigious MegaKim World Corp following a legacy of sold-out successes. This project is masterfully engineered for capital appreciation, tapping into the intense rental demand from the city’s growing executive class. With a proven track record of high-yield delivery, it offers a sophisticated entry into one of Phnom Penh’s most established and coveted residential districts.",
     "highlights": [
       "49-Storey Landmark",
@@ -38,25 +39,25 @@
       "Unit Mix: 1–4 Bedroom Duplexes & Penthouses"
     ],
     "images": [
-      "Property Listing/Time Square 7/TS7_10_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_11_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_12_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_13_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_14_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_15_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_1_wm.webp",
-      "Property Listing/Time Square 7/TS7_2_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_3_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_4_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_5_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_6_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_8_wm_wm.webp",
-      "Property Listing/Time Square 7/TS7_9_wm_wm.webp"
+      "./Property%20Listing/Time%20Square%207/TS7_10_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_11_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_12_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_13_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_14_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_15_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_1_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_2_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_3_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_4_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_5_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_6_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_8_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/TS7_9_wm_wm.webp"
     ],
     "url": "https://www.realestate.com.kh/new-developments/time-square-7/",
     "floorPlans": [
-      "Property Listing/Time Square 7/Floor Plan/TS7 Duplex Layout (1st Level)_wm.webp",
-      "Property Listing/Time Square 7/Floor Plan/TS7 Duplex Layout (2nd Level)_wm_wm.webp"
+      "./Property%20Listing/Time%20Square%207/Floor%20Plan/TS7%20Duplex%20Layout%20(1st%20Level)_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Floor%20Plan/TS7%20Duplex%20Layout%20(2nd%20Level)_wm_wm.webp"
     ],
     "facilityImages": [
       "Property Listing/Time Square 7/Facility/01_wm_wm.webp",
@@ -88,6 +89,37 @@
       "Property Listing/Time Square 7/Facility/ES4 done_wm_wm.webp",
       "Property Listing/Time Square 7/Facility/ES6 done_wm_wm.webp",
       "Property Listing/Time Square 7/Facility/ES9 done_wm_wm.webp"
+    ],
+    "facilities": [
+      "./Property%20Listing/Time%20Square%207/Facility/01_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/03_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/1%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/1%20done%20(2)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/1.S14_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/2%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/2%20done1_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/2%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/2.S02_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/3%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/3%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/3.S06_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/4%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/4%20done%20(2)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/4.S07_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/4.S10_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/5%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/5%20done%20(2)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/5%20done1_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/5.S08_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/5.S12_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/6%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/ES10%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/ES11%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/ES12%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/ES14%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/ES4%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/ES6%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%207/Facility/ES9%20done_wm_wm.webp"
     ]
   },
   {
@@ -129,20 +161,20 @@
       "Unit Mix: 1–4 Bedroom Duplexes & Penthouses"
     ],
     "images": [
-      "Property Listing/Time Square 8/TS8_10_wm_wm.webp",
-      "Property Listing/Time Square 8/TS8_1_wm_wm.webp",
-      "Property Listing/Time Square 8/TS8_2_wm_wm.webp",
-      "Property Listing/Time Square 8/TS8_3_wm_wm.webp",
-      "Property Listing/Time Square 8/TS8_4_wm_wm.webp",
-      "Property Listing/Time Square 8/TS8_5_wm_wm.webp",
-      "Property Listing/Time Square 8/TS8_6_wm_wm.webp",
-      "Property Listing/Time Square 8/TS8_7_wm_wm.webp",
-      "Property Listing/Time Square 8/TS8_8_wm_wm.webp",
-      "Property Listing/Time Square 8/TS8_9_wm_wm.webp"
+      "./Property%20Listing/Time%20Square%208/TS8_10_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/TS8_1_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/TS8_2_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/TS8_3_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/TS8_4_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/TS8_5_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/TS8_6_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/TS8_7_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/TS8_8_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/TS8_9_wm_wm.webp"
     ],
     "url": "https://www.realestate.com.kh/new-developments/time-square-8/",
     "floorPlans": [
-      "Property Listing/Time Square 8/Floor Plan/231024-Time Square 8 brochure_8F-38F-01 (8)_wm.webp"
+      "./Property%20Listing/Time%20Square%208/Floor%20Plan/231024-Time%20Square%208%20brochure_8F-38F-01%20(8)_wm.webp"
     ],
     "facilityImages": [
       "Property Listing/Time Square 8/Facility/01_wm_wm.webp",
@@ -205,18 +237,78 @@
       "Property Listing/Time Square 8/Facility/9 done_wm_wm.webp"
     ],
     "unitLayouts": [
-      "Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (2).jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (3).jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (4).jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (5).jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (6).jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time Square 8 brochure_8F-38F-01 (7).jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-3.jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-4.jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-5.jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-6.jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-7.jpg",
-      "Property Listing/Time Square 8/Unit Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-8.jpg"
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time%20Square%208%20brochure_8F-38F-01%20(2).jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time%20Square%208%20brochure_8F-38F-01%20(3).jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time%20Square%208%20brochure_8F-38F-01%20(4).jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time%20Square%208%20brochure_8F-38F-01%20(5).jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time%20Square%208%20brochure_8F-38F-01%20(6).jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time%20Square%208%20brochure_8F-38F-01%20(7).jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-3.jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-4.jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-5.jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-6.jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-7.jpg",
+      "./Property%20Listing/Time%20Square%208/Unit%20Layout/231024-Time-Square-8-brochure_8F-38F-01-(1)-8.jpg"
+    ],
+    "facilities": [
+      "./Property%20Listing/Time%20Square%208/Facility/01_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/02_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/03_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/04_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/05_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/06_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/1%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/1%20done%20(2)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/1%20done%20(3)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/1%20done%20(4)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/1%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/1.S14_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/1.S28_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/10%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/15.%20POOL%20RENDERING%20VIEW%202_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/16_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/17_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/18_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/19_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/1_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/2%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/2%20done%20(2)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/2%20done%20(3)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/2%20done%20(4)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/2%20done1_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/2%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/2.S02_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/2.S11_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/20_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/23_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/3%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/3%20done%20(2)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/3%20done%20(3)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/3%20done%20(4)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/3%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/3.S06_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/3.S13_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/4%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/4%20done%20(2)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/4%20done%20(3)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/4%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/4.S07_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/4.S10_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/5%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/5%20done%20(2)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/5%20done%20(3)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/5%20done1_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/5%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/5.S08_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/5.S12_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/6%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/6%20done%20(2)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/6%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/7%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/7%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/8%20done_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/9%20done%20(1)_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%208/Facility/9%20done_wm_wm.webp"
     ]
   },
   {
@@ -248,7 +340,7 @@
     "longitude": "104.925696",
     "badge": "Pre Sale",
     "badgeClass": "bg-[#0A3258]/95 text-white",
-    "image": "./Property%20Listing/TS9%20Main.png",
+    "image": "./Property%20Listing/TS9%20Main.webp",
     "cardDescription": "",
     "description": "An Art Deco-inspired masterpiece set within the city’s most exclusive residential enclave, BKK1, the tightest core rental market in Phnom Penh. Positioned on Street 278, this 40-storey tower is meticulously engineered for premium executive rentals and substantial capital growth. Offering rare strata-title eligibility in a gold-standard district, it represents the pinnacle of luxury investment for those seeking a prestigious and secure asset.",
     "highlights": [
@@ -258,23 +350,23 @@
       "Prime Street 278 Address"
     ],
     "images": [
-      "Property Listing/Time Square 9/10_wm_wm.webp",
-      "Property Listing/Time Square 9/11_wm_wm.webp",
-      "Property Listing/Time Square 9/13_wm_wm.webp",
-      "Property Listing/Time Square 9/14_wm_wm.webp",
-      "Property Listing/Time Square 9/15_wm_wm.webp",
-      "Property Listing/Time Square 9/16_wm_wm.webp",
-      "Property Listing/Time Square 9/18_wm_wm.webp",
-      "Property Listing/Time Square 9/1_wm_wm.webp",
-      "Property Listing/Time Square 9/20_wm_wm.webp",
-      "Property Listing/Time Square 9/3_wm_wm.webp",
-      "Property Listing/Time Square 9/5_wm_wm.webp",
-      "Property Listing/Time Square 9/7_wm_wm.webp",
-      "Property Listing/Time Square 9/8_wm_wm.webp"
+      "./Property%20Listing/Time%20Square%209/10_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/11_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/13_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/14_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/15_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/16_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/18_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/1_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/20_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/3_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/5_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/7_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%209/8_wm_wm.webp"
     ],
     "url": "https://www.realestate.com.kh/new-developments/time-square-9-bkk1/",
     "floorPlans": [
-      "Property Listing/Time Square 9/Floor Plan/TS9 Floor Plan_wm_wm.webp"
+      "./Property%20Listing/Time%20Square%209/Floor%20Plan/TS9%20Floor%20Plan_wm_wm.webp"
     ],
     "facilityImages": [
       "Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/1%20done_wm_wm.webp",
@@ -307,13 +399,13 @@
       "Property%20Listing/Time%20Square%209/Facility%203D/POOL%20AREA/9%20done_wm_wm.webp"
     ],
     "unitLayouts": [
-      "Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type A.webp",
-      "Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type B.webp",
-      "Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type C.webp",
-      "Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type DEFGHIJ.webp",
-      "Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type L.webp",
-      "Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type MK.webp",
-      "Property Listing/Time Square 9/Unit Layout/TS9 Unit Layout Type NOPQRST.webp"
+      "./Property%20Listing/Time%20Square%209/Unit%20Layout/TS9%20Unit%20Layout%20Type%20A.webp",
+      "./Property%20Listing/Time%20Square%209/Unit%20Layout/TS9%20Unit%20Layout%20Type%20B.webp",
+      "./Property%20Listing/Time%20Square%209/Unit%20Layout/TS9%20Unit%20Layout%20Type%20C.webp",
+      "./Property%20Listing/Time%20Square%209/Unit%20Layout/TS9%20Unit%20Layout%20Type%20DEFGHIJ.webp",
+      "./Property%20Listing/Time%20Square%209/Unit%20Layout/TS9%20Unit%20Layout%20Type%20L.webp",
+      "./Property%20Listing/Time%20Square%209/Unit%20Layout/TS9%20Unit%20Layout%20Type%20MK.webp",
+      "./Property%20Listing/Time%20Square%209/Unit%20Layout/TS9%20Unit%20Layout%20Type%20NOPQRST.webp"
     ]
   },
   {
@@ -345,8 +437,9 @@
     "longitude": "103.543798",
     "badge": "Under Construction",
     "badgeClass": "bg-[#0A3258]/95 text-white",
-    "image": "./Property%20Listing/TS10%20Main.png",
+    "image": "./Property%20Listing/TS10%20Main.webp",
     "cardDescription": "",
+    "videoUrl": "https://www.youtube.com/embed/WEochShoGZ0?rel=0",
     "description": "Capitalise on the rapid transformation of Sihanoukville with this 39-storey beachfront masterpiece by the esteemed MegaKim World Corp. Specifically engineered to capture premium holiday rental demand, it is situated near the pristine Otres Beach 1 in a high-growth coastal corridor. As regional infrastructure matures, this development offers investors a significant early-mover advantage and long-term capital appreciation in Cambodia’s premier seaside destination.",
     "highlights": [
       "39-Storey Oceanfront Landmark",
@@ -355,16 +448,16 @@
       "High-Growth Coastal Opportunity"
     ],
     "images": [
-      "Property Listing/Time Square 10/TS10_10.webp",
-      "Property Listing/Time Square 10/TS10_1_wm_wm.webp",
-      "Property Listing/Time Square 10/TS10_2_wm_wm.webp",
-      "Property Listing/Time Square 10/TS10_3_wm_wm.webp",
-      "Property Listing/Time Square 10/TS10_4_wm_wm.webp",
-      "Property Listing/Time Square 10/TS10_5_wm_wm.webp",
-      "Property Listing/Time Square 10/TS10_6_wm_wm.webp",
-      "Property Listing/Time Square 10/TS10_7_wm_wm.webp",
-      "Property Listing/Time Square 10/TS10_8_wm_wm.webp",
-      "Property Listing/Time Square 10/TS10_9_wm_wm.webp"
+      "./Property%20Listing/Time%20Square%2010/TS10_10.webp",
+      "./Property%20Listing/Time%20Square%2010/TS10_1_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%2010/TS10_2_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%2010/TS10_3_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%2010/TS10_4_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%2010/TS10_5_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%2010/TS10_6_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%2010/TS10_7_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%2010/TS10_8_wm_wm.webp",
+      "./Property%20Listing/Time%20Square%2010/TS10_9_wm_wm.webp"
     ],
     "url": "https://www.realestate.com.kh/new-developments/time-square-10-sihanouk-ville-oceanfront/",
     "floorPlans": [
@@ -416,10 +509,61 @@
       "Unit Mix: 1 to 2 Bedrooms"
     ],
     "images": [
-      "./Property%20Listing/Kingstone%20Royale%20Main.webp",
-      "https://img.ips-cambodia.com/2025/10/6/1/1-38-48-0.52-wtr-Kingston-Royale-Phnom-Penh-Cambodia.jpg"
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S1.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S10.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S11.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S2.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S3.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S4.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S5.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S6.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S7.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S8.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-2B-S9.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-BATHRM-01.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-BATHRM-02.jpg",
+      "./Property%20Listing/Kingston%20Royale/RM-A-BATHRM-03.jpg"
     ],
-    "url": "https://www.realestate.com.kh/new-developments/kingston-royale/"
+    "url": "https://www.realestate.com.kh/new-developments/kingston-royale/",
+    "floorPlans": [
+      "./Property%20Listing/Kingston%20Royale/Floor%20Plan/500026814_717419297465741_6537778236642951051_n%20-%20Copy%20(2)%20-%20Copy.jpg",
+      "./Property%20Listing/Kingston%20Royale/Floor%20Plan/500026814_717419297465741_6537778236642951051_n%20-%20Copy%20(3).jpg",
+      "./Property%20Listing/Kingston%20Royale/Floor%20Plan/500026814_717419297465741_6537778236642951051_n%20-%20Copy%20-%20Copy.jpg"
+    ],
+    "facilities": [
+      "./Property%20Listing/Kingston%20Royale/Facility/01-yoga.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/03-yoga.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/1.LOBBY.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/2.LOBBY.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/EXTERIOR%20LANDSCAPE.png",
+      "./Property%20Listing/Kingston%20Royale/Facility/FEMALE%20SAUNA-V1.png",
+      "./Property%20Listing/Kingston%20Royale/Facility/KS%20ENTRY%20VIEW-1.png",
+      "./Property%20Listing/Kingston%20Royale/Facility/KS%20ENTRY%20VIEW-2.png",
+      "./Property%20Listing/Kingston%20Royale/Facility/KS-MART%20AREA-VIEW%201.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/KS-MART%20AREA-VIEW%202.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/KS-ROOFGARDEN%20VIEW%20A.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/KS-ROOFGARDEN%20VIEW%20B.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/KS-ROOFGARDEN%20VIEW%20C.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/KS-ROOFGARDEN%20VIEW%20D.webp",
+      "./Property%20Listing/Kingston%20Royale/Facility/KS-ROOFGARDEN%20VIEW%20E.webp",
+      "./Property%20Listing/Kingston%20Royale/Facility/MALE%20STEAM-V2.png",
+      "./Property%20Listing/Kingston%20Royale/Facility/P2.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/P3.jpg",
+      "./Property%20Listing/Kingston%20Royale/Facility/P4.jpg"
+    ],
+    "unitLayouts": [
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-44-10%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-44-19%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-44-26%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-44-31%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-44-37%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-44-48%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-44-54%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-44-59%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-45-07%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-45-12%20LANDSCAPEBROCHURE.pdf.png",
+      "./Property%20Listing/Kingston%20Royale/Unit%20Layout/Screenshot%202025-05-28%20at%2015-45-26%20LANDSCAPEBROCHURE.pdf.png"
+    ]
   },
   {
     "name": "Le Conde",
@@ -461,9 +605,77 @@
       "Ready to move in"
     ],
     "images": [
-      "./Property%20Listing/Le%20Conde%20Main.webp"
+      "./Property%20Listing/Le%20Conde/P1655174%20Wall%20Retouch.jpg",
+      "./Property%20Listing/Le%20Conde/P1655182.jpg",
+      "./Property%20Listing/Le%20Conde/P1655187.jpg",
+      "./Property%20Listing/Le%20Conde/P1655201.jpg",
+      "./Property%20Listing/Le%20Conde/P1655210%20wall%20retouch.jpg",
+      "./Property%20Listing/Le%20Conde/P1655223.jpg",
+      "./Property%20Listing/Le%20Conde/P1655265.jpg",
+      "./Property%20Listing/Le%20Conde/P1655279.jpg",
+      "./Property%20Listing/Le%20Conde/P1655286.jpg",
+      "./Property%20Listing/Le%20Conde/P1655314.jpg",
+      "./Property%20Listing/Le%20Conde/P2411830-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/P2411888-HDR.JPG"
     ],
-    "url": "https://www.realestate.com.kh/new-developments/le-conde-bkk1/"
+    "url": "https://www.realestate.com.kh/new-developments/le-conde-bkk1/",
+    "facilities": [
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Lounge.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Lounge_Outdoor%20Dinning%20Space.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Playground%20Area%20(1).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Playground%20Area%20(2).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Playground%20Area%20(3).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Playground%20Area%20(6).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Playground_s%20Entrance.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Quiet%20Area%20Playground%20(2).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Quiet%20Area%20Playground%20(3).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Quiet%20Area%20Playground%20(6).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Reception%20Area.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/15F_CHILDREN_S%20PLAY%20PARADISE_Reception%20Entrance.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/32F_SKY%20GARDEN%20(1).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/32F_SKY%20GARDEN%20(2).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/32F_SKY%20GARDEN%20(4).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/32F_SKY%20GARDEN%20(5).jpg",
+      "./Property%20Listing/Le%20Conde/Facility/4.%20NEGOTIATION%20AREA.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/6F_FITNESS%20CENTER_Lobby.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/6F_SKY%20RUNNING%20TRACK.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/GF-BOUTIQUE%20READING%20SPACE_Relaxing%20Area.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/GF_BOUTIQUE%20READING%20SPACE.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/GF_BOUTIQUE%20READING%20SPACE_Coffee%20Bar.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/GF_LOBBY_Restroom.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/GF_LOBBY_Side%20View.jpg",
+      "./Property%20Listing/Le%20Conde/Facility/P2411334.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411809-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411817-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411823-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411830-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411837-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411849-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411853-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411860-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411867-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411874-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411881-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411888-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/P2411895-HDR.JPG",
+      "./Property%20Listing/Le%20Conde/Facility/STANDARD%20FLOOR_STANDARD%20FLOOR%20ANGLE%20%20(2).jpg"
+    ],
+    "unitLayouts": [
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/E1%20floorplan.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20A1.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20A2.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20A3.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20A5.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20A6.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20B1.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20B2.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20B5.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20C1.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20C2.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20C3.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20D1.png",
+      "./Property%20Listing/Le%20Conde/Unit%20Layout/Type%20D2.png"
+    ]
   },
   {
     "name": "J Tower 3",
@@ -496,6 +708,7 @@
     "badgeClass": "bg-[#0A3258]/95 text-white",
     "image": "./Property%20Listing/J%20Tower%203%20Main.jpg",
     "cardDescription": "",
+    "videoUrl": "https://www.youtube.com/embed/KpH6laTY_0o?rel=0",
     "description": "An iconic 77-storey skyline landmark that sets a new global benchmark for ultra-luxury, built to the rigorous standards of Japanese engineering. To maintain the highest level of exclusivity and rental yields, the project features only expansive 3-bedroom layouts and palatial penthouses. Positioned as one of the tallest towers in the region, it is the ultimate trophy asset for investors seeking Japanese quality and unmatched prestige.",
     "highlights": [
       "77-Storey Skyline Landmark",
@@ -504,20 +717,22 @@
       "Premium Tonle Bassac Location"
     ],
     "images": [
-      "Property Listing/J-Tower 3/IMG_0662_wm_wm.webp",
-      "Property Listing/J-Tower 3/IMG_0663_wm_wm.webp",
-      "Property Listing/J-Tower 3/IMG_0664_wm_wm.webp",
-      "Property Listing/J-Tower 3/IMG_0665_wm_wm.webp",
-      "Property Listing/J-Tower 3/IMG_0666_wm_wm.webp",
-      "Property Listing/J-Tower 3/IMG_0667_wm_wm.webp",
-      "Property Listing/J-Tower 3/IMG_0668_wm_wm.webp",
-      "Property Listing/J-Tower 3/IMG_0669_wm_wm.webp",
-      "Property Listing/J-Tower 3/IMG_0670_wm_wm.webp"
+      "./Property%20Listing/J-Tower%203/IMG_0662_wm_wm.webp",
+      "./Property%20Listing/J-Tower%203/IMG_0663_wm_wm.webp",
+      "./Property%20Listing/J-Tower%203/IMG_0664_wm_wm.webp",
+      "./Property%20Listing/J-Tower%203/IMG_0665_wm_wm.webp",
+      "./Property%20Listing/J-Tower%203/IMG_0666_wm_wm.webp",
+      "./Property%20Listing/J-Tower%203/IMG_0667_wm_wm.webp",
+      "./Property%20Listing/J-Tower%203/IMG_0668_wm_wm.webp",
+      "./Property%20Listing/J-Tower%203/IMG_0669_wm_wm.webp",
+      "./Property%20Listing/J-Tower%203/IMG_0670_wm_wm.webp",
+      "./Property%20Listing/J-Tower%203/J%20Tower%203%20building%20(1).jpg",
+      "./Property%20Listing/J-Tower%203/J%20Tower%203%20building%20(2).jpg",
+      "./Property%20Listing/J-Tower%203/J%20Tower%203%20building%20(3).jpg"
     ],
     "url": "https://www.realestate.com.kh/new-developments/j-tower-3-condominium/",
     "floorPlans": [
-      "Property Listing/J-Tower 3/Floorplans/01.pdf_1.jpg",
-      "Property Listing/J-Tower 3/Floorplans/41F-50F.pdf"
+      "./Property%20Listing/J-Tower%203/Floor%20Plan/01.pdf_1.jpg"
     ],
     "facilityImages": [
       "Property Listing/J-Tower 3/Facility/1. J-Tower3 Facility.webp",
@@ -533,6 +748,21 @@
       "Property Listing/J-Tower 3/Facility/7. J-Tower3 Facility.webp",
       "Property Listing/J-Tower 3/Facility/8. J-Tower3 Facility.webp",
       "Property Listing/J-Tower 3/Facility/9. J-Tower3 Facility.webp"
+    ],
+    "facilities": [
+      "./Property%20Listing/J-Tower%203/Facility/1.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/10.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/11.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/12.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/13.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/2.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/3.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/4.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/5.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/6.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/7.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/8.%20J-Tower3%20Facility.webp",
+      "./Property%20Listing/J-Tower%203/Facility/9.%20J-Tower3%20Facility.webp"
     ]
   },
   {
@@ -573,8 +803,19 @@
       "Mixed-Use Lifestyle Podium"
     ],
     "images": [
-      "./Property%20Listing/ODOM%20Main.webp",
-      "https://img.ips-cambodia.com/2025/10/8/7/7-36-41-0.70-wtr-1O8A3125.jpg"
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-01.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-02.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-04.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-06.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-08.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-10.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-12.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-14.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-16.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-17.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-19.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-20.jpg",
+      "./Property%20Listing/ODOM%20Tower/watermark%20odom%20render-23.jpg"
     ],
     "url": "https://www.realestate.com.kh/new-developments/odom-tower/"
   },
@@ -618,10 +859,63 @@
       "Unit mix: 1 to 4 Bedrooms"
     ],
     "images": [
-      "./Property%20Listing/Odom%20Living%20Main.webp",
-      "https://img.ips-cambodia.com/2025/10/8/7/7-36-41-0.06-wtr-office-V22.jpg"
+      "./Property%20Listing/Odom%20Living/P1577185.jpg",
+      "./Property%20Listing/Odom%20Living/P1577199.jpg",
+      "./Property%20Listing/Odom%20Living/P1577206.jpg",
+      "./Property%20Listing/Odom%20Living/P1577213.jpg",
+      "./Property%20Listing/Odom%20Living/P1577228.jpg",
+      "./Property%20Listing/Odom%20Living/P1577235.jpg",
+      "./Property%20Listing/Odom%20Living/P1577243.jpg",
+      "./Property%20Listing/Odom%20Living/P1577248.jpg",
+      "./Property%20Listing/Odom%20Living/P1577262.jpg",
+      "./Property%20Listing/Odom%20Living/P1577277.jpg",
+      "./Property%20Listing/Odom%20Living/P1577283.jpg",
+      "./Property%20Listing/Odom%20Living/P1577298.jpg",
+      "./Property%20Listing/Odom%20Living/P1577305.jpg",
+      "./Property%20Listing/Odom%20Living/P1577320.jpg",
+      "./Property%20Listing/Odom%20Living/P1577324.jpg",
+      "./Property%20Listing/Odom%20Living/P1577346.jpg",
+      "./Property%20Listing/Odom%20Living/P1577359.jpg",
+      "./Property%20Listing/Odom%20Living/P1577366.jpg",
+      "./Property%20Listing/Odom%20Living/P1577380.jpg",
+      "./Property%20Listing/Odom%20Living/P1577387.jpg",
+      "./Property%20Listing/Odom%20Living/P1577401.jpg",
+      "./Property%20Listing/Odom%20Living/P1577415.jpg",
+      "./Property%20Listing/Odom%20Living/P1577422.jpg",
+      "./Property%20Listing/Odom%20Living/P1577429.jpg",
+      "./Property%20Listing/Odom%20Living/P1577434.jpg",
+      "./Property%20Listing/Odom%20Living/P1577443.jpg",
+      "./Property%20Listing/Odom%20Living/P1577454%20.jpg",
+      "./Property%20Listing/Odom%20Living/P1577461%20.jpg",
+      "./Property%20Listing/Odom%20Living/P1577468%20.jpg",
+      "./Property%20Listing/Odom%20Living/P1577475%20.jpg",
+      "./Property%20Listing/Odom%20Living/P1577503%20.jpg",
+      "./Property%20Listing/Odom%20Living/P1577505%20.jpg",
+      "./Property%20Listing/Odom%20Living/P1577524%20.jpg",
+      "./Property%20Listing/Odom%20Living/P1577527%20.jpg",
+      "./Property%20Listing/Odom%20Living/P1577545%20.jpg",
+      "./Property%20Listing/Odom%20Living/watermark%20odom%20render-08.jpg",
+      "./Property%20Listing/Odom%20Living/watermark%20odom%20render-10.jpg"
     ],
-    "url": "https://www.realestate.com.kh/new-developments/odom-living/"
+    "url": "https://www.realestate.com.kh/new-developments/odom-living/",
+    "floorPlans": [
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0001.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0002.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0003.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0004.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0005.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0006.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0007.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0008.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0009.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0010.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0011.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0012.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0013.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0014.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0015.jpg",
+      "./Property%20Listing/Odom%20Living/Floor%20Plan/Odom%20Living%20Factsheets%20ALL%20JAN22_page-0016.jpg"
+    ]
   },
   {
     "name": "UC88 Wyndham Garden",
@@ -662,18 +956,32 @@
       "Strategic BKK1 Location"
     ],
     "images": [
-      "Property Listing/UC88 (Wyndham Garden)/PIN04671.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04672.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04673.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04675.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04676.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04679.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04682.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04683.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04685.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04687.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04689.jpg",
-      "Property Listing/UC88 (Wyndham Garden)/PIN04690.jpg"
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04611.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04612.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04613.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04614.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04615.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04617.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04620.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04622.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04624.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04626.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04629.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04633.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04643.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04645.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04646.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04647.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04650.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04652.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04656.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04658.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04671.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04673.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04679.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04683.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04685.jpg",
+      "./Property%20Listing/UC88%20(Wyndham%20Garden)/PIN04689.jpg"
     ],
     "url": "https://www.realestate.com.kh/new-developments/uc88-wyndham-garden-bkk1/"
   },
@@ -716,11 +1024,32 @@
       "Mixed-use (Residential & Shophouse)"
     ],
     "images": [
-      "./Property%20Listing/DBG%20Main.webp",
-      "https://img.ips-cambodia.com/2026/1/9/8/8-56-34-0.39-wtr-2.jpg",
-      "https://img.ips-cambodia.com/2026/1/9/8/8-56-34-0.23-wtr-3.jpg"
+      "./Property%20Listing/Diamond%20Bay%20Garden/DBG%20view-H1.png",
+      "./Property%20Listing/Diamond%20Bay%20Garden/DBG%20view-H2.png",
+      "./Property%20Listing/Diamond%20Bay%20Garden/DBG%20view-H3.png",
+      "./Property%20Listing/Diamond%20Bay%20Garden/DBG%20view-H5.png",
+      "./Property%20Listing/Diamond%20Bay%20Garden/DBG%20view-H6.png",
+      "./Property%20Listing/Diamond%20Bay%20Garden/DBG%20view-H7.png",
+      "./Property%20Listing/Diamond%20Bay%20Garden/Master%20Plan.jpg",
+      "./Property%20Listing/Diamond%20Bay%20Garden/P2355270.JPG",
+      "./Property%20Listing/Diamond%20Bay%20Garden/P2355279.JPG",
+      "./Property%20Listing/Diamond%20Bay%20Garden/P2355282.JPG",
+      "./Property%20Listing/Diamond%20Bay%20Garden/P2355287.JPG",
+      "./Property%20Listing/Diamond%20Bay%20Garden/P2355293.JPG",
+      "./Property%20Listing/Diamond%20Bay%20Garden/P2355299.JPG",
+      "./Property%20Listing/Diamond%20Bay%20Garden/P2355305.JPG",
+      "./Property%20Listing/Diamond%20Bay%20Garden/P2355319.JPG",
+      "./Property%20Listing/Diamond%20Bay%20Garden/P2355325.JPG"
     ],
-    "url": "https://www.realestate.com.kh/new-developments/diamond-bay-garden/"
+    "url": "https://www.realestate.com.kh/new-developments/diamond-bay-garden/",
+    "unitLayouts": [
+      "./Property%20Listing/Diamond%20Bay%20Garden/Unit%20Layout/2%20Bedroom%20Type%202R.jpg",
+      "./Property%20Listing/Diamond%20Bay%20Garden/Unit%20Layout/2%20Bedroom%20Type%20C.jpg",
+      "./Property%20Listing/Diamond%20Bay%20Garden/Unit%20Layout/2%20Bedroom%20Type%20CD.jpg",
+      "./Property%20Listing/Diamond%20Bay%20Garden/Unit%20Layout/2%20Bedroom%20Type%20D.jpg",
+      "./Property%20Listing/Diamond%20Bay%20Garden/Unit%20Layout/3%20Bedroom%20Type%203R.jpg",
+      "./Property%20Listing/Diamond%20Bay%20Garden/Unit%20Layout/Studio.jpg"
+    ]
   },
   {
     "name": "Angkor Grace",
@@ -761,12 +1090,56 @@
       "Near Angkor Wat"
     ],
     "images": [
-      "./Property%20Listing/Angkor%20Grace%20Main.webp"
+      "./Property%20Listing/Angkor%20Grace/Angkor%20Grace%201.JPG",
+      "./Property%20Listing/Angkor%20Grace/Angkor%20Grace%202.JPG",
+      "./Property%20Listing/Angkor%20Grace/Angkor%20Grace.jpg",
+      "./Property%20Listing/Angkor%20Grace/photo_1_2023-06-02_15-02-54.jpg",
+      "./Property%20Listing/Angkor%20Grace/photo_2_2023-06-02_15-02-54.jpg",
+      "./Property%20Listing/Angkor%20Grace/photo_3_2023-05-31_11-06-34.jpg",
+      "./Property%20Listing/Angkor%20Grace/photo_3_2023-06-02_15-02-54.jpg",
+      "./Property%20Listing/Angkor%20Grace/photo_4_2023-05-31_11-06-34.jpg",
+      "./Property%20Listing/Angkor%20Grace/photo_4_2023-06-02_15-02-54.jpg",
+      "./Property%20Listing/Angkor%20Grace/photo_5_2023-05-31_11-06-34.jpg",
+      "./Property%20Listing/Angkor%20Grace/photo_5_2023-06-02_15-02-54.jpg"
     ],
-    "url": "https://www.realestate.com.kh/new-developments/angkor-grace-residence-wellness-resort/"
+    "url": "https://www.realestate.com.kh/new-developments/angkor-grace-residence-wellness-resort/",
+    "floorPlans": [
+      "./Property%20Listing/Angkor%20Grace/Floor%20Plan/Jaya%201A.jpg",
+      "./Property%20Listing/Angkor%20Grace/Floor%20Plan/Jaya%202A.png",
+      "./Property%20Listing/Angkor%20Grace/Floor%20Plan/Jaya%20A.jpg",
+      "./Property%20Listing/Angkor%20Grace/Floor%20Plan/Jaya%20Duplex%20B.png",
+      "./Property%20Listing/Angkor%20Grace/Floor%20Plan/Jaya%20Type%20B.png"
+    ],
+    "facilities": [
+      "./Property%20Listing/Angkor%20Grace/Facility/Adult%20Pool%20(14).jpg",
+      "./Property%20Listing/Angkor%20Grace/Facility/Angkor%20Grace%201.JPG",
+      "./Property%20Listing/Angkor%20Grace/Facility/Angkor%20Grace%202.JPG",
+      "./Property%20Listing/Angkor%20Grace/Facility/Angkor%20Grace%203.JPG",
+      "./Property%20Listing/Angkor%20Grace/Facility/Angkor%20Grace%204.JPG",
+      "./Property%20Listing/Angkor%20Grace/Facility/Entrance%20-%20Lobby%20(8).jpg",
+      "./Property%20Listing/Angkor%20Grace/Facility/Grace%20Cafe%20(7).jpg",
+      "./Property%20Listing/Angkor%20Grace/Facility/Kids%20Pool%20(10).jpg"
+    ],
+    "unitLayouts": [
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/1.%20Bedroom%20(ground%20floor)/photo_1_2023-06-02_15-02-58.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/1.%20Bedroom%20(ground%20floor)/photo_2_2023-06-02_15-02-58.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/1.%20Bedroom%20(ground%20floor)/photo_3_2023-06-02_15-02-58.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/2.%20Bedroom%20(First%20Floor)/photo_1_2023-05-31_11-06-34.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/2.%20Bedroom%20(First%20Floor)/photo_2_2023-05-31_11-06-34.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/2.%20Bedroom%20(First%20Floor)/photo_6_2023-05-31_11-06-34.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/2.%20Bedroom%20(Ground%20Floor)/photo_3_2023-05-31_11-06-34.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/2.%20Bedroom%20(Ground%20Floor)/photo_4_2023-05-31_11-06-34.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/2.%20Bedroom%20(Ground%20Floor)/photo_5_2023-05-31_11-06-34.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/3.%20Duplex%20(1F%20%2B%202F%20%2B%20Rooftop)/photo_1_2023-06-02_15-02-54.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/3.%20Duplex%20(1F%20%2B%202F%20%2B%20Rooftop)/photo_2_2023-06-02_15-02-54.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/3.%20Duplex%20(1F%20%2B%202F%20%2B%20Rooftop)/photo_3_2023-06-02_15-02-54.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/3.%20Duplex%20(1F%20%2B%202F%20%2B%20Rooftop)/photo_4_2023-06-02_15-02-54.jpg",
+      "./Property%20Listing/Angkor%20Grace/Unit%20Layout/3.%20Duplex%20(1F%20%2B%202F%20%2B%20Rooftop)/photo_5_2023-06-02_15-02-54.jpg"
+    ]
   },
   {
     "name": "Rose Apple Square",
+    "isHidden": true,
     "city": "Siem Reap",
     "location": "Svay Dangkum",
     "status": "Move In Ready",
@@ -805,10 +1178,11 @@
       "Location advantage: Svay Dangkum (Sok San Road)",
       "Completed & Ready"
     ],
-    "images": [
-      "./Property%20Listing/RAS%20Main.webp"
-    ],
-    "url": "https://www.realestate.com.kh/new-developments/rose-apple-square/"
+    "images": [],
+    "url": "https://www.realestate.com.kh/new-developments/rose-apple-square/",
+    "floorPlans": [],
+    "facilities": [],
+    "unitLayouts": []
   },
   {
     "name": "LZ Sea View Premium",
@@ -849,12 +1223,55 @@
       "Limited Edition Penthouses"
     ],
     "images": [
-      "./Property%20Listing/LZ%20Main.webp"
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544522.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544524.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544526.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544527.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544529.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544531.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544533.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544534.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544536.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544537.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544539.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544541.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544542.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544543.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544544.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544547.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544548.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544549.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544550.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/_2544551.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/photo_2025-07-12_15-37-58.jpg"
     ],
-    "url": "https://www.realestate.com.kh/new-developments/lz-sea-view-premium/"
+    "url": "https://www.realestate.com.kh/new-developments/lz-sea-view-premium/",
+    "facilities": [
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_15-37-56.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_15-37-57%20(2)%20-%20Copy.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_15-37-58.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-01-05.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-01-06%20(2).jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-01-06.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-05-30%20(2).jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-05-30%20(3).jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-05-30.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-05-31%20(2).jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-05-31%20(3).jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-05-31.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-07-05.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/photo_2025-07-12_16-07-06.jpg",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/Screenshot%202025-07-16%20160338.png",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/Screenshot%202025-07-16%20160400.png",
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Facility/Screenshot%202025-07-17%20102631.png"
+    ],
+    "unitLayouts": [
+      "./Property%20Listing/LZ%20Sea%20View%20Premium/Unit%20Layout/Screenshot%202025-07-17%20105916.png"
+    ]
   },
   {
     "name": "Picasso Sky Gemme",
+    "isHidden": true,
     "city": "Phnom Penh",
     "location": "BKK1",
     "status": "Pre Sale",
@@ -891,10 +1308,11 @@
       "Luxury Lifestyle Amenity Floors",
       "BKK1 Core Location"
     ],
-    "images": [
-      "./Property%20Listing/Picasso%202%20Main.webp"
-    ],
-    "url": "https://www.realestate.com.kh/new-developments/picasso-sky-gemme-picasso-2/"
+    "images": [],
+    "url": "https://www.realestate.com.kh/new-developments/picasso-sky-gemme-picasso-2/",
+    "facilities": [],
+    "floorPlans": [],
+    "unitLayouts": []
   },
   {
     "name": "GATO Tower",
@@ -936,22 +1354,22 @@
       "Large Layouts & Penthouses"
     ],
     "images": [
-      "Property Listing/GATO Tower/1.webp",
-      "Property Listing/GATO Tower/2.webp",
-      "Property Listing/GATO Tower/3.webp",
-      "Property Listing/GATO Tower/4.webp",
-      "Property Listing/GATO Tower/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_02.jpg"
+      "./Property%20Listing/GATO%20Tower/1.webp",
+      "./Property%20Listing/GATO%20Tower/2.webp",
+      "./Property%20Listing/GATO%20Tower/3.webp",
+      "./Property%20Listing/GATO%20Tower/4.webp",
+      "./Property%20Listing/GATO%20Tower/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_02.jpg"
     ],
     "unitLayouts": [
-      "Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_03.webp",
-      "Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_04.webp",
-      "Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_05.webp",
-      "Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_06.webp",
-      "Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_07.webp",
-      "Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_08.webp",
-      "Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_09.webp",
-      "Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_10.webp",
-      "Property Listing/GATO Tower/Unit Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_11.webp"
+      "./Property%20Listing/GATO%20Tower/Unit%20Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_03.webp",
+      "./Property%20Listing/GATO%20Tower/Unit%20Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_04.webp",
+      "./Property%20Listing/GATO%20Tower/Unit%20Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_05.webp",
+      "./Property%20Listing/GATO%20Tower/Unit%20Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_06.webp",
+      "./Property%20Listing/GATO%20Tower/Unit%20Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_07.webp",
+      "./Property%20Listing/GATO%20Tower/Unit%20Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_08.webp",
+      "./Property%20Listing/GATO%20Tower/Unit%20Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_09.webp",
+      "./Property%20Listing/GATO%20Tower/Unit%20Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_10.webp",
+      "./Property%20Listing/GATO%20Tower/Unit%20Layout/G.A.T.O-FLOOR-LAYOUT_JAN26_Page_11.webp"
     ],
     "url": "https://www.miraku-capital.com/g-a-t-o-tower/"
   }

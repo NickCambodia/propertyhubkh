@@ -161,7 +161,7 @@
       Skip to content
     </a>
     <main id="main-content" class="min-h-screen">
-      <div class="flex items-center justify-between px-6 py-5 border-b border-white/10 bg-[#0A3258]/95 backdrop-blur-md sticky top-0 z-40">
+      <div class="relative overflow-visible flex items-center justify-between px-6 py-5 border-b border-white/10 bg-[#0A3258]/95 backdrop-blur-md sticky top-0" style="z-index: 1000;">
         <div>
           <p class="text-[10px] uppercase tracking-[0.3em] text-white/70">
             <span x-text="t('project_details')"></span>
@@ -169,7 +169,7 @@
           <h1 class="text-lg font-serif font-semibold text-white" x-text="activeProject?.name || 'Project Details'"></h1>
         </div>
         <div class="flex items-center gap-3">
-          <div class="relative">
+          <div class="relative" @click.outside="isLangOpen = false">
             <button
               class="flex text-slate-300 hover:text-white transition-colors gap-2 items-center group px-3 py-2 rounded-full border border-white/10 hover:border-white/30"
               @click="isLangOpen = !isLangOpen"
@@ -184,8 +184,8 @@
               x-cloak
               x-show="isLangOpen"
               x-transition.opacity.duration.150ms
-              @click.outside="isLangOpen = false"
               class="absolute right-0 top-full mt-3 w-44 rounded-2xl border border-white/10 bg-[#0A3258] shadow-2xl overflow-hidden"
+              style="z-index: 1200;"
             >
               <button type="button" class="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-white hover:bg-white/10" @click="setLanguage('en')">
                 <span class="text-lg">🇬🇧</span>
@@ -225,7 +225,7 @@
 
       <section x-show="activeProject" x-cloak>
 <div
-        class="bg-[#0A3258] w-full h-full rounded-none shadow-2xl relative z-10 overflow-hidden ring-1 ring-white/10 flex flex-col text-white"
+        class="bg-[#0A3258] w-full h-full rounded-none shadow-2xl relative z-0 overflow-hidden ring-1 ring-white/10 flex flex-col text-white"
       >
         
         <div class="p-6 overflow-y-auto flex-1">
@@ -269,9 +269,12 @@
                 >
                   <img
                     :src="activeProjectImage || activeProject?.image"
+                    :srcset="getImageSrcSet(activeProjectImage || activeProject?.image) || null"
+                    sizes="(max-width: 1023px) 100vw, 70vw"
                     :alt="activeProject?.name"
                     class="w-full h-full object-cover"
-                    loading="lazy"
+                    loading="eager"
+                    fetchpriority="high"
                     decoding="async"
                   />
                   <button
@@ -316,6 +319,8 @@
                     >
                       <img
                         :src="img"
+                        :srcset="getImageSrcSet(img) || null"
+                        sizes="(max-width: 639px) 22vw, (max-width: 1023px) 16vw, 11vw"
                         :alt="activeProject?.name"
                         class="w-full h-full object-contain rounded-md bg-black/20"
                         loading="lazy"
@@ -661,17 +666,28 @@
                   </button>
                 </div>
               </div>
-                  <div x-show="projectDetailTab === 'video'" x-transition.opacity>
-                    <div class="rounded-2xl overflow-hidden border border-white/10 aspect-video">
+                  <div x-show="projectDetailTab === 'video'" x-transition.opacity class="space-y-4">
+                    <div x-show="activeProject?.videoUrl" class="rounded-2xl overflow-hidden border border-white/10 aspect-video">
                       <iframe
                         class="w-full h-full"
-                        :src="activeProject?.videoUrl || defaultProjectVideoUrl"
+                        :src="activeProject?.videoUrl"
                         title="Project video"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin"
                         allowfullscreen
                       ></iframe>
+                    </div>
+                    <div x-show="!activeProject?.videoUrl" class="rounded-2xl border border-white/10 bg-[#0F2D49] p-6 text-center">
+                      <p class="text-sm text-slate-200 mb-4">No dedicated project video yet.</p>
+                      <a
+                        :href="defaultProjectVideoLink"
+                        target="_blank"
+                        rel="noreferrer"
+                        class="inline-flex items-center justify-center btn-gold text-white px-5 py-2.5 rounded-xl text-xs font-semibold tracking-wide"
+                      >
+                        Visit Realestate.com.kh YouTube
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -694,10 +710,11 @@
                     <input type="text" name="phone" :placeholder="t('form_your_phone')" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans" />
                     <input type="text" name="timeline" :placeholder="t('form_preferred_date')" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans" />
                     <textarea name="summary" rows="3" :placeholder="t('form_your_message')" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans"></textarea>
-                  <button type="submit" class="btn-gold text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide shadow-lg">
-                      <span x-text="t('contact_submit_btn')"></span>
+                  <button type="submit" class="btn-gold text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide shadow-lg disabled:opacity-60 disabled:cursor-not-allowed" :disabled="inquiryPending">
+                      <span x-text="inquiryPending ? t('contact_submitting') : t('contact_submit_btn')"></span>
                     </button>
                     <p class="text-[11px] text-emerald-200" x-show="inquirySuccess" x-text="inquiryMessage"></p>
+                    <p class="text-[11px] text-rose-300" x-show="inquiryError" x-text="inquiryError"></p>
                   </form>
                   <div class="mt-4 pt-4 border-t border-white/10">
                     <p class="text-[11px] text-slate-400 text-center mb-3" x-text="t('or_contact_direct')"></p>
@@ -835,7 +852,9 @@
           thumbLimit: 6,
           inquirySuccess: false,
           inquiryMessage: '',
-          defaultProjectVideoUrl: 'https://www.youtube.com/embed/KpH6laTY_0o?si=tXzAcafrbu7PWQp_',
+          inquiryError: '',
+          inquiryPending: false,
+          defaultProjectVideoLink: 'https://www.youtube.com/@realestateincambodia/featured',
           translations: {
         en: {
             nav_home: 'Home',
@@ -941,6 +960,10 @@
             contact_nationality_label: 'Nationality',
             contact_timeline_label: 'Purchase timeline',
             contact_submit_btn: 'Submit Inquiry',
+            contact_submitting: 'Sending...',
+            contact_submit_success: 'Inquiry sent successfully. We will contact you shortly.',
+            contact_validation_error: 'Please provide your name and a valid contact detail.',
+            contact_submit_failed: 'Unable to send right now. Please try again or contact us directly.',
             legal_title: 'Legal',
             stay_informed: 'Stay Informed',
             footer_subscribe_btn: 'Subscribe',
@@ -1125,12 +1148,16 @@
             contact_nationality_label: '国籍',
             contact_timeline_label: '購入時期',
             contact_submit_btn: '送信',
+            contact_submitting: '送信中...',
+            contact_submit_success: 'お問い合わせを送信しました。まもなくご連絡いたします。',
+            contact_validation_error: 'お名前と有効な連絡先をご入力ください。',
+            contact_submit_failed: '現在送信できません。しばらくしてから再試行するか、直接ご連絡ください。',
             legal_title: '法的情報',
             stay_informed: '最新情報',
             footer_subscribe_btn: '購読する',
             footer_email_placeholder: 'メールアドレス',
             footer_follow: 'フォロー',
-            back_to_projects: 'プロジェクトに戻る',
+            back_to_projects: '戻る',
             project_details: 'プロジェクト詳細',
             or_contact_direct: 'または直接連絡',
             nav_chat: 'チャット',
@@ -1309,6 +1336,10 @@
             contact_nationality_label: 'Nationalität',
             contact_timeline_label: 'Zeitrahmen',
             contact_submit_btn: 'Senden',
+            contact_submitting: 'Wird gesendet...',
+            contact_submit_success: 'Anfrage erfolgreich gesendet. Wir kontaktieren Sie in Kuerze.',
+            contact_validation_error: 'Bitte geben Sie Ihren Namen und eine gueltige Kontaktangabe ein.',
+            contact_submit_failed: 'Senden derzeit nicht moeglich. Bitte spaeter erneut versuchen oder direkt kontaktieren.',
             legal_title: 'Rechtliches',
             stay_informed: 'Newsletter',
             footer_subscribe_btn: 'Abonnieren',
@@ -1457,6 +1488,7 @@
             badgeClass: 'bg-[#0A3258]/95 text-white',
             image: './Property%20Listing/TS7%20Main.jpg',
             cardDescription: '',
+            videoUrl: 'https://www.youtube.com/embed/3l6OmykNZ6g?rel=0',
             description: 'A soaring 49-floor architectural icon in the premier Boeung Kak 1 enclave, delivered by the prestigious MegaKim World Corp following a legacy of sold-out successes,. This project is masterfully engineered for capital appreciation, tapping into the intense rental demand from the city’s growing executive class. With a proven track record of high-yield delivery, it offers a sophisticated entry into one of Phnom Penh’s most established and coveted residential districts.',
             highlights: [
                 '49-Storey Landmark',
@@ -1675,7 +1707,7 @@
             longitude: '104.925696',
             badge: 'Pre Sale',
             badgeClass: 'bg-[#0A3258]/95 text-white',
-            image: './Property%20Listing/TS9%20Main.png',
+            image: './Property%20Listing/TS9%20Main.webp',
             cardDescription: '',
             description: 'An Art Deco-inspired masterpiece set within the city’s most exclusive residential enclave, BKK1, the tightest core rental market in Phnom Penh,. Positioned on Street 278, this 40-storey tower is meticulously engineered for premium executive rentals and substantial capital growth. Offering rare strata-title eligibility in a gold-standard district, it represents the pinnacle of luxury investment for those seeking a prestigious and secure asset.',
             highlights: [
@@ -1772,8 +1804,9 @@
             longitude: '103.543798',
             badge: 'Under Construction',
             badgeClass: 'bg-[#0A3258]/95 text-white',
-            image: './Property%20Listing/TS10%20Main.png',
+            image: './Property%20Listing/TS10%20Main.webp',
             cardDescription: '',
+            videoUrl: 'https://www.youtube.com/embed/WEochShoGZ0?rel=0',
             description: 'Capitalise on the rapid transformation of Sihanoukville with this 39-storey beachfront masterpiece by the esteemed MegaKim World Corp. Specifically engineered to capture premium holiday rental demand, it is situated near the pristine Otres Beach 1 in a high-growth coastal corridor. As regional infrastructure matures, this development offers investors a significant early-mover advantage and long-term capital appreciation in Cambodia’s premier seaside destination.',
             highlights: [
                 '39-Storey Oceanfront Landmark',
@@ -1923,6 +1956,7 @@
             badgeClass: 'bg-[#0A3258]/95 text-white',
             image: './Property%20Listing/J%20Tower%203%20Main.jpg',
             cardDescription: '',
+            videoUrl: 'https://www.youtube.com/embed/KpH6laTY_0o?rel=0',
             description: 'An iconic 77-storey skyline landmark that sets a new global benchmark for ultra-luxury, built to the rigorous standards of Japanese engineering,. To maintain the highest level of exclusivity and rental yields, the project features only expansive 3-bedroom layouts and palatial penthouses. Positioned as one of the tallest towers in the region, it is the ultimate trophy asset for investors seeking Japanese quality and unmatched prestige.',
             highlights: [
                 '77-Storey Skyline Landmark',
@@ -1943,8 +1977,8 @@
             ],
             url: 'https://www.realestate.com.kh/new-developments/j-tower-3-condominium/',
             floorPlans: [
-              'Property Listing/J-Tower 3/Floorplans/01.pdf_1.jpg',
-              'Property Listing/J-Tower 3/Floorplans/41F-50F.pdf',
+              'Property Listing/J-Tower 3/Floor Plan/01.pdf_1.jpg',
+              'Property Listing/J-Tower 3/Floor Plan/41F-50F.pdf',
             ],
             facilityImages: [
               'Property Listing/J-Tower 3/Facility/1. J-Tower3 Facility.webp',
@@ -2090,17 +2124,11 @@
             ],
             images: [
               'Property Listing/UC88 (Wyndham Garden)/PIN04671.jpg',
-              'Property Listing/UC88 (Wyndham Garden)/PIN04672.jpg',
               'Property Listing/UC88 (Wyndham Garden)/PIN04673.jpg',
-              'Property Listing/UC88 (Wyndham Garden)/PIN04675.jpg',
-              'Property Listing/UC88 (Wyndham Garden)/PIN04676.jpg',
               'Property Listing/UC88 (Wyndham Garden)/PIN04679.jpg',
-              'Property Listing/UC88 (Wyndham Garden)/PIN04682.jpg',
               'Property Listing/UC88 (Wyndham Garden)/PIN04683.jpg',
               'Property Listing/UC88 (Wyndham Garden)/PIN04685.jpg',
-              'Property Listing/UC88 (Wyndham Garden)/PIN04687.jpg',
               'Property Listing/UC88 (Wyndham Garden)/PIN04689.jpg',
-              'Property Listing/UC88 (Wyndham Garden)/PIN04690.jpg',
             ],
             url: 'https://www.realestate.com.kh/new-developments/uc88-wyndham-garden-bkk1/',
         },
@@ -2482,8 +2510,8 @@
           getProjectImages() {
             if (!this.activeProject) return [];
             const images = Array.isArray(this.activeProject.images) ? this.activeProject.images.slice() : [];
-            if (this.activeProject.image) images.unshift(this.activeProject.image);
-            return this.dedupeAssets(images);
+            if (images.length > 0) return this.dedupeAssets(images);
+            return this.activeProject.image ? [this.activeProject.image] : [];
           },
           getThumbImages() {
             const images = this.getProjectImages();
@@ -2665,6 +2693,27 @@
             if (!title) return label || '';
             return label ? `${label}: ${title}` : title;
           },
+          getImageVariant(url, suffix) {
+            if (!url || !suffix) return '';
+            const raw = String(url);
+            const queryIndex = raw.indexOf('?');
+            const hashIndex = raw.indexOf('#');
+            let splitIndex = -1;
+            if (queryIndex >= 0 && hashIndex >= 0) splitIndex = Math.min(queryIndex, hashIndex);
+            else splitIndex = Math.max(queryIndex, hashIndex);
+            const path = splitIndex >= 0 ? raw.slice(0, splitIndex) : raw;
+            const tail = splitIndex >= 0 ? raw.slice(splitIndex) : '';
+            const extMatch = path.match(/\.([a-zA-Z0-9]+)$/);
+            if (!extMatch) return '';
+            const ext = extMatch[1].toLowerCase();
+            if (!['jpg', 'jpeg', 'png'].includes(ext)) return '';
+            return `${path.slice(0, -1 * (ext.length + 1))}-${suffix}.${ext}${tail}`;
+          },
+          getImageSrcSet(url) {
+            const variant640 = this.getImageVariant(url, '640w');
+            if (!variant640) return '';
+            return `${variant640} 640w, ${url} 1280w`;
+          },
           getMapEmbedUrl(project) {
             if (!project) return '';
             const link = project.mapLink || '';
@@ -2681,6 +2730,7 @@
             const data = new FormData(form);
             this.inquirySuccess = false;
             this.inquiryMessage = '';
+            this.inquiryError = '';
             const parseBudgetRange = (value) => {
               if (!value) return { min: '', max: '' };
               const cleaned = value.toString().replace(/\s+/g, ' ').trim();
@@ -2714,6 +2764,18 @@
             for (const key of fields) {
               const value = data.get(key);
               if (value) payload[key] = value.toString().trim();
+            }
+            const name = (payload.name || '').trim();
+            const contact = (
+              payload.contact_detail ||
+              payload.contact ||
+              payload.email ||
+              payload.phone ||
+              ''
+            ).trim();
+            if (name.length < 2 || contact.length < 3) {
+              this.inquiryError = this.t('contact_validation_error');
+              return;
             }
             payload.source = source || '';
             payload.conversationUrl = window.location.href;
@@ -2751,6 +2813,7 @@
               const value = data.get(key);
               if (value) lines.push(label + ': ' + value.toString().trim());
             }
+            this.inquiryPending = true;
             try {
               await fetch('https://script.google.com/macros/s/AKfycbzeFbgzg3M3ulxsndIxcJFFry6a-AMoU9f_mX6Hen3G0RefVz7KibAb43X1RnUjqSUvsA/exec', {
                 method: 'POST',
@@ -2759,12 +2822,15 @@
                 body: JSON.stringify(payload)
               });
               this.inquirySuccess = true;
-              this.inquiryMessage = 'Inquiry sent successfully. We will contact you shortly.';
+              this.inquiryMessage = this.t('contact_submit_success');
               setTimeout(() => { this.inquirySuccess = false; }, 5000);
             } catch (err) {
+              this.inquiryError = this.t('contact_submit_failed');
               console.warn('Inquiry submission failed:', err);
+            } finally {
+              this.inquiryPending = false;
             }
-            form.reset();
+            if (this.inquirySuccess) form.reset();
           },
           initPage() {
             this.initLanguage();

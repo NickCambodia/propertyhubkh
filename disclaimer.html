@@ -18,113 +18,82 @@
     <meta name="twitter:image" content="https://cambodiapropertyhub.com/PHC%20Logo%20(1).png" />
     <link rel="icon" type="image/png" href="./PHC%20x%20REAKH.png" />
 
-    <link rel="stylesheet" href="./tailwind-index.css" />
+    <link rel="stylesheet" href="./legal.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --font-sans: "Inter", sans-serif;
-        --font-serif: "Playfair Display", serif;
-        --color-navy: #0a3258;
-        --color-gold: #d4a760;
-      }
-      body {
-        font-family: var(--font-sans);
-        background: #f7f8fb;
-        color: #0f172a;
-      }
-      h1,
-      h2,
-      h3,
-      .font-serif {
-        font-family: var(--font-serif);
-      }
-    </style>
   </head>
-  <body class="min-h-screen">
-    <header class="bg-[#0A3258] text-white">
-      <div class="mx-auto max-w-5xl px-6 py-6 flex items-center gap-4">
-        <img
-          src="./PHC%20x%20REAKH.png"
-          alt="Property Hub Cambodia"
-          class="h-10 w-10 rounded-full bg-white/90 p-1"
-        />
-        <div>
-          <p class="text-xs uppercase tracking-[0.35em] text-[#D4A760]">
-            Property Hub Cambodia
-          </p>
-          <h1 class="text-2xl font-serif">Disclaimer</h1>
-          <p class="text-xs text-white/70 mt-1">Last updated: February 4, 2026</p>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <header class="legal-header">
+      <div class="legal-shell legal-header-inner">
+        <div class="legal-brand">
+          <img
+            src="./PHC%20Logo%20(1).png"
+            alt="Property Hub Cambodia"
+            class="legal-logo"
+            width="500"
+            height="500"
+          />
+          <div class="legal-head-copy">
+            <div class="legal-title-row">
+              <h1 class="legal-title">Disclaimer</h1>
+              <a href="./index.html" class="legal-home">Back to Home</a>
+            </div>
+          </div>
         </div>
-        <a
-          href="./index.html"
-          class="ml-auto text-sm text-white/80 hover:text-white"
-          >Back to Home</a
-        >
       </div>
     </header>
 
-    <main class="mx-auto max-w-5xl px-6 py-10 space-y-10">
-      <section class="bg-white rounded-2xl p-8 shadow-sm">
-        <p class="text-slate-600">
-          The content on this website is for general informational purposes only.
-          While we strive to keep information accurate and up to date, we make no
-          warranties about completeness or reliability.
+    <main id="main-content" class="legal-shell legal-main">
+      <section class="legal-card">
+        <h2>Overview</h2>
+        <p>
+          The content on this website is for general informational purposes
+          only. While we strive to keep information accurate and up to date, we
+          make no warranties about completeness or reliability.
         </p>
       </section>
 
-      <section class="bg-white rounded-2xl p-8 shadow-sm space-y-6">
-        <div>
-          <h2 class="text-xl font-serif text-[#0A3258]">
-            No Advice or Guarantees
-          </h2>
-          <p class="mt-3 text-slate-600">
-            Nothing on this site constitutes financial, legal, or investment
-            advice. Real estate investments carry risk, and results are not
-            guaranteed.
-          </p>
-        </div>
-        <div>
-          <h2 class="text-xl font-serif text-[#0A3258]">Third-Party Content</h2>
-          <p class="mt-3 text-slate-600">
-            We may link to third-party websites for convenience. We do not
-            control or endorse their content and are not responsible for their
-            policies.
-          </p>
-        </div>
-        <div>
-          <h2 class="text-xl font-serif text-[#0A3258]">Limitation of Liability</h2>
-          <p class="mt-3 text-slate-600">
-            Property Hub Cambodia is not liable for any loss or damages arising
-            from the use of this website or reliance on its content.
-          </p>
-        </div>
-        <div>
-          <h2 class="text-xl font-serif text-[#0A3258]">Contact</h2>
-          <p class="mt-3 text-slate-600">
-            If you have questions, contact us at
-            <a
-              class="text-[#0A3258] underline"
-              href="mailto:legal@propertyhubcambodia.com"
-              >legal@propertyhubcambodia.com</a
-            >.
-          </p>
-        </div>
+      <section class="legal-card">
+        <h3>No Advice or Guarantees</h3>
+        <p>
+          Nothing on this site constitutes financial, legal, or investment
+          advice. Real estate investments carry risk, and results are not
+          guaranteed.
+        </p>
+
+        <h3>Third-Party Content</h3>
+        <p>
+          We may link to third-party websites for convenience. We do not
+          control or endorse their content and are not responsible for their
+          policies.
+        </p>
+
+        <h3>Limitation of Liability</h3>
+        <p>
+          Property Hub Cambodia is not liable for any loss or damages arising
+          from the use of this website or reliance on its content.
+        </p>
+
+        <h3>Contact</h3>
+        <p>
+          If you have questions, contact us at
+          <a class="legal-link" href="mailto:legal@propertyhubcambodia.com">legal@propertyhubcambodia.com</a>.
+        </p>
       </section>
 
-      <section class="bg-white rounded-2xl p-8 shadow-sm">
-        <h2 class="text-xl font-serif text-[#0A3258]">Governing Law</h2>
-        <p class="mt-3 text-slate-600">
-          This disclaimer is governed by the laws of Cambodia.
-        </p>
+      <section class="legal-card">
+        <h3>Governing Law</h3>
+        <p>This disclaimer is governed by the laws of Cambodia.</p>
       </section>
     </main>
 
-    <footer class="py-10 text-center text-xs text-slate-500">
+    <footer class="legal-footer">
       © 2026 Property Hub Cambodia. All rights reserved.
     </footer>
   </body>

@@ -1,2 +1,3 @@
 .DS_Store
 .env
+.image-process-manifest.json

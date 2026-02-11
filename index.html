@@ -204,6 +204,37 @@
         text-wrap: balance;
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
       }
+      .social-link {
+        position: relative;
+      }
+      .social-tooltip {
+        position: absolute;
+        right: calc(100% + 12px);
+        top: 50%;
+        transform: translate(6px, -50%);
+        background: #0a3258;
+        color: #fff;
+        border-radius: 8px;
+        padding: 6px 10px;
+        font-size: 11px;
+        font-weight: 600;
+        white-space: nowrap;
+        box-shadow: 0 10px 20px rgba(10, 50, 88, 0.35);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        display: none;
+      }
+      @media (min-width: 1024px) {
+        .social-tooltip {
+          display: block;
+        }
+        .social-link:hover .social-tooltip,
+        .social-link:focus-visible .social-tooltip {
+          opacity: 1;
+          transform: translate(0, -50%);
+        }
+      }
       @media (max-width: 640px) {
         .project-title-readable {
           font-family: var(--font-sans);
@@ -260,6 +291,7 @@
     mobileMenuOpen: false,
     lang: 'en',
     isLangOpen: false,
+    isProjectLangOpen: false,
     isProjectModalOpen: false,
     projectDetailTab: 'map',
     isSocialOpen: false,
@@ -289,9 +321,11 @@
     lastPageKey: 'phc_last_page',
     lastScrollKey: 'phc_last_scroll',
     skipScrollOnce: false,
-    defaultProjectVideoUrl: 'https://www.youtube.com/embed/KpH6laTY_0o?si=tXzAcafrbu7PWQp_',
+    defaultProjectVideoLink: 'https://www.youtube.com/@realestateincambodia/featured',
     inquirySuccess: false,
     inquiryMessage: '',
+    inquiryError: '',
+    inquiryPending: false,
     translations: {
         en: {
             nav_home: 'Home',
@@ -397,6 +431,10 @@
             contact_nationality_label: 'Nationality',
             contact_timeline_label: 'Purchase timeline',
             contact_submit_btn: 'Submit Inquiry',
+            contact_submitting: 'Sending...',
+            contact_submit_success: 'Inquiry sent successfully. We will contact you shortly.',
+            contact_validation_error: 'Please provide your name and a valid contact detail.',
+            contact_submit_failed: 'Unable to send right now. Please try again or contact us directly.',
             legal_title: 'Legal',
             stay_informed: 'Stay Informed',
             footer_subscribe_btn: 'Subscribe',
@@ -410,6 +448,8 @@
             view_all: 'View All',
             video_feature_tag: 'Video Feature',
             video_feature_title: 'Pre-sale Preview',
+            video_partner_title: 'Who We Are?',
+            video_partner_subtitle: 'We are part of Realestate.com.kh',
             video_jtower3: 'J Tower 3 Showcase',
             video_ts10: 'Time Square 10 Showcase',
             video_why: 'Why invest in Cambodia?',
@@ -487,11 +527,11 @@
             projects_title: 'プロジェクト',
             projects_subtitle: '高利回りと長期成長が期待できる投資機会を厳選。',
             details: '詳細',
-            hero_tag: 'カンボジア投資アドバイザリーNo.1',
+            hero_tag: 'カンボジアにおける不動産投資アドバイザリー',
             hero_title_line1: '品格',
             hero_title_line2: '成果',
             hero_title_line3: '不動産',
-            hero_description: 'カンボジア最高峰の不動産ポートフォリオで資産を守り育てます。グローバル投資家のためのデータ主導の洞察。',
+            hero_description: '長期視点で資産を守り、着実な成果を追求。日本およびグローバル投資家のための、データに基づく分析と専門的な知見。',
             hero_buy: '購入',
             hero_rent: '賃貸',
             hero_location_label: 'エリア',
@@ -581,12 +621,16 @@
             contact_nationality_label: '国籍',
             contact_timeline_label: '購入時期',
             contact_submit_btn: '送信',
+            contact_submitting: '送信中...',
+            contact_submit_success: 'お問い合わせを送信しました。まもなくご連絡いたします。',
+            contact_validation_error: 'お名前と有効な連絡先をご入力ください。',
+            contact_submit_failed: '現在送信できません。しばらくしてから再試行するか、直接ご連絡ください。',
             legal_title: '法的情報',
             stay_informed: '最新情報',
             footer_subscribe_btn: '購読する',
             footer_email_placeholder: 'メールアドレス',
             footer_follow: 'フォロー',
-            back_to_projects: 'プロジェクトに戻る',
+            back_to_projects: '戻る',
             project_details: 'プロジェクト詳細',
             or_contact_direct: 'または直接連絡',
             nav_chat: 'チャット',
@@ -594,6 +638,8 @@
             view_all: 'すべて表示',
             video_feature_tag: '動画特集',
             video_feature_title: 'プレセールプレビュー',
+            video_partner_title: '私たちについて',
+            video_partner_subtitle: '私たちは Realestate.com.kh の一員です',
             video_jtower3: 'J Tower 3 紹介',
             video_ts10: 'Time Square 10 紹介',
             video_why: 'なぜカンボジアに投資するのか？',
@@ -765,6 +811,10 @@
             contact_nationality_label: 'Nationalität',
             contact_timeline_label: 'Zeitrahmen',
             contact_submit_btn: 'Senden',
+            contact_submitting: 'Wird gesendet...',
+            contact_submit_success: 'Anfrage erfolgreich gesendet. Wir kontaktieren Sie in Kürze.',
+            contact_validation_error: 'Bitte geben Sie Ihren Namen und eine gueltige Kontaktangabe ein.',
+            contact_submit_failed: 'Senden derzeit nicht moeglich. Bitte spaeter erneut versuchen oder direkt kontaktieren.',
             legal_title: 'Rechtliches',
             stay_informed: 'Newsletter',
             footer_subscribe_btn: 'Abonnieren',
@@ -778,6 +828,8 @@
             view_all: 'Alle anzeigen',
             video_feature_tag: 'Video-Feature',
             video_feature_title: 'Pre-Sale Vorschau',
+            video_partner_title: 'Wer wir sind',
+            video_partner_subtitle: 'Wir sind Teil von Realestate.com.kh',
             video_jtower3: 'J Tower 3 Präsentation',
             video_ts10: 'Time Square 10 Präsentation',
             video_why: 'Warum in Kambodscha investieren?',
@@ -954,10 +1006,19 @@
             this.insights = Array.isArray(insights) ? insights : [];
             this.catalogDataLoaded = true;
             this.catalogDataError = '';
+            this.$nextTick(() => this.refreshIcons());
         } catch (err) {
             this.catalogDataError = 'Unable to load latest catalog data.';
             console.warn('Catalog data load failed:', err);
         }
+    },
+    refreshIcons(attempts = 8) {
+        if (window.lucide && typeof window.lucide.createIcons === 'function') {
+            window.lucide.createIcons();
+            return;
+        }
+        if (attempts <= 0) return;
+        setTimeout(() => this.refreshIcons(attempts - 1), 120);
     },
     applyHeroFilters() {
         this.currentPage = 'developments';
@@ -968,10 +1029,19 @@
         this.projectSort = 'default';
         this.scrollToTop();
     },
+    navigateTo(page) {
+        if (!page) return;
+        if (this.currentPage === page) {
+            this.scrollToTop();
+            return;
+        }
+        this.currentPage = page;
+    },
 
     get filteredProjects() {
         const search = this.projectSearch.toLowerCase().trim();
         let results = this.projects.filter((project) => {
+            if (project?.isHidden) return false;
             const matchesSearch = !search || [project.name, project.city, project.location, project.developer, project.type, project.badge].some((field) =>
                 field && field.toLowerCase().includes(search)
             );
@@ -1017,7 +1087,9 @@
     mapInitScheduled: false,
     mapObserver: null,
     get projectMapListings() {
-        return this.projects.map((project) => ({
+        return this.projects
+        .filter((project) => !project?.isHidden)
+        .map((project) => ({
             name: project.name,
             location: project.location,
             price: project.price,
@@ -1148,7 +1220,7 @@
     selectMapProject(project) {
         this.mapSelectedProject = project;
         this.$nextTick(() => {
-            if (window.lucide) window.lucide.createIcons();
+            this.refreshIcons();
         });
     },
     featuredProjects: [6, 2, 9, 8, 0, 1],
@@ -1330,8 +1402,8 @@ projects: [],
     getProjectImages() {
         if (!this.activeProject) return [];
         const images = Array.isArray(this.activeProject.images) ? this.activeProject.images.slice() : [];
-        if (this.activeProject.image) images.unshift(this.activeProject.image);
-        return this.dedupeAssets(images);
+        if (images.length > 0) return this.dedupeAssets(images);
+        return this.activeProject.image ? [this.activeProject.image] : [];
     },
     getThumbImages() {
         const images = this.getProjectImages();
@@ -1415,11 +1487,12 @@ projects: [],
         this.lightboxItems = [];
         this.lightboxIndex = 0;
         this.$nextTick(() => {
-            if (window.lucide) window.lucide.createIcons();
+            this.refreshIcons();
         });
     },
     closeProject() {
         this.isProjectModalOpen = false;
+        this.isProjectLangOpen = false;
         this.activeProject = null;
         this.activeProjectImage = null;
         this.isImageLightboxOpen = false;
@@ -1702,6 +1775,7 @@ projects: [],
         const data = new FormData(form);
         this.inquirySuccess = false;
         this.inquiryMessage = '';
+        this.inquiryError = '';
         const parseBudgetRange = (value) => {
             if (!value) return { min: '', max: '' };
             const cleaned = value.toString().replace(/\s+/g, ' ').trim();
@@ -1735,6 +1809,18 @@ projects: [],
         for (const key of fields) {
             const value = data.get(key);
             if (value) payload[key] = value.toString().trim();
+        }
+        const name = (payload.name || '').trim();
+        const contact = (
+            payload.contact_detail ||
+            payload.contact ||
+            payload.email ||
+            payload.phone ||
+            ''
+        ).trim();
+        if (name.length < 2 || contact.length < 3) {
+            this.inquiryError = this.t('contact_validation_error');
+            return;
         }
         payload.source = source || '';
         payload.conversationUrl = window.location.href;
@@ -1772,6 +1858,7 @@ projects: [],
             const value = data.get(key);
             if (value) lines.push(label + ': ' + value.toString().trim());
         }
+        this.inquiryPending = true;
         try {
             await fetch('https://script.google.com/macros/s/AKfycbzeFbgzg3M3ulxsndIxcJFFry6a-AMoU9f_mX6Hen3G0RefVz7KibAb43X1RnUjqSUvsA/exec', {
                 method: 'POST',
@@ -1780,15 +1867,18 @@ projects: [],
                 body: JSON.stringify(payload)
             });
             this.inquirySuccess = true;
-            this.inquiryMessage = 'Inquiry sent successfully. We will contact you shortly.';
+            this.inquiryMessage = this.t('contact_submit_success');
             setTimeout(() => { this.inquirySuccess = false; }, 5000);
         } catch (err) {
+            this.inquiryError = this.t('contact_submit_failed');
             console.warn('Inquiry submission failed:', err);
+        } finally {
+            this.inquiryPending = false;
         }
-        form.reset();
+        if (this.inquirySuccess) form.reset();
     },
 }"
-    x-init="loadCatalogData(); initLanguage(); if (window.innerWidth &lt; 768) { viewMode = 'grid'; insightViewMode = 'grid'; } updateThumbLimit(); window.addEventListener('resize', () =&gt; updateThumbLimit()); window.addEventListener('popstate', () =&gt; { if (overlayDepth &gt; 0) { isHandlingPop = true; closeTopOverlay(); overlayDepth = Math.max(0, overlayDepth - 1); isHandlingPop = false; return; } }); window.addEventListener('touchstart', (event) =&gt; { if (overlayDepth &lt;= 0) return; const touch = event.touches &amp;&amp; event.touches[0]; if (!touch) return; touchStartX = touch.clientX; touchStartY = touch.clientY; }, { passive: true }); window.addEventListener('touchend', (event) =&gt; { if (overlayDepth &lt;= 0) return; const touch = event.changedTouches &amp;&amp; event.changedTouches[0]; if (!touch) return; const dx = touch.clientX - touchStartX; const dy = touch.clientY - touchStartY; const absX = Math.abs(dx); const absY = Math.abs(dy); if (dx &gt; 60 &amp;&amp; absY &lt; 40) { closeOverlayState(); return; } if (dy &gt; 80 &amp;&amp; absX &lt; 40) { closeOverlayState(); return; } }, { passive: true }); const params = new URLSearchParams(window.location.search); const pageParam = params.get('page'); if (pageParam) { currentPage = pageParam; skipScrollOnce = true; } initFavorites(); $watch('currentPage', (page) =&gt; { isLangOpen = false; if (skipScrollOnce) { skipScrollOnce = false; $nextTick(() =&gt; { lucide.createIcons(); }); return; } scrollToTop(); $nextTick(() =&gt; { lucide.createIcons(); }); }); $nextTick(() =&gt; { lucide.createIcons(); if (pageParam) { try { const stored = localStorage.getItem(lastScrollKey); const y = stored ? Number(stored) : 0; if (!Number.isNaN(y)) { window.scrollTo({ top: y, behavior: 'auto' }); } } catch (_) {} } });"
+    x-init="loadCatalogData(); initLanguage(); if (window.innerWidth &lt; 768) { viewMode = 'grid'; insightViewMode = 'grid'; } updateThumbLimit(); window.addEventListener('resize', () =&gt; updateThumbLimit()); window.addEventListener('popstate', () =&gt; { if (overlayDepth &gt; 0) { isHandlingPop = true; closeTopOverlay(); overlayDepth = Math.max(0, overlayDepth - 1); isHandlingPop = false; return; } }); window.addEventListener('touchstart', (event) =&gt; { if (overlayDepth &lt;= 0) return; const touch = event.touches &amp;&amp; event.touches[0]; if (!touch) return; touchStartX = touch.clientX; touchStartY = touch.clientY; }, { passive: true }); window.addEventListener('touchend', (event) =&gt; { if (overlayDepth &lt;= 0) return; const touch = event.changedTouches &amp;&amp; event.changedTouches[0]; if (!touch) return; const dx = touch.clientX - touchStartX; const dy = touch.clientY - touchStartY; const absX = Math.abs(dx); const absY = Math.abs(dy); if (dx &gt; 60 &amp;&amp; absY &lt; 40) { closeOverlayState(); return; } if (dy &gt; 80 &amp;&amp; absX &lt; 40) { closeOverlayState(); return; } }, { passive: true }); const params = new URLSearchParams(window.location.search); const pageParam = params.get('page'); if (pageParam) { currentPage = pageParam; skipScrollOnce = true; } initFavorites(); $watch('currentPage', (page) =&gt; { isLangOpen = false; if (skipScrollOnce) { skipScrollOnce = false; $nextTick(() =&gt; { refreshIcons(); }); return; } scrollToTop(); $nextTick(() =&gt; { refreshIcons(); }); }); $nextTick(() =&gt; { refreshIcons(); if (pageParam) { try { const stored = localStorage.getItem(lastScrollKey); const y = stored ? Number(stored) : 0; if (!Number.isNaN(y)) { window.scrollTo({ top: y, behavior: 'auto' }); } } catch (_) {} } });"
     x-effect="document.documentElement.lang = lang"
     class="text-slate-800 selection:bg-[#D4A760] selection:text-white pb-20 lg:pb-0"
   >
@@ -1804,7 +1894,7 @@ projects: [],
           <!-- Custom Logo SVG -->
           <a
             href="#"
-            @click.prevent="currentPage = 'home'; scrollToTop()"
+            @click.prevent="navigateTo('home')"
             class="flex flex-col items-center justify-center group h-full py-2"
           >
             <img
@@ -1829,7 +1919,7 @@ projects: [],
             >
               <a
                 href="#"
-                @click.prevent="currentPage = item.id"
+                @click.prevent="navigateTo(item.id)"
                 :class="currentPage === item.id ? 'text-[#D4A760]' : 'text-slate-300 hover:text-white'"
                 class="text-sm font-medium transition-colors duration-200 relative group py-2"
               >
@@ -2110,7 +2200,7 @@ projects: [],
               ></h2>
             </div>
             <a
-              href="https://maps.google.com/?q=Phnom%20Penh%20Cambodia"
+              href="https://www.google.com/maps/d/embed?mid=1O8d456dMdaE8CJ-rG5r2yANVBlTWcUQ&ehbc=2E312F"
               target="_blank"
               rel="noreferrer"
               class="text-[#0A3258] text-sm font-semibold hover:text-[#D4A760] flex items-center gap-1 transition-colors group"
@@ -2150,7 +2240,7 @@ projects: [],
               ></h2>
             </div>
             <button
-              @click="currentPage = 'developments'"
+              @click="navigateTo('developments')"
               class="text-[#0A3258] text-sm font-semibold hover:text-[#D4A760] flex items-center gap-1 transition-colors group"
             >
               <span x-text="t('view_all')"></span>
@@ -2314,16 +2404,19 @@ projects: [],
 
         <!-- Video Feature -->
         <div class="max-w-7xl mx-auto px-4 mb-32">
-          <div class="text-center mb-10">
-            <span
-              class="text-[#D4A760] text-xs font-bold tracking-widest uppercase mb-2 block"
-              x-text="t('video_feature_tag')"
-            ></span
-            >
-            <h2
-              class="text-3xl text-[#0A3258] font-serif font-medium tracking-tight mb-3"
-              x-text="t('video_feature_title')"
-            ></h2>
+          <div class="max-w-3xl mx-auto mb-10 space-y-3">
+            <p class="text-3xl text-[#0A3258] font-serif font-medium tracking-tight text-center" x-text="t('video_partner_title')"></p>
+            <p class="text-sm font-semibold text-[#D4A760] uppercase tracking-widest text-center" x-text="t('video_partner_subtitle')"></p>
+            <iframe
+              src="https://www.youtube.com/embed/KUcPbP3oWcY"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              loading="lazy"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              class="w-full aspect-video rounded-2xl border border-slate-200 shadow-sm"
+            ></iframe>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-3">
@@ -2331,7 +2424,7 @@ projects: [],
               <iframe
                 width="560"
                 height="315"
-                src="https://www.youtube.com/embed/KpH6laTY_0o?si=tXzAcafrbu7PWQp_"
+                src="https://www.youtube.com/embed/KpH6laTY_0o?rel=0"
                 title="YouTube video player"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -3010,7 +3103,7 @@ projects: [],
             </div>
             <div>
               <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_contact_label')"></label>
-              <input type="text" name="contact_detail" :placeholder="t('contact_detail_placeholder')" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
+              <input type="text" name="contact_detail" :placeholder="t('contact_detail_placeholder')" required class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
             </div>
             <div>
               <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_language_label')"></label>
@@ -3068,10 +3161,11 @@ projects: [],
               </details>
             </div>
             <div class="md:col-span-2 flex flex-col items-center gap-3 mt-2 text-slate-300">
-              <button type="submit" class="btn-gold text-white px-6 py-3 rounded-full text-xs font-semibold tracking-wide shadow-lg">
-                <span x-text="t('contact_submit_btn')"></span>
+              <button type="submit" class="btn-gold text-white px-6 py-3 rounded-full text-xs font-semibold tracking-wide shadow-lg disabled:opacity-60 disabled:cursor-not-allowed" :disabled="inquiryPending">
+                <span x-text="inquiryPending ? t('contact_submitting') : t('contact_submit_btn')"></span>
               </button>
               <p class="text-[11px] text-emerald-200" x-show="inquirySuccess" x-text="inquiryMessage"></p>
+              <p class="text-[11px] text-rose-300" x-show="inquiryError" x-text="inquiryError"></p>
             </div>
           </form>
         </div>
@@ -3091,7 +3185,7 @@ projects: [],
           <div class="col-span-1 md:col-span-1 flex flex-col items-center text-center self-start">
             <a
               href="#"
-              @click.prevent="currentPage = 'home'; scrollToTop()"
+              @click.prevent="navigateTo('home')"
               class="inline-flex items-center justify-center"
             >
               <img
@@ -3267,7 +3361,7 @@ projects: [],
         <button
           class="flex flex-col items-center gap-1 w-full h-full justify-center transition-colors"
           :class="currentPage === 'home' ? 'text-[#0A3258]' : 'text-slate-400 hover:text-slate-600'"
-          @click="currentPage = 'home'"
+          @click="navigateTo('home')"
         >
           <i
             data-lucide="home"
@@ -3278,7 +3372,7 @@ projects: [],
         <button
           class="flex flex-col items-center gap-1 w-full h-full justify-center transition-colors"
           :class="currentPage === 'developments' ? 'text-[#0A3258]' : 'text-slate-400 hover:text-slate-600'"
-          @click="currentPage = 'developments'"
+          @click="navigateTo('developments')"
         >
           <i
             data-lucide="building-2"
@@ -3289,7 +3383,7 @@ projects: [],
         <button
           class="flex flex-col items-center gap-1 w-full h-full justify-center transition-colors"
           :class="currentPage === 'services' ? 'text-[#0A3258]' : 'text-slate-400 hover:text-slate-600'"
-          @click="currentPage = 'services'"
+          @click="navigateTo('services')"
         >
           <i data-lucide="briefcase" class="w-5 h-5"></i>
           <span class="text-[10px] font-medium" x-text="t('nav_services')"></span>
@@ -3297,7 +3391,7 @@ projects: [],
         <button
           class="flex flex-col items-center gap-1 w-full h-full justify-center transition-colors"
           :class="currentPage === 'blog' ? 'text-[#0A3258]' : 'text-slate-400 hover:text-slate-600'"
-          @click="currentPage = 'blog'"
+          @click="navigateTo('blog')"
         >
           <i
             data-lucide="newspaper"
@@ -3308,7 +3402,7 @@ projects: [],
         <button
           class="flex flex-col items-center gap-1 w-full h-full justify-center transition-colors"
           :class="currentPage === 'about' ? 'text-[#0A3258]' : 'text-slate-400 hover:text-slate-600'"
-          @click="currentPage = 'about'"
+          @click="navigateTo('about')"
         >
           <i data-lucide="info" class="w-5 h-5"></i>
           <span class="text-[10px] font-medium" x-text="t('nav_about')"></span>
@@ -3339,7 +3433,7 @@ projects: [],
         class="bg-[#0A3258] w-full h-full rounded-none shadow-2xl relative z-10 overflow-hidden ring-1 ring-white/10 flex flex-col text-white"
       >
         <div
-          class="bg-[#0A3258] px-6 py-5 text-white flex items-center justify-between shrink-0 border-b border-white/10"
+          class="relative z-[120] overflow-visible bg-[#0A3258] px-6 py-5 text-white flex items-center justify-between shrink-0 border-b border-white/10"
         >
           <div>
             <p class="text-[10px] uppercase tracking-[0.3em] text-white/70">
@@ -3351,6 +3445,37 @@ projects: [],
             ></h3>
           </div>
           <div class="flex items-center gap-3">
+            <div class="relative" @click.outside="isProjectLangOpen = false">
+              <button
+                class="flex text-slate-300 hover:text-white transition-colors gap-2 items-center group px-3 py-2 rounded-full border border-white/10 hover:border-white/30"
+                @click="isProjectLangOpen = !isProjectLangOpen"
+                aria-label="Language"
+                :aria-expanded="isProjectLangOpen"
+              >
+                <i data-lucide="globe" class="w-4 h-4 group-hover:text-[#D4A760] transition-colors"></i>
+                <span class="text-xs font-semibold" x-text="lang.toUpperCase()"></span>
+                <i data-lucide="chevron-down" class="w-3.5 h-3.5"></i>
+              </button>
+              <div
+                x-cloak
+                x-show="isProjectLangOpen"
+                x-transition.opacity.duration.150ms
+                class="absolute right-0 top-full mt-3 w-44 rounded-2xl border border-white/10 bg-[#0A3258] shadow-2xl overflow-hidden z-[140]"
+              >
+                <button type="button" class="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-white hover:bg-white/10" @click="setLanguage('en'); isProjectLangOpen = false">
+                  <span class="text-lg">🇬🇧</span>
+                  <span x-text="t('language_en')"></span>
+                </button>
+                <button type="button" class="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-white hover:bg-white/10" @click="setLanguage('ja'); isProjectLangOpen = false">
+                  <span class="text-lg">🇯🇵</span>
+                  <span x-text="t('language_ja')"></span>
+                </button>
+                <button type="button" class="w-full flex items-center gap-3 px-4 py-3 text-left text-sm text-white hover:bg-white/10" @click="setLanguage('de'); isProjectLangOpen = false">
+                  <span class="text-lg">🇩🇪</span>
+                  <span x-text="t('language_de')"></span>
+                </button>
+              </div>
+            </div>
             <button
               type="button"
               class="inline-flex items-center gap-2 text-xs font-semibold text-white/80 hover:text-white border border-white/10 px-4 py-2 rounded-full transition-colors"
@@ -3361,7 +3486,7 @@ projects: [],
             </button>
           </div>
         </div>
-        <div class="p-6 overflow-y-auto flex-1">
+        <div class="relative z-10 p-6 overflow-y-auto flex-1">
           <div class="max-w-5xl mx-auto w-full space-y-8">
             <div class="space-y-4">
               <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
@@ -3561,7 +3686,7 @@ projects: [],
                   <h4 class="text-lg font-serif font-semibold text-white mb-6" x-text="t('project_features')"></h4>
                   <ul
                     class="grid grid-cols-1 md:grid-cols-2 gap-y-5 gap-x-12 text-sm text-slate-200"
-                    x-effect="if (window.lucide) { $nextTick(() => window.lucide.createIcons()); }"
+                    x-effect="$nextTick(() => refreshIcons())"
                   >
                     <template x-for="item in activeProject?.highlights || []">
                       <li class="flex items-center gap-4">
@@ -3830,11 +3955,11 @@ projects: [],
                   </button>
                 </div>
               </div>
-                  <div x-show="projectDetailTab === 'video'" x-transition.opacity>
-                    <div class="rounded-2xl overflow-hidden border border-white/10 aspect-video">
+                  <div x-show="projectDetailTab === 'video'" x-transition.opacity class="space-y-4">
+                    <div x-show="activeProject?.videoUrl" class="rounded-2xl overflow-hidden border border-white/10 aspect-video">
                       <iframe
                         class="w-full h-full"
-                        :src="activeProject?.videoUrl || defaultProjectVideoUrl"
+                        :src="activeProject?.videoUrl"
                         title="Project video"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -3842,6 +3967,17 @@ projects: [],
                         referrerpolicy="strict-origin-when-cross-origin"
                         allowfullscreen
                       ></iframe>
+                    </div>
+                    <div x-show="!activeProject?.videoUrl" class="rounded-2xl border border-white/10 bg-[#0F2D49] p-6 text-center">
+                      <p class="text-sm text-slate-200 mb-4">No dedicated project video yet.</p>
+                      <a
+                        :href="defaultProjectVideoLink"
+                        target="_blank"
+                        rel="noreferrer"
+                        class="inline-flex items-center justify-center btn-gold text-white px-5 py-2.5 rounded-xl text-xs font-semibold tracking-wide"
+                      >
+                        Visit Realestate.com.kh YouTube
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -3864,10 +4000,11 @@ projects: [],
                     <input type="text" name="phone" :placeholder="t('form_your_phone')" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans" />
                     <input type="text" name="timeline" :placeholder="t('form_preferred_date')" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans" />
                     <textarea name="summary" rows="3" :placeholder="t('form_your_message')" class="w-full bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-sm text-[#0B1118] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#D4A760]/40 focus:border-[#D4A760] font-sans"></textarea>
-                  <button type="submit" class="btn-gold text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide shadow-lg">
-                      <span x-text="t('contact_submit_btn')"></span>
+                  <button type="submit" class="btn-gold text-white px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide shadow-lg disabled:opacity-60 disabled:cursor-not-allowed" :disabled="inquiryPending">
+                      <span x-text="inquiryPending ? t('contact_submitting') : t('contact_submit_btn')"></span>
                     </button>
                     <p class="text-[11px] text-emerald-200" x-show="inquirySuccess" x-text="inquiryMessage"></p>
+                    <p class="text-[11px] text-rose-300" x-show="inquiryError" x-text="inquiryError"></p>
                   </form>
                   <div class="mt-4 pt-4 border-t border-white/10">
                     <p class="text-[11px] text-slate-400 text-center mb-3" x-text="t('or_contact_direct')"></p>
@@ -3982,34 +4119,36 @@ projects: [],
           href="https://wa.me/message/2TI4DNBNIR2GO1"
           target="_blank"
           rel="noreferrer"
-          class="w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
+          class="social-link w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
           title="WhatsApp"
           aria-label="WhatsApp"
         >
+          <span class="social-tooltip">WhatsApp</span>
           <svg viewBox="0 0 24 24" class="w-7 h-7" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 12.2a7.8 7.8 0 1 1-3.1-6.3"/>
-            <path d="M8.9 7.7c-.3-.6-.6-.6-.8-.6h-.7c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.3 0 1.3 1 2.6 1.2 2.8.1.2 2 3 4.8 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3 0-.1-.2-.2-.5-.4l-1.7-.8c-.3-.1-.5-.1-.7.2l-.7 1c-.2.2-.3.2-.6.1-.3-.1-1.1-.4-2.1-1.3-.8-.7-1.3-1.6-1.4-1.8-.1-.2 0-.4.1-.5l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.3 0-.5z"/>
-            <path d="M4 20l1.2-3.6"/>
+            <path d="M4 20l1.7-3.9A9 9 0 1 1 12 21a8.9 8.9 0 0 1-4.3-1.1z"/>
+            <path d="M9.2 8.6h-.7a.9.9 0 0 0-.7.3c-.4.4-1.1 1.2-1.1 2.6s1.1 2.8 1.2 2.9 2.2 3.3 5.3 4.7c2.6 1.1 3.1.9 3.7.8.8-.1 2.4-1 2.7-2 .3-.9.3-1.7.2-1.9s-.3-.3-.8-.5l-2.2-1c-.5-.2-.8-.2-1.1.2l-.9 1.1c-.2.3-.5.3-.9.1-.4-.2-1.6-.6-3-1.8-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.7-.8c.2-.2.3-.5.5-.7.2-.3.1-.6 0-.8l-.9-2.2c-.3-.6-.6-.7-1-.7z"/>
           </svg>
         </a>
         <a
           href="https://t.me/PropertyHubCambodia"
           target="_blank"
           rel="noreferrer"
-          class="w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
+          class="social-link w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
           title="Telegram"
           aria-label="Telegram"
         >
+          <span class="social-tooltip">Telegram</span>
           <i data-lucide="send" class="w-6 h-6"></i>
         </a>
         <a
           href="https://line.me/ti/p/7vYK4mnTfB"
           target="_blank"
           rel="noreferrer"
-          class="w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
+          class="social-link w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
           title="LINE"
           aria-label="LINE"
         >
+          <span class="social-tooltip">LINE</span>
           <svg viewBox="0 0 24 24" class="w-7 h-7" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <path d="M7 6.5h10a3.5 3.5 0 0 1 3.5 3.5v2.8a3.5 3.5 0 0 1-3.5 3.5h-5.2L8 19.5v-3.2H7a3.5 3.5 0 0 1-3.5-3.5V10A3.5 3.5 0 0 1 7 6.5z"/>
             <text x="7.1" y="13.4" font-size="5.2" font-family="Arial, sans-serif" fill="currentColor" stroke="none">LINE</text>
@@ -4019,30 +4158,33 @@ projects: [],
           href="https://www.linkedin.com/in/ut-chhorpoarnnarith-a98907b5?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
           target="_blank"
           rel="noreferrer"
-          class="w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
+          class="social-link w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
           title="LinkedIn"
           aria-label="LinkedIn"
         >
+          <span class="social-tooltip">LinkedIn</span>
           <i data-lucide="linkedin" class="w-6 h-6"></i>
         </a>
         <a
           href="https://www.facebook.com/PropertyHubKH"
           target="_blank"
           rel="noreferrer"
-          class="w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
+          class="social-link w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
           title="Facebook"
           aria-label="Facebook"
         >
+          <span class="social-tooltip">Facebook</span>
           <i data-lucide="facebook" class="w-6 h-6"></i>
         </a>
         <a
           href="https://www.instagram.com/propertyhubcambodia/"
           target="_blank"
           rel="noreferrer"
-          class="w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
+          class="social-link w-14 h-14 rounded-full bg-white/95 text-[#0A3258] shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#D4A760] hover:text-white transition-colors"
           title="Instagram"
           aria-label="Instagram"
         >
+          <span class="social-tooltip">Instagram</span>
           <i data-lucide="instagram" class="w-6 h-6"></i>
         </a>
       </div>
