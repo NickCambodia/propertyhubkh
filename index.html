@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -317,6 +318,7 @@
     favorites: [],
     favoritesKey: 'phc_favorites',
     projectDetailsKey: 'phc_active_project',
+    projectsCacheKey: 'phc_projects_cache',
     projectLangKey: 'phc_lang',
     lastPageKey: 'phc_last_page',
     lastScrollKey: 'phc_last_scroll',
@@ -1004,6 +1006,9 @@
             const [projects, insights] = await Promise.all([projectsRes.json(), insightsRes.json()]);
             this.projects = Array.isArray(projects) ? projects : [];
             this.insights = Array.isArray(insights) ? insights : [];
+            try {
+                localStorage.setItem(this.projectsCacheKey, JSON.stringify(this.projects));
+            } catch (_) {}
             this.catalogDataLoaded = true;
             this.catalogDataError = '';
             this.$nextTick(() => this.refreshIcons());
@@ -3031,14 +3036,14 @@ projects: [],
                 </div>
               </div>
             </div>
-            <div class="text-white max-w-2xl">
+            <div class="text-white w-full max-w-2xl mx-auto lg:mx-0">
               <p class="text-[11px] uppercase tracking-[0.4em] text-[#D4A760]/80 mb-3" x-text="t('about_tag')"></p>
-              <h2 class="text-xl lg:text-2xl font-serif font-semibold tracking-tight leading-tight whitespace-nowrap" x-html="t('about_title')"></h2>
+              <h2 class="text-xl lg:text-2xl font-serif font-semibold tracking-tight leading-tight whitespace-normal sm:whitespace-nowrap" x-html="t('about_title')"></h2>
               <p class="text-slate-300 mt-3 leading-relaxed" x-text="t('about_desc_1')"></p>
               <p class="text-slate-300 mt-2 leading-relaxed" x-text="t('about_desc_2')"></p>
 
-              <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-                <div class="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 p-4">
+              <div class="mt-5 grid w-full grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                <div class="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 p-4 min-h-[88px] h-full">
                   <span class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D4A760]">
                     <i data-lucide="award" class="w-4 h-4"></i>
                   </span>
@@ -3047,7 +3052,7 @@ projects: [],
                     <p class="text-slate-300 text-xs" x-text="t('about_years_label')"></p>
                   </div>
                 </div>
-                <div class="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 p-4">
+                <div class="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 p-4 min-h-[88px] h-full">
                   <span class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D4A760]">
                     <i data-lucide="building-2" class="w-4 h-4"></i>
                   </span>
@@ -3056,7 +3061,7 @@ projects: [],
                     <p class="text-slate-300 text-xs" x-text="t('about_properties_label')"></p>
                   </div>
                 </div>
-                <div class="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 p-4">
+                <div class="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 p-4 min-h-[88px] h-full">
                   <span class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D4A760]">
                     <i data-lucide="users" class="w-4 h-4"></i>
                   </span>
@@ -3065,7 +3070,7 @@ projects: [],
                     <p class="text-slate-300 text-xs" x-text="t('about_clients_label')"></p>
                   </div>
                 </div>
-                <div class="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 p-4">
+                <div class="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 p-4 min-h-[88px] h-full">
                   <span class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#D4A760]">
                     <i data-lucide="trending-up" class="w-4 h-4"></i>
                   </span>
@@ -3089,11 +3094,11 @@ projects: [],
           <form class="grid grid-cols-1 md:grid-cols-2 gap-6" @submit.prevent="sendInquiry($event, 'contact')">
             <div>
               <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_name_label')"></label>
-              <input type="text" name="name" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" required />
+              <input type="text" name="name" class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" required />
             </div>
             <div>
               <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_method_label')"></label>
-              <select name="contact_method" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]">
+              <select name="contact_method" class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]">
                 <option>WhatsApp</option>
                 <option>Telegram</option>
                 <option>LINE</option>
@@ -3103,11 +3108,11 @@ projects: [],
             </div>
             <div>
               <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_contact_label')"></label>
-              <input type="text" name="contact_detail" :placeholder="t('contact_detail_placeholder')" required class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
+              <input type="text" name="contact_detail" :placeholder="t('contact_detail_placeholder')" required class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
             </div>
             <div>
               <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_language_label')"></label>
-              <select name="language" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]">
+              <select name="language" class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]">
                 <option :selected="lang === 'en'" x-text="t('language_en')"></option>
                 <option :selected="lang === 'ja'" x-text="t('language_ja')"></option>
                 <option :selected="lang === 'de'" x-text="t('language_de')"></option>
@@ -3125,7 +3130,7 @@ projects: [],
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
                   <div>
                     <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_looking_label')"></label>
-                    <select name="lead_type" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]">
+                    <select name="lead_type" class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]">
                       <option x-text="t('contact_buy')"></option>
                       <option x-text="t('contact_sell')"></option>
                       <option x-text="t('contact_rent')"></option>
@@ -3134,23 +3139,23 @@ projects: [],
                   </div>
                   <div>
                     <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_budget_label')"></label>
-                    <input type="text" name="budget" :placeholder="t('contact_budget_placeholder')" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
+                    <input type="text" name="budget" :placeholder="t('contact_budget_placeholder')" class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
                   </div>
                   <div>
                     <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_location_label')"></label>
-                    <input type="text" name="location" :placeholder="t('contact_location_placeholder')" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
+                    <input type="text" name="location" :placeholder="t('contact_location_placeholder')" class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
                   </div>
                   <div>
                     <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_purpose_label')"></label>
-                    <input type="text" name="purpose" :placeholder="t('contact_purpose_placeholder')" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
+                    <input type="text" name="purpose" :placeholder="t('contact_purpose_placeholder')" class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
                   </div>
                   <div>
                     <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_nationality_label')"></label>
-                    <input type="text" name="nationality" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
+                    <input type="text" name="nationality" class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]" />
                   </div>
                   <div>
                     <label class="text-[10px] uppercase tracking-wider text-[#D4A760] font-semibold" x-text="t('contact_timeline_label')"></label>
-                    <select name="timeline" class="mt-2 w-full bg-white/10 border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]">
+                    <select name="timeline" class="mt-2 w-full h-12 bg-white/10 border border-white/10 rounded-lg px-4 text-sm text-white placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#D4A760] focus:border-[#D4A760]">
                       <option>0-3 months</option>
                       <option>3-6 months</option>
                       <option>6-12 months</option>

@@ -5,7 +5,9 @@ from pathlib import Path
 from urllib.parse import quote
 
 
-SUPPORTED_EXT = {".jpg", ".jpeg", ".png", ".webp"}
+IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp"}
+ASSET_EXT = IMAGE_EXT | {".pdf"}
+EXT_PREFERENCE = {".webp": 0, ".jpg": 1, ".jpeg": 2, ".png": 3}
 
 PROJECT_FOLDER_MAP = {
     "Time Square 7": "Time Square 7",
@@ -31,14 +33,29 @@ def urlize(path: Path) -> str:
     return "./" + quote(path.as_posix(), safe="/._-()")
 
 
+def dedupe_prefer(paths: list[Path]) -> list[Path]:
+    selected: dict[str, Path] = {}
+    for p in paths:
+        stem_key = (p.parent.as_posix().lower() + "/" + p.stem.lower().strip()).replace("\\", "/")
+        current = selected.get(stem_key)
+        if current is None:
+            selected[stem_key] = p
+            continue
+        current_rank = EXT_PREFERENCE.get(current.suffix.lower(), 99)
+        next_rank = EXT_PREFERENCE.get(p.suffix.lower(), 99)
+        if next_rank < current_rank:
+            selected[stem_key] = p
+    return sorted(selected.values(), key=lambda x: x.as_posix().lower())
+
+
 def list_images(path: Path) -> list[Path]:
     if not path.exists() or not path.is_dir():
         return []
     out = []
     for p in sorted(path.rglob("*"), key=lambda x: x.as_posix().lower()):
-        if p.is_file() and p.suffix.lower() in SUPPORTED_EXT:
+        if p.is_file() and p.suffix.lower() in ASSET_EXT:
             out.append(p)
-    return out
+    return dedupe_prefer(out)
 
 
 def list_top_level_images(path: Path) -> list[Path]:
@@ -46,9 +63,9 @@ def list_top_level_images(path: Path) -> list[Path]:
         return []
     out = []
     for p in sorted(path.iterdir(), key=lambda x: x.as_posix().lower()):
-        if p.is_file() and p.suffix.lower() in SUPPORTED_EXT:
+        if p.is_file() and p.suffix.lower() in IMAGE_EXT:
             out.append(p)
-    return out
+    return dedupe_prefer(out)
 
 
 def main() -> None:
@@ -98,14 +115,11 @@ def main() -> None:
             project.get("unitLayouts", []),
         )
 
-        if gallery:
-            project["images"] = gallery
-        if floor_plans:
-            project["floorPlans"] = floor_plans
-        if facilities:
-            project["facilities"] = facilities
-        if unit_layouts:
-            project["unitLayouts"] = unit_layouts
+        # Always refresh arrays for mapped projects so stale, deleted files do not remain referenced.
+        project["images"] = gallery
+        project["floorPlans"] = floor_plans
+        project["facilities"] = facilities
+        project["unitLayouts"] = unit_layouts
 
         after = (
             project.get("images", []),
